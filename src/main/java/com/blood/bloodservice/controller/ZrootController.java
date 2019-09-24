@@ -27,7 +27,9 @@ public class ZrootController {
         //添加管理员信息  (zroot)
         int gid=zrootService.addZroot(gname,gsex,gemail,gphone);
         //添加登陆表信息
-        userloginService.addUserlogin(gid,gemail,upassword,"管理员");
+        int did=userloginService.addUserlogin(gid,gemail,upassword,"管理员");
+        //添加权限对象
+        zrootService.addRoot(did);
         return Msg.success();
     }
 }

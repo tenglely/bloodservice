@@ -1,12 +1,16 @@
 package com.blood.bloodservice.dao;
 
 import com.blood.bloodservice.entity.Role;
+import com.blood.bloodservice.entity.UserRole;
 import com.blood.bloodservice.entity.Userlogin;
 import com.blood.bloodservice.entity.UserloginExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserloginMapper {
+
+    int insertUserRole(UserRole userRole);
+
     Userlogin loadUserByUsername(@Param("uemail") String uemail,@Param("utype") String utype);
 
     List<Role> getUserRolesByUid(Integer id);
