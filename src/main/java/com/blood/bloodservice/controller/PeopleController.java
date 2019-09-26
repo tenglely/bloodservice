@@ -2,10 +2,8 @@ package com.blood.bloodservice.controller;
 
 import com.blood.bloodservice.entity.Msg;
 import com.blood.bloodservice.entity.People;
-import com.blood.bloodservice.entity.Userlogin;
 import com.blood.bloodservice.service.PeopleService;
-import com.blood.bloodservice.service.UserloginService;
-import com.blood.bloodservice.service.ZrootService;
+import com.blood.bloodservice.service.impl.UserloginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,12 +33,9 @@ public class PeopleController {
        String p = people.getUidentity();
        String pwd = p.substring(p.length()-6,p.length());
         System.out.println(pwd);
-        //密码加密
-        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder(10);
-        String encodePassword=encoder.encode(pwd);
 
         //根据用户id添加献血人员的数据到表userlogin中
-       int did = userloginService.addUserlogin(uid,people.getUemail(),encodePassword,"用户");
+       int did = userloginService.addUserlogin(uid,people.getUemail(),pwd,"用户");
 
        //根据登录id添加权限对象给献血人员
        peopleService.addRoot(did);

@@ -1,6 +1,6 @@
 package com.blood.bloodservice.config;
 
-import com.blood.bloodservice.service.UserloginService;
+import com.blood.bloodservice.service.impl.UserloginService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

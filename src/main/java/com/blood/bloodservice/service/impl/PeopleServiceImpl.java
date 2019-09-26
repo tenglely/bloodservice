@@ -33,12 +33,8 @@ public class PeopleServiceImpl implements PeopleService {
        // PeopleExample example = new PeopleExample();
        // PeopleExample.Criteria criteria = example.createCriteria();
         //返回添加献血人员的主键uid
-        int uid = peopleMapper.insert(people);
-
-
-
-
-        return uid;
+        peopleMapper.insert(people);
+        return people.getUid();
     }
 
     //添加献血人员角色表
