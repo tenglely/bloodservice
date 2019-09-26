@@ -22,7 +22,7 @@ public class ZrootController {
     @Autowired
     private UserloginService userloginService;
 
-    @PostMapping("/all/addzroot")
+    @PostMapping("/admin/addzroot")
     public Msg addZroot(String gname, String gsex, String gemail, String gphone, String upassword) {
         //添加管理员信息  (zroot)
         int gid = zrootService.addZroot(gname, gsex, gemail, gphone);

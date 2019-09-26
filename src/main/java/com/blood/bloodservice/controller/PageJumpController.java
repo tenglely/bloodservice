@@ -20,7 +20,7 @@ public class PageJumpController {
         return "login";
     }
 
-    @GetMapping("/admin/hello")
+    @GetMapping("/user/hello")
     @ResponseBody
     public String hello(){
         return "hello";

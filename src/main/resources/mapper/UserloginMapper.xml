@@ -76,6 +76,7 @@
        select * from user_login where uemail=#{uemail} and utype =#{utype}
    </select>
 
+  <!--根据登录id查询角色列表-->
   <select id="getUserRolesByUid" resultType="com.blood.bloodservice.entity.Role">
         select * from root r,user_root ur where r.rid=ur.rid and ur.uid=#{id}
    </select>

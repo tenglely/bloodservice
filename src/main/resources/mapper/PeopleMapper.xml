@@ -105,7 +105,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.blood.bloodservice.entity.People" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="uid" parameterType="com.blood.bloodservice.entity.People" >
     insert into people (uid, uname, usex, 
       uage, uidentity, uaddress, 
       unation, uphone, uemail, 
@@ -115,6 +115,17 @@
       #{unation,jdbcType=VARCHAR}, #{uphone,jdbcType=VARCHAR}, #{uemail,jdbcType=VARCHAR}, 
       #{ublood,jdbcType=VARCHAR}, #{bid,jdbcType=INTEGER})
   </insert>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="gid" parameterType="com.blood.bloodservice.entity.Zroot" >
+    insert into z_root (gid, gname, gsex,
+      gemail, gphone, gdate
+      )
+    values (#{gid,jdbcType=INTEGER}, #{gname,jdbcType=VARCHAR}, #{gsex,jdbcType=VARCHAR},
+      #{gemail,jdbcType=VARCHAR}, #{gphone,jdbcType=VARCHAR}, #{gdate,jdbcType=VARCHAR}
+      )
+  </insert>
+
+
+
   <insert id="insertSelective" parameterType="com.blood.bloodservice.entity.People" >
     insert into people
     <trim prefix="(" suffix=")" suffixOverrides="," >

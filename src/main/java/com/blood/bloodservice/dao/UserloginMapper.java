@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface UserloginMapper {
 
+    //给用户添加用户_角色表的方法
     int insertUserRole(UserRole userRole);
 
     Userlogin loadUserByUsername(@Param("uemail") String uemail,@Param("utype") String utype);
