@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blood.bloodservice.dao.BtargetMapper" >
+  <resultMap id="BaseResultMap" type="com.blood.bloodservice.entity.Btarget" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cdan" property="cdan" jdbcType="VARCHAR" />
+    <result column="cyi" property="cyi" jdbcType="BIT" />
+    <result column="cmei" property="cmei" jdbcType="INTEGER" />
+    <result column="cbing" property="cbing" jdbcType="BIT" />
+    <result column="cmeidu" property="cmeidu" jdbcType="BIT" />
+    <result column="chiv" property="chiv" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cdan, cyi, cmei, cbing, cmeidu, chiv
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.blood.bloodservice.entity.BtargetExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from btarget
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from btarget
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from btarget
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.blood.bloodservice.entity.BtargetExample" >
+    delete from btarget
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.blood.bloodservice.entity.Btarget" >
+    insert into btarget (id, cdan, cyi, cmei, 
+      cbing, cmeidu, chiv)
+    values (#{id,jdbcType=INTEGER}, #{cdan,jdbcType=VARCHAR}, #{cyi,jdbcType=BIT}, #{cmei,jdbcType=INTEGER}, 
+      #{cbing,jdbcType=BIT}, #{cmeidu,jdbcType=BIT}, #{chiv,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blood.bloodservice.entity.Btarget" >
+    insert into btarget
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cdan != null" >
+        cdan,
+      </if>
+      <if test="cyi != null" >
+        cyi,
+      </if>
+      <if test="cmei != null" >
+        cmei,
+      </if>
+      <if test="cbing != null" >
+        cbing,
+      </if>
+      <if test="cmeidu != null" >
+        cmeidu,
+      </if>
+      <if test="chiv != null" >
+        chiv,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cdan != null" >
+        #{cdan,jdbcType=VARCHAR},
+      </if>
+      <if test="cyi != null" >
+        #{cyi,jdbcType=BIT},
+      </if>
+      <if test="cmei != null" >
+        #{cmei,jdbcType=INTEGER},
+      </if>
+      <if test="cbing != null" >
+        #{cbing,jdbcType=BIT},
+      </if>
+      <if test="cmeidu != null" >
+        #{cmeidu,jdbcType=BIT},
+      </if>
+      <if test="chiv != null" >
+        #{chiv,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.blood.bloodservice.entity.BtargetExample" resultType="java.lang.Integer" >
+    select count(*) from btarget
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update btarget
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.cdan != null" >
+        cdan = #{record.cdan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cyi != null" >
+        cyi = #{record.cyi,jdbcType=BIT},
+      </if>
+      <if test="record.cmei != null" >
+        cmei = #{record.cmei,jdbcType=INTEGER},
+      </if>
+      <if test="record.cbing != null" >
+        cbing = #{record.cbing,jdbcType=BIT},
+      </if>
+      <if test="record.cmeidu != null" >
+        cmeidu = #{record.cmeidu,jdbcType=BIT},
+      </if>
+      <if test="record.chiv != null" >
+        chiv = #{record.chiv,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update btarget
+    set id = #{record.id,jdbcType=INTEGER},
+      cdan = #{record.cdan,jdbcType=VARCHAR},
+      cyi = #{record.cyi,jdbcType=BIT},
+      cmei = #{record.cmei,jdbcType=INTEGER},
+      cbing = #{record.cbing,jdbcType=BIT},
+      cmeidu = #{record.cmeidu,jdbcType=BIT},
+      chiv = #{record.chiv,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blood.bloodservice.entity.Btarget" >
+    update btarget
+    <set >
+      <if test="cdan != null" >
+        cdan = #{cdan,jdbcType=VARCHAR},
+      </if>
+      <if test="cyi != null" >
+        cyi = #{cyi,jdbcType=BIT},
+      </if>
+      <if test="cmei != null" >
+        cmei = #{cmei,jdbcType=INTEGER},
+      </if>
+      <if test="cbing != null" >
+        cbing = #{cbing,jdbcType=BIT},
+      </if>
+      <if test="cmeidu != null" >
+        cmeidu = #{cmeidu,jdbcType=BIT},
+      </if>
+      <if test="chiv != null" >
+        chiv = #{chiv,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blood.bloodservice.entity.Btarget" >
+    update btarget
+    set cdan = #{cdan,jdbcType=VARCHAR},
+      cyi = #{cyi,jdbcType=BIT},
+      cmei = #{cmei,jdbcType=INTEGER},
+      cbing = #{cbing,jdbcType=BIT},
+      cmeidu = #{cmeidu,jdbcType=BIT},
+      chiv = #{chiv,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

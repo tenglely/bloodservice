@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blood.bloodservice.dao.BloodaddressMapper" >
+  <resultMap id="BaseResultMap" type="com.blood.bloodservice.entity.Bloodaddress" >
+    <id column="bid" property="bid" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="county" property="county" jdbcType="VARCHAR" />
+    <result column="baddress" property="baddress" jdbcType="VARCHAR" />
+    <result column="btype" property="btype" jdbcType="VARCHAR" />
+    <result column="bstate" property="bstate" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    bid, city, county, baddress, btype, bstate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.blood.bloodservice.entity.BloodaddressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bloodaddress
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bloodaddress
+    where bid = #{bid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bloodaddress
+    where bid = #{bid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.blood.bloodservice.entity.BloodaddressExample" >
+    delete from bloodaddress
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.blood.bloodservice.entity.Bloodaddress" >
+    insert into bloodaddress (bid, city, county, 
+      baddress, btype, bstate
+      )
+    values (#{bid,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
+      #{baddress,jdbcType=VARCHAR}, #{btype,jdbcType=VARCHAR}, #{bstate,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blood.bloodservice.entity.Bloodaddress" >
+    insert into bloodaddress
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        bid,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="county != null" >
+        county,
+      </if>
+      <if test="baddress != null" >
+        baddress,
+      </if>
+      <if test="btype != null" >
+        btype,
+      </if>
+      <if test="bstate != null" >
+        bstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        #{bid,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="baddress != null" >
+        #{baddress,jdbcType=VARCHAR},
+      </if>
+      <if test="btype != null" >
+        #{btype,jdbcType=VARCHAR},
+      </if>
+      <if test="bstate != null" >
+        #{bstate,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.blood.bloodservice.entity.BloodaddressExample" resultType="java.lang.Integer" >
+    select count(*) from bloodaddress
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bloodaddress
+    <set >
+      <if test="record.bid != null" >
+        bid = #{record.bid,jdbcType=INTEGER},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.county != null" >
+        county = #{record.county,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baddress != null" >
+        baddress = #{record.baddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.btype != null" >
+        btype = #{record.btype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bstate != null" >
+        bstate = #{record.bstate,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bloodaddress
+    set bid = #{record.bid,jdbcType=INTEGER},
+      city = #{record.city,jdbcType=VARCHAR},
+      county = #{record.county,jdbcType=VARCHAR},
+      baddress = #{record.baddress,jdbcType=VARCHAR},
+      btype = #{record.btype,jdbcType=VARCHAR},
+      bstate = #{record.bstate,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blood.bloodservice.entity.Bloodaddress" >
+    update bloodaddress
+    <set >
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="baddress != null" >
+        baddress = #{baddress,jdbcType=VARCHAR},
+      </if>
+      <if test="btype != null" >
+        btype = #{btype,jdbcType=VARCHAR},
+      </if>
+      <if test="bstate != null" >
+        bstate = #{bstate,jdbcType=BIT},
+      </if>
+    </set>
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blood.bloodservice.entity.Bloodaddress" >
+    update bloodaddress
+    set city = #{city,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      baddress = #{baddress,jdbcType=VARCHAR},
+      btype = #{btype,jdbcType=VARCHAR},
+      bstate = #{bstate,jdbcType=BIT}
+    where bid = #{bid,jdbcType=INTEGER}
+  </update>
+</mapper>
