@@ -9,7 +9,7 @@ public interface ZrootService {
      * @return
      */
     public int addZroot(String gname,String gsex,String gemail,String gphone);
-
+    //public int addZroot(Zroot zroot);
     /**
      * 超级管理员添加管理员权限对象
      * @param gid

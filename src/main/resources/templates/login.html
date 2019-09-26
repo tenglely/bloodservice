@@ -36,7 +36,7 @@
         var username=$("#username").val()+"_"+$("#type").val();
         var password=$("#password").val();
         $.ajax({
-            url:"/loginfrom" ,
+            url:"/loginfrom",
             type:"POST",
             data:"username="+username+"&password="+password,
            success:function (result) {

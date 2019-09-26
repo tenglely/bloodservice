@@ -38,7 +38,7 @@ public class UserloginService implements UserDetailsService {
         if(userlogin==null){
             throw new UsernameNotFoundException("账户不存在");
         }
-        userlogin.setRoles(userloginMapper.getUserRolesByUid(userlogin.getUid()));
+        userlogin.setRoles(userloginMapper.getUserRolesByUid(userlogin.getDid()));
         return userlogin;
     }
 
