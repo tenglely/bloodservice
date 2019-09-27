@@ -4,6 +4,8 @@ import com.blood.bloodservice.entity.Msg;
 import com.blood.bloodservice.entity.People;
 import com.blood.bloodservice.service.PeopleService;
 import com.blood.bloodservice.service.impl.UserloginService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author zyqfz
  * @date 2019/9/26 - 13:44
  */
+@Api(tags = "献血人员信息")
 @RestController
 public class PeopleController {
     @Autowired
@@ -23,6 +26,7 @@ public class PeopleController {
     UserloginService userloginService;
 
     //添加献血人员信息
+    @ApiOperation(value = "添加献血人员信息")
     @PostMapping("/all/addPeople")
     public Msg addPeople(People people){
 

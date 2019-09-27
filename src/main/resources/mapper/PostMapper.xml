@@ -102,7 +102,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.blood.bloodservice.entity.Post" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="pid" parameterType="com.blood.bloodservice.entity.Post" >
     insert into post (pid, title, uid, 
       utype, pname, ptype, 
       number, pdate)

@@ -97,7 +97,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.blood.bloodservice.entity.Content" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="cid" parameterType="com.blood.bloodservice.entity.Content" >
     insert into content (cid, pid, content
       )
     values (#{cid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}

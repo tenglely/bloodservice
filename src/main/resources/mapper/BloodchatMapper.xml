@@ -96,7 +96,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.blood.bloodservice.entity.Bloodchat" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.blood.bloodservice.entity.Bloodchat" >
     insert into blood_chat (id, bmain)
     values (#{id,jdbcType=INTEGER}, #{bmain,jdbcType=VARCHAR})
   </insert>

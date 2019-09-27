@@ -101,7 +101,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.blood.bloodservice.entity.Btarget" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.blood.bloodservice.entity.Btarget" >
     insert into btarget (id, cdan, cyi, cmei, 
       cbing, cmeidu, chiv)
     values (#{id,jdbcType=INTEGER}, #{cdan,jdbcType=VARCHAR}, #{cyi,jdbcType=BIT}, #{cmei,jdbcType=INTEGER}, 

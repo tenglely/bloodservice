@@ -100,7 +100,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.blood.bloodservice.entity.Application" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="aid" parameterType="com.blood.bloodservice.entity.Application" >
     insert into application (aid, yid, applyblood, 
       applyamount, state, adate
       )

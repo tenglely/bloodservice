@@ -107,7 +107,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.blood.bloodservice.entity.Checkagain" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="cid" parameterType="com.blood.bloodservice.entity.Checkagain" >
     insert into check_again (cid, bid, uid, 
       btype, cdan, cyi, cmei, 
       cbing, cmeidu, chiv, cstate, 

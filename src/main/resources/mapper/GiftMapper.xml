@@ -99,7 +99,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.blood.bloodservice.entity.Gift" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.blood.bloodservice.entity.Gift" >
     insert into gift (id, lid, ltype, 
       lname, lnumber)
     values (#{id,jdbcType=INTEGER}, #{lid,jdbcType=INTEGER}, #{ltype,jdbcType=VARCHAR}, 
