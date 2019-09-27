@@ -16,5 +16,11 @@ public interface PeopleService {
     //添加给献血人员添加权限
     public void addRoot(Integer uid);
 
+    /**
+     * 根据uid查找出一条用户信息
+     * @param uid
+     * @return
+     */
+    People selectonebyid(Integer uid);
 }
 

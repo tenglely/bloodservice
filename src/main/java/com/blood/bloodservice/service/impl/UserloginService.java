@@ -22,15 +22,6 @@ public class UserloginService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //redis里有就不执行查询，直接使用
-//        ValueOperations op=redisTemplate.opsForValue();
-//        Userlogin user=(Userlogin) op.get(username);
-//        if(user==null){
-//            user=userloginMapper.loadUserByUsername(username);
-//            op.set(username,user);
-//            System.out.println("redis添加了:"+user);
-//        }
-        //BokeUser user=bokeUserMapper.loadUserByUsername(username);
         String uemail=username.substring(0, username.lastIndexOf('_'));
         String type=username.substring(username.lastIndexOf('_')+1,username.length());
         System.out.println(uemail+" "+type);

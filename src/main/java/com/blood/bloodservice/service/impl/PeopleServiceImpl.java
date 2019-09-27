@@ -45,4 +45,9 @@ public class PeopleServiceImpl implements PeopleService {
         userloginMapper.insertUserRole(userRole);
 
     }
+
+    @Override
+    public People selectonebyid(Integer uid) {
+        return peopleMapper.selectByPrimaryKey(uid);
+    }
 }
