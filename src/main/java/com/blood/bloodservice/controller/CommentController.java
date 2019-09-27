@@ -22,7 +22,7 @@ public class CommentController {
     @Autowired
     private CommentServiceImpl commentService;
 
-    @ApiOperation(value = "添加一条评论")
+    @ApiOperation(value = "添加一条评论",notes="添加评论需要先登录")
     @PostMapping("/user/addComment")
     public Msg addComment(String content,Integer pid){
         //获取用户登录信息

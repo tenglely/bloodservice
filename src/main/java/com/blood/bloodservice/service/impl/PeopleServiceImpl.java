@@ -10,6 +10,8 @@ import com.blood.bloodservice.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 医护人员添加献血人员登记业务
  * @author zyqfz
@@ -49,5 +51,17 @@ public class PeopleServiceImpl implements PeopleService {
     @Override
     public People selectonebyid(Integer uid) {
         return peopleMapper.selectByPrimaryKey(uid);
+    }
+
+    @Override
+    public People selectbyidenty(String uidentity) {
+        PeopleExample peopleExample=new PeopleExample();
+        PeopleExample.Criteria criteria=peopleExample.createCriteria();
+        criteria.andUidentityEqualTo(uidentity);
+        List<People> list =peopleMapper.selectByExample(peopleExample);
+        if(list.isEmpty())
+            return null;
+        else
+            return list.get(0);
     }
 }

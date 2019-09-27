@@ -22,5 +22,12 @@ public interface PeopleService {
      * @return
      */
     People selectonebyid(Integer uid);
+
+    /**
+     * 根据身份证查询用户信息
+     * @param uidentity
+     * @return
+     */
+    People selectbyidenty(String uidentity);
 }
 

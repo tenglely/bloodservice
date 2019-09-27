@@ -27,10 +27,9 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build().apiInfo(new ApiInfoBuilder()
                 .description("无偿献血服务平台")
-                 .contact(new Contact("第六小组","http:",""))
+                 .contact(new Contact("第六小组","",""))
                         .version("v1.0")
-                        .title("api测试文档")
-                        .license("api2.0")
+                        .title("无偿献血服务平台-api测试文档")
                         .build());
 
 
