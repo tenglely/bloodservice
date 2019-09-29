@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Bloodchat {
+import java.io.Serializable;
+
+public class Bloodchat implements Serializable {
     private Integer id;
 
     private String bmain;
@@ -19,5 +21,13 @@ public class Bloodchat {
 
     public void setBmain(String bmain) {
         this.bmain = bmain == null ? null : bmain.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Bloodchat{" +
+                "id=" + id +
+                ", bmain='" + bmain + '\'' +
+                '}';
     }
 }

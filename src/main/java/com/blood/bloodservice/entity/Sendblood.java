@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Sendblood {
+import java.io.Serializable;
+
+public class Sendblood implements Serializable {
     private Integer bid;
 
     private Integer uid;
@@ -89,5 +91,20 @@ public class Sendblood {
 
     public void setSbdate(String sbdate) {
         this.sbdate = sbdate == null ? null : sbdate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Sendblood{" +
+                "bid=" + bid +
+                ", uid=" + uid +
+                ", yid=" + yid +
+                ", sbnumber=" + sbnumber +
+                ", sbtype='" + sbtype + '\'' +
+                ", bless='" + bless + '\'' +
+                ", sbaddress='" + sbaddress + '\'' +
+                ", sbpeople='" + sbpeople + '\'' +
+                ", sbdate='" + sbdate + '\'' +
+                '}';
     }
 }

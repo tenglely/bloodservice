@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Cblood {
+import java.io.Serializable;
+
+public class Cblood implements Serializable {
     private Integer cid;
 
     private Integer uid;
@@ -90,4 +92,20 @@ public class Cblood {
     public void setCstate(Integer cstate) {
         this.cstate = cstate;
     }
+
+    @Override
+    public String toString() {
+        return "Cblood{" +
+                "cid=" + cid +
+                ", uid=" + uid +
+                ", lid=" + lid +
+                ", cmain='" + cmain + '\'' +
+                ", bid=" + bid +
+                ", cdate='" + cdate + '\'' +
+                ", ctime='" + ctime + '\'' +
+                ", covertime='" + covertime + '\'' +
+                ", cstate=" + cstate +
+                '}';
+    }
+
 }

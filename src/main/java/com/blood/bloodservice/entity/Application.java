@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Application {
+import java.io.Serializable;
+
+public class Application implements Serializable {
     private Integer aid;
 
     private Integer yid;
@@ -59,5 +61,17 @@ public class Application {
 
     public void setAdate(String adate) {
         this.adate = adate == null ? null : adate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Application{" +
+                "aid=" + aid +
+                ", yid=" + yid +
+                ", applyblood='" + applyblood + '\'' +
+                ", applyamount=" + applyamount +
+                ", state=" + state +
+                ", adate='" + adate + '\'' +
+                '}';
     }
 }

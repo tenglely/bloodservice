@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Useblood {
+import java.io.Serializable;
+
+public class Useblood implements Serializable {
     private Integer id;
 
     private Integer yid;
@@ -69,5 +71,18 @@ public class Useblood {
 
     public void setGdate(String gdate) {
         this.gdate = gdate == null ? null : gdate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Useblood{" +
+                "id=" + id +
+                ", yid=" + yid +
+                ", bid=" + bid +
+                ", state=" + state +
+                ", udate='" + udate + '\'' +
+                ", gid=" + gid +
+                ", gdate='" + gdate + '\'' +
+                '}';
     }
 }

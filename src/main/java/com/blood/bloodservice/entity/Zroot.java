@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Zroot {
+import java.io.Serializable;
+
+public class Zroot implements Serializable {
     private Integer gid;
 
     private String gname;
@@ -59,5 +61,17 @@ public class Zroot {
 
     public void setGdate(String gdate) {
         this.gdate = gdate == null ? null : gdate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Zroot{" +
+                "gid=" + gid +
+                ", gname='" + gname + '\'' +
+                ", gsex='" + gsex + '\'' +
+                ", gemail='" + gemail + '\'' +
+                ", gphone='" + gphone + '\'' +
+                ", gdate='" + gdate + '\'' +
+                '}';
     }
 }

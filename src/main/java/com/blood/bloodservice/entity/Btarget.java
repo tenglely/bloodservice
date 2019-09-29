@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Btarget {
+import java.io.Serializable;
+
+public class Btarget implements Serializable {
     private Integer id;
 
     private String cdan;
@@ -69,5 +71,18 @@ public class Btarget {
 
     public void setChiv(Boolean chiv) {
         this.chiv = chiv;
+    }
+
+    @Override
+    public String toString() {
+        return "Btarget{" +
+                "id=" + id +
+                ", cdan='" + cdan + '\'' +
+                ", cyi=" + cyi +
+                ", cmei=" + cmei +
+                ", cbing=" + cbing +
+                ", cmeidu=" + cmeidu +
+                ", chiv=" + chiv +
+                '}';
     }
 }

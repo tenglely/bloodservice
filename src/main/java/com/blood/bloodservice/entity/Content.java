@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Content {
+import java.io.Serializable;
+
+public class Content implements Serializable {
     private Integer cid;
 
     private Integer pid;
@@ -29,5 +31,14 @@ public class Content {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Content{" +
+                "cid=" + cid +
+                ", pid=" + pid +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

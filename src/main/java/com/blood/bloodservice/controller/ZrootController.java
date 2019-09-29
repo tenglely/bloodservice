@@ -53,11 +53,12 @@ public class ZrootController {
         return Msg.success();
     }*/
 
+    /*
     @ApiOperation(value = "查询所有医护人员")
     @GetMapping("/admin/selectDoctor")
-    public List<Doctor> selectDoctor(){
+   public List<Doctor> selectDoctor(){
         //存入redis
-        JedisCluster jedisCluster = new JedisCluster();
+      redisJedisCluster jedisCluster = new JedisCluster();
 
         List<Doctor> list = doctorServiceImpl.selectDoctor();
         String  l = JSONUtils.toJSONString(list);
@@ -65,13 +66,13 @@ public class ZrootController {
 
         return doctorServiceImpl.selectDoctor();
     }
-
+*/
     @ApiOperation(value = "批准医护人员")
     @PostMapping ("/admin/updateDoctor")
     public Msg updateDoctor(Doctor doctor) {
         //更新完医护人员信息
         zrootService.updateDoctor(doctor);
-        //去一个字符串的最后六个字符作为密码
+        //去一个字符串的最                      后六个字符作为密码
         String p = doctor.getDidentity();
         String pwd = p.substring(p.length()-6,p.length());
        // System.out.println(pwd);

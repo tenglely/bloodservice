@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable {
     private Integer id;
 
     private Integer uid;
@@ -59,5 +61,17 @@ public class Comment {
 
     public void setCdate(String cdate) {
         this.cdate = cdate == null ? null : cdate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", usertype='" + usertype + '\'' +
+                ", pid=" + pid +
+                ", content='" + content + '\'' +
+                ", cdate='" + cdate + '\'' +
+                '}';
     }
 }

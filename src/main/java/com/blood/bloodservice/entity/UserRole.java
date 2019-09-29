@@ -1,12 +1,14 @@
 package com.blood.bloodservice.entity;
 
+import java.io.Serializable;
+
 /**
  * 用户角色关联表
  * 编号           id
  * 用户编号       uid
  * 类型编号       rid
  */
-public class UserRole {
+public class UserRole implements Serializable {
     private int id;
     private int uid;
     private int rid;

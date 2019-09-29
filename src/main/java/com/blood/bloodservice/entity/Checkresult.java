@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Checkresult {
+import java.io.Serializable;
+
+public class Checkresult implements Serializable {
     private Integer id;
 
     private Integer uid;
@@ -119,5 +121,23 @@ public class Checkresult {
 
     public void setCstate(Boolean cstate) {
         this.cstate = cstate;
+    }
+
+    @Override
+    public String toString() {
+        return "Checkresult{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", weight=" + weight +
+                ", blv=" + blv +
+                ", bya='" + bya + '\'' +
+                ", btype='" + btype + '\'' +
+                ", bdan='" + bdan + '\'' +
+                ", byi=" + byi +
+                ", bmei=" + bmei +
+                ", yid=" + yid +
+                ", ctime='" + ctime + '\'' +
+                ", cstate=" + cstate +
+                '}';
     }
 }

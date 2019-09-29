@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Bloodcard {
+import java.io.Serializable;
+
+public class Bloodcard implements Serializable {
     private Integer id;
 
     private String bid;
@@ -59,5 +61,17 @@ public class Bloodcard {
 
     public void setState(Boolean state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Bloodcard{" +
+                "id=" + id +
+                ", bid='" + bid + '\'' +
+                ", uid=" + uid +
+                ", senddate='" + senddate + '\'' +
+                ", sendaddress='" + sendaddress + '\'' +
+                ", state=" + state +
+                '}';
     }
 }

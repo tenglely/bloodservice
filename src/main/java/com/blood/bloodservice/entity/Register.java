@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Register {
+import java.io.Serializable;
+
+public class Register implements Serializable {
     private Integer id;
 
     private Integer uid;
@@ -29,5 +31,14 @@ public class Register {
 
     public void setRdate(String rdate) {
         this.rdate = rdate == null ? null : rdate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Register{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", rdate='" + rdate + '\'' +
+                '}';
     }
 }

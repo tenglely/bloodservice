@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Checkagain {
+import java.io.Serializable;
+
+public class Checkagain implements Serializable {
     private Integer cid;
 
     private Integer bid;
@@ -129,5 +131,25 @@ public class Checkagain {
 
     public void setCdate(String cdate) {
         this.cdate = cdate == null ? null : cdate.trim();
+    }
+
+
+    @Override
+    public String toString() {
+        return "Checkagain{" +
+                "cid=" + cid +
+                ", bid=" + bid +
+                ", uid=" + uid +
+                ", btype='" + btype + '\'' +
+                ", cdan='" + cdan + '\'' +
+                ", cyi=" + cyi +
+                ", cmei=" + cmei +
+                ", cbing=" + cbing +
+                ", cmeidu=" + cmeidu +
+                ", chiv=" + chiv +
+                ", cstate=" + cstate +
+                ", yid=" + yid +
+                ", cdate='" + cdate + '\'' +
+                '}';
     }
 }

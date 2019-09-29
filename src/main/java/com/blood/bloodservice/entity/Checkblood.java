@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Checkblood {
+import java.io.Serializable;
+
+public class Checkblood implements Serializable {
     private Integer id;
 
     private Integer uid;
@@ -49,5 +51,16 @@ public class Checkblood {
 
     public void setState(Boolean state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Checkblood{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", cid=" + cid +
+                ", bookdate='" + bookdate + '\'' +
+                ", state=" + state +
+                '}';
     }
 }

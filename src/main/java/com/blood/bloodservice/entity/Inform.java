@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Inform {
+import java.io.Serializable;
+
+public class Inform implements Serializable {
     private Integer id;
 
     private Integer uid;
@@ -49,5 +51,16 @@ public class Inform {
 
     public void setSenddate(String senddate) {
         this.senddate = senddate == null ? null : senddate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Inform{" +
+                "id=" + id +
+                ", uid=" + uid +
+                ", usertype='" + usertype + '\'' +
+                ", content='" + content + '\'' +
+                ", senddate='" + senddate + '\'' +
+                '}';
     }
 }

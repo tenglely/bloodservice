@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Doctor {
+import java.io.Serializable;
+
+public class Doctor implements Serializable {
     private Integer did;
 
     private String dname;
@@ -119,5 +121,23 @@ public class Doctor {
 
     public void setPstate(Boolean pstate) {
         this.pstate = pstate;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "did=" + did +
+                ", dname='" + dname + '\'' +
+                ", dsex='" + dsex + '\'' +
+                ", didentity='" + didentity + '\'' +
+                ", daddress='" + daddress + '\'' +
+                ", dnation='" + dnation + '\'' +
+                ", dphone='" + dphone + '\'' +
+                ", demail='" + demail + '\'' +
+                ", dwork='" + dwork + '\'' +
+                ", dphoto='" + dphoto + '\'' +
+                ", dstate=" + dstate +
+                ", pstate=" + pstate +
+                '}';
     }
 }

@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Bloodku {
+import java.io.Serializable;
+
+public class Bloodku  implements Serializable {
     private Integer bid;
 
     private Integer uid;
@@ -119,5 +121,23 @@ public class Bloodku {
 
     public void setInputdate(String inputdate) {
         this.inputdate = inputdate == null ? null : inputdate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Bloodku{" +
+                "bid=" + bid +
+                ", uid=" + uid +
+                ", cid=" + cid +
+                ", amount=" + amount +
+                ", btype='" + btype + '\'' +
+                ", bless='" + bless + '\'' +
+                ", btime='" + btime + '\'' +
+                ", state=" + state +
+                ", bstate=" + bstate +
+                ", baddressid=" + baddressid +
+                ", yid=" + yid +
+                ", inputdate='" + inputdate + '\'' +
+                '}';
     }
 }

@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class People {
+import java.io.Serializable;
+
+public class People implements Serializable {
     private Integer uid;
 
     private String uname;
@@ -109,5 +111,22 @@ public class People {
 
     public void setBid(Integer bid) {
         this.bid = bid;
+    }
+
+    @Override
+    public String toString() {
+        return "People{" +
+                "uid=" + uid +
+                ", uname='" + uname + '\'' +
+                ", usex='" + usex + '\'' +
+                ", uage='" + uage + '\'' +
+                ", uidentity='" + uidentity + '\'' +
+                ", uaddress='" + uaddress + '\'' +
+                ", unation='" + unation + '\'' +
+                ", uphone='" + uphone + '\'' +
+                ", uemail='" + uemail + '\'' +
+                ", ublood='" + ublood + '\'' +
+                ", bid=" + bid +
+                '}';
     }
 }

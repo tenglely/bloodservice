@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Post {
+import java.io.Serializable;
+
+public class Post implements Serializable {
     private Integer pid;
 
     private String title;
@@ -79,5 +81,19 @@ public class Post {
 
     public void setPdate(String pdate) {
         this.pdate = pdate == null ? null : pdate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "pid=" + pid +
+                ", title='" + title + '\'' +
+                ", uid=" + uid +
+                ", utype='" + utype + '\'' +
+                ", pname='" + pname + '\'' +
+                ", ptype='" + ptype + '\'' +
+                ", number=" + number +
+                ", pdate='" + pdate + '\'' +
+                '}';
     }
 }

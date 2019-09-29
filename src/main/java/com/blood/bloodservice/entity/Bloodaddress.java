@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Bloodaddress {
+import java.io.Serializable;
+
+public class Bloodaddress implements Serializable {
     private Integer bid;
 
     private String city;
@@ -59,5 +61,17 @@ public class Bloodaddress {
 
     public void setBstate(Boolean bstate) {
         this.bstate = bstate;
+    }
+
+    @Override
+    public String toString() {
+        return "Bloodaddress{" +
+                "bid=" + bid +
+                ", city='" + city + '\'' +
+                ", county='" + county + '\'' +
+                ", baddress='" + baddress + '\'' +
+                ", btype='" + btype + '\'' +
+                ", bstate=" + bstate +
+                '}';
     }
 }

@@ -1,6 +1,8 @@
 package com.blood.bloodservice.entity;
 
-public class Gift {
+import java.io.Serializable;
+
+public class Gift implements Serializable {
     private Integer id;
 
     private Integer lid;
@@ -49,5 +51,16 @@ public class Gift {
 
     public void setLnumber(Integer lnumber) {
         this.lnumber = lnumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Gift{" +
+                "id=" + id +
+                ", lid=" + lid +
+                ", ltype='" + ltype + '\'' +
+                ", lname='" + lname + '\'' +
+                ", lnumber=" + lnumber +
+                '}';
     }
 }
