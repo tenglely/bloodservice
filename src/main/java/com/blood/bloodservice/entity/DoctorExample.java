@@ -853,6 +853,66 @@ public class DoctorExample {
             addCriterion("dstate not between", value1, value2, "dstate");
             return (Criteria) this;
         }
+
+        public Criteria andPstateIsNull() {
+            addCriterion("pstate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateIsNotNull() {
+            addCriterion("pstate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateEqualTo(Boolean value) {
+            addCriterion("pstate =", value, "pstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateNotEqualTo(Boolean value) {
+            addCriterion("pstate <>", value, "pstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateGreaterThan(Boolean value) {
+            addCriterion("pstate >", value, "pstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("pstate >=", value, "pstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateLessThan(Boolean value) {
+            addCriterion("pstate <", value, "pstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateLessThanOrEqualTo(Boolean value) {
+            addCriterion("pstate <=", value, "pstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateIn(List<Boolean> values) {
+            addCriterion("pstate in", values, "pstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateNotIn(List<Boolean> values) {
+            addCriterion("pstate not in", values, "pstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateBetween(Boolean value1, Boolean value2) {
+            addCriterion("pstate between", value1, value2, "pstate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPstateNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("pstate not between", value1, value2, "pstate");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

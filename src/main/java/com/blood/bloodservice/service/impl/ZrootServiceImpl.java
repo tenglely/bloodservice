@@ -54,9 +54,7 @@ public class ZrootServiceImpl implements ZrootService {
     //根据批准医护人员信息
     @Override
     public void updateDoctor(Doctor doctor) {
-
         doctorMapper.updateByPrimaryKey(doctor);
-
     }
 
 }

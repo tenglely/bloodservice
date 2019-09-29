@@ -13,6 +13,7 @@
     <result column="dwork" property="dwork" jdbcType="VARCHAR" />
     <result column="dphoto" property="dphoto" jdbcType="VARCHAR" />
     <result column="dstate" property="dstate" jdbcType="BIT" />
+    <result column="pstate" property="pstate" jdbcType="BIT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,7 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    did, dname, dsex, didentity, daddress, dnation, dphone, demail, dwork, dphoto, dstate
+    did, dname, dsex, didentity, daddress, dnation, dphone, demail, dwork, dphoto, dstate, 
+    pstate
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.blood.bloodservice.entity.DoctorExample" >
     select
@@ -105,15 +107,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" useGeneratedKeys="true" keyProperty="did" parameterType="com.blood.bloodservice.entity.Doctor" >
+  <insert id="insert" parameterType="com.blood.bloodservice.entity.Doctor" >
     insert into doctor (did, dname, dsex, 
       didentity, daddress, dnation, 
       dphone, demail, dwork, 
-      dphoto, dstate)
+      dphoto, dstate, pstate)
     values (#{did,jdbcType=INTEGER}, #{dname,jdbcType=VARCHAR}, #{dsex,jdbcType=VARCHAR}, 
       #{didentity,jdbcType=VARCHAR}, #{daddress,jdbcType=VARCHAR}, #{dnation,jdbcType=VARCHAR}, 
       #{dphone,jdbcType=VARCHAR}, #{demail,jdbcType=VARCHAR}, #{dwork,jdbcType=VARCHAR}, 
-      #{dphoto,jdbcType=VARCHAR}, #{dstate,jdbcType=BIT})
+      #{dphoto,jdbcType=VARCHAR}, #{dstate,jdbcType=BIT}, #{pstate,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.blood.bloodservice.entity.Doctor" >
     insert into doctor
@@ -151,6 +153,9 @@
       <if test="dstate != null" >
         dstate,
       </if>
+      <if test="pstate != null" >
+        pstate,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="did != null" >
@@ -185,6 +190,9 @@
       </if>
       <if test="dstate != null" >
         #{dstate,jdbcType=BIT},
+      </if>
+      <if test="pstate != null" >
+        #{pstate,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -230,6 +238,9 @@
       <if test="record.dstate != null" >
         dstate = #{record.dstate,jdbcType=BIT},
       </if>
+      <if test="record.pstate != null" >
+        pstate = #{record.pstate,jdbcType=BIT},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -247,7 +258,8 @@
       demail = #{record.demail,jdbcType=VARCHAR},
       dwork = #{record.dwork,jdbcType=VARCHAR},
       dphoto = #{record.dphoto,jdbcType=VARCHAR},
-      dstate = #{record.dstate,jdbcType=BIT}
+      dstate = #{record.dstate,jdbcType=BIT},
+      pstate = #{record.pstate,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -285,6 +297,9 @@
       <if test="dstate != null" >
         dstate = #{dstate,jdbcType=BIT},
       </if>
+      <if test="pstate != null" >
+        pstate = #{pstate,jdbcType=BIT},
+      </if>
     </set>
     where did = #{did,jdbcType=INTEGER}
   </update>
@@ -299,7 +314,8 @@
       demail = #{demail,jdbcType=VARCHAR},
       dwork = #{dwork,jdbcType=VARCHAR},
       dphoto = #{dphoto,jdbcType=VARCHAR},
-      dstate = #{dstate,jdbcType=BIT}
+      dstate = #{dstate,jdbcType=BIT},
+      pstate = #{pstate,jdbcType=BIT}
     where did = #{did,jdbcType=INTEGER}
   </update>
 </mapper>

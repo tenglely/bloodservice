@@ -56,7 +56,7 @@
         <!--<table tableName="checkblood" domainObjectName="Checkblood"></table>-->
         <!--<table tableName="comment" domainObjectName="Comment"></table>-->
         <!--<table tableName="content" domainObjectName="Content"></table>-->
-        <!--<table tableName="doctor" domainObjectName="Doctor"></table>-->
+        <table tableName="doctor" domainObjectName="Doctor"></table>
         <!--<table tableName="gift" domainObjectName="Gift"></table>-->
         <!--<table tableName="inform" domainObjectName="Inform"></table>-->
         <!--<table tableName="post" domainObjectName="Post"></table>-->
@@ -67,6 +67,6 @@
         <!--<table tableName="btarget" domainObjectName="Btarget"></table>-->
         <!--<table tableName="blood_chat" domainObjectName="Bloodchat"></table>-->
         <!--<table tableName="check_again" domainObjectName="Checkagain"></table>-->
-        <table tableName="register" domainObjectName="Register"></table>
+        <!--<table tableName="register" domainObjectName="Register"></table>-->
     </context>
 </generatorConfiguration>

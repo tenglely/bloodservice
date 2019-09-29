@@ -23,6 +23,8 @@ public class Doctor {
 
     private Boolean dstate;
 
+    private Boolean pstate;
+
     public Integer getDid() {
         return did;
     }
@@ -109,5 +111,13 @@ public class Doctor {
 
     public void setDstate(Boolean dstate) {
         this.dstate = dstate;
+    }
+
+    public Boolean getPstate() {
+        return pstate;
+    }
+
+    public void setPstate(Boolean pstate) {
+        this.pstate = pstate;
     }
 }
