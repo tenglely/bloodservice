@@ -7,6 +7,8 @@ public class Register implements Serializable {
 
     private Integer uid;
 
+    private Integer bid;
+
     private String rdate;
 
     public Integer getId() {
@@ -23,6 +25,14 @@ public class Register implements Serializable {
 
     public void setUid(Integer uid) {
         this.uid = uid;
+    }
+
+    public Integer getBid() {
+        return bid;
+    }
+
+    public void setBid(Integer bid) {
+        this.bid = bid;
     }
 
     public String getRdate() {

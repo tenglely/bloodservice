@@ -48,8 +48,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public List<Doctor> selectDoctor() {
 
-        DoctorExample example = new DoctorExample();
-        List<Doctor> doctorlist = doctorMapper.selectByExample(example);
+        List<Doctor> doctorlist=doctorMapper.selectByExample(null);
         return doctorlist;
     }
 

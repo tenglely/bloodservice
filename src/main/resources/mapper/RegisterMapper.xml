@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.blood.bloodservice.entity.Register" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="bid" property="bid" jdbcType="INTEGER" />
     <result column="rdate" property="rdate" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, uid, rdate
+    id, uid, bid, rdate
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.blood.bloodservice.entity.RegisterExample" >
     select
@@ -98,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.blood.bloodservice.entity.Register" >
-    insert into register (id, uid, rdate
-      )
-    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{rdate,jdbcType=VARCHAR}
-      )
+    insert into register (id, uid, bid, 
+      rdate)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{bid,jdbcType=INTEGER}, 
+      #{rdate,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.blood.bloodservice.entity.Register" >
     insert into register
@@ -111,6 +112,9 @@
       </if>
       <if test="uid != null" >
         uid,
+      </if>
+      <if test="bid != null" >
+        bid,
       </if>
       <if test="rdate != null" >
         rdate,
@@ -122,6 +126,9 @@
       </if>
       <if test="uid != null" >
         #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="bid != null" >
+        #{bid,jdbcType=INTEGER},
       </if>
       <if test="rdate != null" >
         #{rdate,jdbcType=VARCHAR},
@@ -143,6 +150,9 @@
       <if test="record.uid != null" >
         uid = #{record.uid,jdbcType=INTEGER},
       </if>
+      <if test="record.bid != null" >
+        bid = #{record.bid,jdbcType=INTEGER},
+      </if>
       <if test="record.rdate != null" >
         rdate = #{record.rdate,jdbcType=VARCHAR},
       </if>
@@ -155,6 +165,7 @@
     update register
     set id = #{record.id,jdbcType=INTEGER},
       uid = #{record.uid,jdbcType=INTEGER},
+      bid = #{record.bid,jdbcType=INTEGER},
       rdate = #{record.rdate,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -166,6 +177,9 @@
       <if test="uid != null" >
         uid = #{uid,jdbcType=INTEGER},
       </if>
+      <if test="bid != null" >
+        bid = #{bid,jdbcType=INTEGER},
+      </if>
       <if test="rdate != null" >
         rdate = #{rdate,jdbcType=VARCHAR},
       </if>
@@ -175,6 +189,7 @@
   <update id="updateByPrimaryKey" parameterType="com.blood.bloodservice.entity.Register" >
     update register
     set uid = #{uid,jdbcType=INTEGER},
+      bid = #{bid,jdbcType=INTEGER},
       rdate = #{rdate,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

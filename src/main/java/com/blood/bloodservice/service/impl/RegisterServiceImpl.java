@@ -15,12 +15,13 @@ public class RegisterServiceImpl implements RegisterService {
     private RegisterMapper registerMapper;
 
     @Override
-    public int addRegister(int uid) {
+    public int addRegister(int uid,int bid) {
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = formatter.format(currentTime);
         Register register=new Register();
         register.setUid(uid);
+        register.setBid(bid);
         register.setRdate(dateString);
         int id=registerMapper.insert(register);
         System.out.println(register);

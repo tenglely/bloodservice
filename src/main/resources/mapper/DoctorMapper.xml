@@ -107,7 +107,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.blood.bloodservice.entity.Doctor" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="did" parameterType="com.blood.bloodservice.entity.Doctor" >
     insert into doctor (did, dname, dsex, 
       didentity, daddress, dnation, 
       dphone, demail, dwork, 
