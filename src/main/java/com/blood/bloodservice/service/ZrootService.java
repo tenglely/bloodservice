@@ -1,5 +1,6 @@
 package com.blood.bloodservice.service;
 
+import com.blood.bloodservice.entity.Doctor;
 import com.blood.bloodservice.entity.Zroot;
 
 public interface ZrootService {
@@ -15,4 +16,10 @@ public interface ZrootService {
      * @param gid
      */
     public void addRoot(int gid);
+
+    //根据批准医护人员信息
+    public void updateDoctor(Doctor doctor);
+
+
+
 }

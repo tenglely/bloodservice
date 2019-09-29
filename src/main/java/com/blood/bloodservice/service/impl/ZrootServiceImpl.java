@@ -1,7 +1,10 @@
 package com.blood.bloodservice.service.impl;
 
+import com.blood.bloodservice.dao.DoctorMapper;
 import com.blood.bloodservice.dao.UserloginMapper;
 import com.blood.bloodservice.dao.ZrootMapper;
+import com.blood.bloodservice.entity.Doctor;
+import com.blood.bloodservice.entity.DoctorExample;
 import com.blood.bloodservice.entity.UserRole;
 import com.blood.bloodservice.entity.Zroot;
 import com.blood.bloodservice.service.ZrootService;
@@ -18,6 +21,8 @@ public class ZrootServiceImpl implements ZrootService {
     @Autowired
     private UserloginMapper userloginMapper;
 
+    @Autowired
+    private DoctorMapper doctorMapper;
     @Override
     public int addZroot(String gname,String gsex,String gemail,String gphone) {
         Zroot zroot=new Zroot();
@@ -45,4 +50,13 @@ public class ZrootServiceImpl implements ZrootService {
         }
         System.out.println("超级管理员添加管理员权限角色成功!");
     }
+
+    //根据批准医护人员信息
+    @Override
+    public void updateDoctor(Doctor doctor) {
+
+        doctorMapper.updateByPrimaryKey(doctor);
+
+    }
+
 }
