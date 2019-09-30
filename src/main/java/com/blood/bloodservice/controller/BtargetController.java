@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author zyqfz
  * @date 2019/9/27 - 11:21
@@ -25,6 +27,14 @@ public class BtargetController {
     public Msg addBtarget(Btarget btarget){
         int id = btargetServiceImpl.addBtarget(btarget);
         return Msg.success();
+    }
+
+
+    @ApiOperation(value = "查询指标信息")
+    @PostMapping("/doctor/selectBtarget")
+    public Msg selectBtarget(){
+        List<Btarget> list = btargetServiceImpl.selectBtarget();
+        return Msg.success().add("btarget",list);
     }
 
 }

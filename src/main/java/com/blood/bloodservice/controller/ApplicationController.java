@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sun.plugin.liveconnect.SecurityContextHelper;
@@ -53,7 +54,7 @@ public class ApplicationController {
 
     @ApiOperation(value ="查询出申请列表信息含医护人员信息,分页" )
     @PostMapping("/doctor/selectAllapplication/{pn}")
-    public Msg selectAllapplition(@PathParam("pn")Integer pn){
+    public Msg selectAllapplition(@PathVariable("pn") Integer pn){
         PageHelper.startPage(pn,10);
         List<Application> list = applicationServiceImpl.selectAllapplication();
         PageInfo pageInfo = new PageInfo(list,5);

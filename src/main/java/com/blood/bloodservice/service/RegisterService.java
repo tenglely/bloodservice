@@ -9,7 +9,6 @@ import java.util.List;
  */
 public interface RegisterService {
 
-    int addRegister(int uid);
+    int addRegister(int uid,int bid);
 
-    List<Register> selectRegister();
 }

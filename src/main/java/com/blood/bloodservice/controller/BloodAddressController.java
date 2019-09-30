@@ -7,10 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.blood.bloodservice.service.impl.BloodaddressServiceImpl;
 
@@ -45,7 +42,7 @@ public class BloodAddressController {
 
 	@ApiOperation(value = "查询所有献血地址信息,分页显示一页10条数据")
 	@PostMapping("/doctor/selectAllBloodAddress/{pn}")
-	public Msg selectAllBloodAddress(@PathParam("pn") Integer pn) {
+	public Msg selectAllBloodAddress(@PathVariable("pn") Integer pn) {
 		//查询地址列表
 		PageHelper.startPage(pn,10);
 		List<Bloodaddress> addresslist = bloodaddressServiceImpl.selectAllBloodaddress();

@@ -33,13 +33,4 @@ public class RegisterServiceImpl implements RegisterService {
             return 0;
     }
 
-    //查询指标
-    @Override
-    public List<Register> selectRegister() {
-        List<Register> list =  registerMapper.selectByExample(null);
-        if(list!=null)
-            return list;
-        else
-            return null;
-    }
 }
