@@ -3,11 +3,16 @@ package com.blood.bloodservice.controller;
 import com.blood.bloodservice.entity.Gift;
 import com.blood.bloodservice.entity.Msg;
 import com.blood.bloodservice.service.impl.GiftServiceImpl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.websocket.server.PathParam;
+import java.util.List;
 
 /**
  * //献血物资控制器
@@ -22,10 +27,19 @@ public class GiftController {
     GiftServiceImpl giftServiceimpl;
 
     @ApiOperation(value = "添加献血物资")
-   @PostMapping("/doctor/addGift")
+    @PostMapping("/doctor/addGift")
     public Msg addGift(Gift gift){
      int gid =  giftServiceimpl.addGift(gift);
        return Msg.success();
+    }
 
-   }
+    @ApiOperation(value = "查看献血物资,分页显示,一页10条数据")
+    @PostMapping("/doctor/selectGift/{pn}")
+    public Msg selectGift(@PathParam("pn")Integer pn){
+        PageHelper.startPage(pn,10);
+        List<Gift> list =  giftServiceimpl.selectGift();
+        PageInfo pageInfo = new PageInfo(list,5);
+        return Msg.success().add("pageinfo",pageInfo);
+    }
+
 }

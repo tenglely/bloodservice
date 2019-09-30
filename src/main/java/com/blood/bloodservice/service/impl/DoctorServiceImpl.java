@@ -9,6 +9,7 @@ import com.blood.bloodservice.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.security.auth.login.CredentialException;
 import java.util.List;
 
 /**
@@ -44,14 +45,29 @@ public class DoctorServiceImpl implements DoctorService {
         }
     }
 
-    //查询医护人员信息
+    //查询医护人员信息,
     @Override
-    public List<Doctor> selectDoctor() {
+    public List<Doctor> selectDoctorList() {
 
-        List<Doctor> doctorlist=doctorMapper.selectByExample(null);
-        return doctorlist;
+        DoctorExample example = new DoctorExample();
+        DoctorExample.Criteria criteria = example.createCriteria();
+        criteria.andPstateEqualTo(false);
+        List<Doctor> doctorlist = doctorMapper.selectByExample(example);
+        if(doctorlist!=null)
+            return doctorlist;
+        else
+            return null;
     }
 
-
+    //根据医护人员did查询详细信息
+    @Override
+    public Doctor selectDoctorBydid(int did) {
+        Doctor d = doctorMapper.selectByPrimaryKey(did);
+        if(d!=null){
+            return d;
+        }
+        else
+            return null;
+    }
 
 }

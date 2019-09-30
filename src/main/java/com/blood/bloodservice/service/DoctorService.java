@@ -16,6 +16,9 @@ public interface DoctorService {
     //添加根据角色信息
     void addRoot(int did);
 
-    //查询医护人员信息
-      List<Doctor> selectDoctor();
+    //根据批准状态查询医护人员列表信息
+    List<Doctor> selectDoctorList();
+
+    //根据did查询该医护人员信息，下一步帮他批准
+    Doctor selectDoctorBydid(int did);
 }

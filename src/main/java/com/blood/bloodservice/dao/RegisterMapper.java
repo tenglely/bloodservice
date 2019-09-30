@@ -1,11 +1,15 @@
 package com.blood.bloodservice.dao;
 
+import com.blood.bloodservice.entity.People;
 import com.blood.bloodservice.entity.Register;
 import com.blood.bloodservice.entity.RegisterExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface RegisterMapper {
+    //查询用户信息
+    List<People> selectPeopleByRdate(String rdate);
+
     int countByExample(RegisterExample example);
 
     int deleteByExample(RegisterExample example);

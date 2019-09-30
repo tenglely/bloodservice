@@ -24,10 +24,9 @@ public class DoctorController {
     DoctorServiceImpl doctorServiceImpl;
 
     @ApiOperation(value = "注册医护人员信息")
-    @PostMapping("/doctor/addDoctor")
+    @PostMapping("/all/addDoctor")
     public Msg addDoctor(Doctor doctor, MultipartFile file, HttpServletRequest req){
         try {
-
             //保存上传的文件路径
             File f = new File("");
             String realpath = f.getAbsolutePath() + "/src/main/resources/static/images/";
@@ -39,7 +38,7 @@ public class DoctorController {
             File f2 = new File(realpath + newname);
             file.transferTo(f2);
             String filePath = req.getScheme() + "://"+req.getServerName() + ":" +
-                    req.getServerPort() +"/src/main/resources/static/images/ "+ newname;
+                    req.getServerPort() +"/images/ "+ newname;
 
             doctor.setDphoto(filePath);
            int did = doctorServiceImpl.addDoctor(doctor);
@@ -50,8 +49,6 @@ public class DoctorController {
         }
 
 
-return Msg.success();
-
-
+        return Msg.success();
     }
 }

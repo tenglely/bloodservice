@@ -1,6 +1,7 @@
 package com.blood.bloodservice.service.impl;
 
 import com.blood.bloodservice.dao.RegisterMapper;
+import com.blood.bloodservice.entity.Gift;
 import com.blood.bloodservice.entity.Register;
 import com.blood.bloodservice.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class RegisterServiceImpl implements RegisterService {
@@ -29,5 +31,15 @@ public class RegisterServiceImpl implements RegisterService {
             return register.getId();
         else
             return 0;
+    }
+
+    //查询指标
+    @Override
+    public List<Register> selectRegister() {
+        List<Register> list =  registerMapper.selectByExample(null);
+        if(list!=null)
+            return list;
+        else
+            return null;
     }
 }

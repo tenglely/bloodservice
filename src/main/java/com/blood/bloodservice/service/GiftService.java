@@ -2,6 +2,8 @@ package com.blood.bloodservice.service;
 
 import com.blood.bloodservice.entity.Gift;
 
+import java.util.List;
+
 /**
  * 物资服务
  * @author zyqfz
@@ -10,5 +12,8 @@ import com.blood.bloodservice.entity.Gift;
 public interface GiftService {
 
     //添加礼品
-  int addGift(Gift gift);
+    int addGift(Gift gift);
+
+    //查看所有礼品
+    List<Gift> selectGift();
 }

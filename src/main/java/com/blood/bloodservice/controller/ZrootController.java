@@ -1,24 +1,21 @@
 package com.blood.bloodservice.controller;
 
-import com.alibaba.druid.support.json.JSONUtils;
 import com.blood.bloodservice.entity.Doctor;
 import com.blood.bloodservice.entity.Msg;
 import com.blood.bloodservice.service.impl.DoctorServiceImpl;
 import com.blood.bloodservice.service.impl.UserloginService;
 import com.blood.bloodservice.service.impl.ZrootServiceImpl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import redis.clients.jedis.JedisCluster;
-import springfox.documentation.spring.web.json.Json;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 管理员控制类
@@ -34,9 +31,6 @@ public class ZrootController {
     @Autowired
     private DoctorServiceImpl doctorServiceImpl;
 
-    @Autowired
-    RedisTemplate redisTemplate;
-
     @ApiOperation(value = "添加管理员")
     @PostMapping("/admin/addzroot")
     public Msg addZroot(String gname, String gsex, String gemail, String gphone, String upassword) {
@@ -49,15 +43,31 @@ public class ZrootController {
         return Msg.success();
     }
 
-    @ApiOperation(value = "查询所有医护人员")
-    @GetMapping("/admin/selectDoctor")
-    public Msg selectDoctor(){
-        //存入redis
-//        ListOperations listOperations=redisTemplate.opsForList();
-        List<Doctor> list = doctorServiceImpl.selectDoctor();
-//        listOperations.leftPushAll("doctest",list);
-//        List<Doctor> ll=listOperations.range("doctest",0,1);
-        return Msg.success().add("list",list);
+    /* public Msg addZroot(Zroot zroot,String upassword){
+        //添加管理员信息  (zroot)
+        int gid=zrootService.addZroot(zroot);
+        //添加登陆表信息
+        int did=userloginService.addUserlogin(gid,zroot.getGemail(),upassword,"管理员");
+        //添加权限对象
+        zrootService.addRoot(did);
+        return Msg.success();
+    }*/
+
+    @ApiOperation(value = "查询pstate值为false的医护人员列表,分页查询，一页10条数据")
+    @GetMapping("/admin/selectDoctor/{pn}")
+    public Msg selectDoctor(@PathParam("pn")Integer pn){
+        PageHelper.startPage(pn,10);
+        List<Doctor> list = doctorServiceImpl.selectDoctorList();
+        PageInfo pageInfo = new PageInfo(list,5);
+        return Msg.success().add("pageinfo",pageInfo);
+
+    }
+
+    @ApiOperation(value = "根据did查询医护人员详细信息")
+    @GetMapping("/admin/selectDoctorBydid")
+    public Msg selectDoctor( int did){
+        Doctor doctor = doctorServiceImpl.selectDoctorBydid(did);
+        return Msg.success().add("doctor" ,doctor);
     }
 
     @ApiOperation(value = "批准医护人员")

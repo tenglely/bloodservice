@@ -68,6 +68,7 @@
   <sql id="Base_Column_List" >
     id, uid, bid, rdate
   </sql>
+
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.blood.bloodservice.entity.RegisterExample" >
     select
     <if test="distinct" >

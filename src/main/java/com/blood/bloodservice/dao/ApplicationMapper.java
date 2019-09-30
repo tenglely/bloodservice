@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ApplicationMapper {
+    List<Application> selectApplication();
+
     int countByExample(ApplicationExample example);
 
     int deleteByExample(ApplicationExample example);

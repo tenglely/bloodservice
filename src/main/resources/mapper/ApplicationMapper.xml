@@ -9,6 +9,28 @@
     <result column="state" property="state" jdbcType="INTEGER" />
     <result column="adate" property="adate" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="AndDoctorResultMap" type="com.blood.bloodservice.entity.Application" >
+    <id column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="yid" property="yid" jdbcType="INTEGER" />
+    <result column="applyblood" property="applyblood" jdbcType="VARCHAR" />
+    <result column="applyamount" property="applyamount" jdbcType="DOUBLE" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="adate" property="adate" jdbcType="VARCHAR" />
+    <association property="doctor" javaType="com.blood.bloodservice.entity.Doctor">
+      <id column="did" property="did" jdbcType="INTEGER" />
+      <result column="dname" property="dname" jdbcType="VARCHAR" />
+      <result column="dsex" property="dsex" jdbcType="VARCHAR" />
+      <result column="didentity" property="didentity" jdbcType="VARCHAR" />
+      <result column="daddress" property="daddress" jdbcType="VARCHAR" />
+      <result column="dnation" property="dnation" jdbcType="VARCHAR" />
+      <result column="dphone" property="dphone" jdbcType="VARCHAR" />
+      <result column="demail" property="demail" jdbcType="VARCHAR" />
+      <result column="dwork" property="dwork" jdbcType="VARCHAR" />
+      <result column="dphoto" property="dphoto" jdbcType="VARCHAR" />
+      <result column="dstate" property="dstate" jdbcType="BIT" />
+      <result column="pstate" property="pstate" jdbcType="BIT" />
+    </association>
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -70,6 +92,10 @@
   <sql id="Base_Column_List" >
     aid, yid, applyblood, applyamount, state, adate
   </sql>
+ <select id="selectApplication" resultMap="AndDoctorResultMap" >
+       select * from doctor d,application a where d.did=a.yid
+  </select>
+
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.blood.bloodservice.entity.ApplicationExample" >
     select
     <if test="distinct" >
@@ -225,4 +251,6 @@
       adate = #{adate,jdbcType=VARCHAR}
     where aid = #{aid,jdbcType=INTEGER}
   </update>
+
+
 </mapper>
