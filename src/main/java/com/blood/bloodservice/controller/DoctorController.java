@@ -41,14 +41,13 @@ public class DoctorController {
                     req.getServerPort() +"/images/ "+ newname;
 
             doctor.setDphoto(filePath);
+            doctor.setDstate(true);
+            doctor.setPstate(false);
            int did = doctorServiceImpl.addDoctor(doctor);
 
         }catch (Exception e){
-
             e.printStackTrace();
         }
-
-
         return Msg.success();
     }
 }

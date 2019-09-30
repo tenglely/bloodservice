@@ -1,8 +1,8 @@
 package com.blood.bloodservice.service.impl;
 
 import com.blood.bloodservice.dao.RegisterMapper;
-import com.blood.bloodservice.entity.Gift;
 import com.blood.bloodservice.entity.Register;
+import com.blood.bloodservice.entity.RegisterExample;
 import com.blood.bloodservice.service.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +21,7 @@ public class RegisterServiceImpl implements RegisterService {
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = formatter.format(currentTime);
+        System.out.println("登记信息时间:"+dateString);
         Register register=new Register();
         register.setUid(uid);
         register.setBid(bid);
@@ -33,4 +34,31 @@ public class RegisterServiceImpl implements RegisterService {
             return 0;
     }
 
+    @Override
+    public List<Register> selectbydate(String rdate,int bid) {
+        RegisterExample registerExample=new RegisterExample();
+        RegisterExample.Criteria criteria=registerExample.createCriteria();
+        criteria.andRdateEqualTo(rdate);
+        criteria.andBidEqualTo(bid);
+        List<Register> list=registerMapper.selectByExampleWithUser(registerExample);
+        if(list.isEmpty())
+            return null;
+        for(Register r:list)
+            System.out.println(r);
+        return list;
+    }
+
+    @Override
+    public List<Register> selectbymonth(String month,int bid) {
+        RegisterExample registerExample=new RegisterExample();
+        RegisterExample.Criteria criteria=registerExample.createCriteria();
+        criteria.andRdateLike(month+"%");
+        criteria.andBidEqualTo(bid);
+        List<Register> list=registerMapper.selectByExampleWithUser(registerExample);
+        if(list.isEmpty())
+            return null;
+        for(Register r:list)
+            System.out.println(r);
+        return list;
+    }
 }
