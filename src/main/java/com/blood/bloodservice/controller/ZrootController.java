@@ -57,7 +57,7 @@ public class ZrootController {
     @GetMapping("/admin/selectDoctor/{pn}")
     public Msg selectDoctor(@PathParam("pn")Integer pn){
         PageHelper.startPage(pn,10);
-        List<Doctor> list = doctorServiceImpl.selectDoctorList();
+        List<Doctor> list = doctorServiceImpl.selectDoctor();
         PageInfo pageInfo = new PageInfo(list,5);
         return Msg.success().add("pageinfo",pageInfo);
 
@@ -66,7 +66,7 @@ public class ZrootController {
     @ApiOperation(value = "根据did查询医护人员详细信息")
     @GetMapping("/admin/selectDoctorBydid")
     public Msg selectDoctor( int did){
-        Doctor doctor = doctorServiceImpl.selectDoctorBydid(did);
+        Doctor doctor = doctorServiceImpl.selectbydid(did);
         return Msg.success().add("doctor" ,doctor);
     }
 
