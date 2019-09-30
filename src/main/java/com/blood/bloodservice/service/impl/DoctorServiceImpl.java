@@ -45,27 +45,24 @@ public class DoctorServiceImpl implements DoctorService {
         }
     }
 
-    //查询医护人员信息,
     @Override
-    public List<Doctor> selectDoctorList() {
+    public Doctor selectbydid(int did) {
+        Doctor d = doctorMapper.selectByPrimaryKey(did);
+        if(d!=null){
+            return d;
+        }
+        else
+            return null;
+    }
 
+    @Override
+    public List<Doctor> selectDoctor() {
         DoctorExample example = new DoctorExample();
         DoctorExample.Criteria criteria = example.createCriteria();
         criteria.andPstateEqualTo(false);
         List<Doctor> doctorlist = doctorMapper.selectByExample(example);
         if(doctorlist!=null)
             return doctorlist;
-        else
-            return null;
-    }
-
-    //根据医护人员did查询详细信息
-    @Override
-    public Doctor selectDoctorBydid(int did) {
-        Doctor d = doctorMapper.selectByPrimaryKey(did);
-        if(d!=null){
-            return d;
-        }
         else
             return null;
     }
