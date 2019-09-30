@@ -80,7 +80,7 @@ public class ZrootController {
         String pwd = p.substring(p.length()-6,p.length());
        // System.out.println(pwd);
         //顺便医护人员添加登录信息
-       int did = userloginService.addUserlogin(doctor.getDid(),doctor.getDemail(),pwd,"医护人员");
+       int did = userloginService.addUserlogin(doctor.getDid(),doctor.getDemail(),pwd,"医务人员");
         //添加角色信息
         doctorServiceImpl.addRoot(did);
 

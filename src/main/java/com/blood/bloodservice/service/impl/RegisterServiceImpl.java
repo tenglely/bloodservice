@@ -17,14 +17,14 @@ public class RegisterServiceImpl implements RegisterService {
     private RegisterMapper registerMapper;
 
     @Override
-    public int addRegister(int uid,int bid) {
+    public int addRegister(int uid,int baid) {
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = formatter.format(currentTime);
         System.out.println("登记信息时间:"+dateString);
         Register register=new Register();
         register.setUid(uid);
-        register.setBid(bid);
+        register.setBaid(baid);
         register.setRdate(dateString);
         int id=registerMapper.insert(register);
         System.out.println(register);
@@ -35,11 +35,11 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public List<Register> selectbydate(String rdate,int bid) {
+    public List<Register> selectbydate(String rdate,int baid) {
         RegisterExample registerExample=new RegisterExample();
         RegisterExample.Criteria criteria=registerExample.createCriteria();
         criteria.andRdateEqualTo(rdate);
-        criteria.andBidEqualTo(bid);
+        criteria.andBaidEqualTo(baid);
         List<Register> list=registerMapper.selectByExampleWithUser(registerExample);
         if(list.isEmpty())
             return null;
@@ -49,11 +49,12 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public List<Register> selectbymonth(String month,int bid) {
+    public List<Register> selectbymonth(String month,int baid) {
+
         RegisterExample registerExample=new RegisterExample();
         RegisterExample.Criteria criteria=registerExample.createCriteria();
         criteria.andRdateLike(month+"%");
-        criteria.andBidEqualTo(bid);
+        criteria.andBaidEqualTo(baid);
         List<Register> list=registerMapper.selectByExampleWithUser(registerExample);
         if(list.isEmpty())
             return null;

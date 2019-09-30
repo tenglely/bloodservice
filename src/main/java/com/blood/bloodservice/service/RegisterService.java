@@ -16,12 +16,12 @@ public interface RegisterService {
      * @param rdate
      * @return
      */
-    List<Register> selectbydate(String rdate,int bid);
+    List<Register> selectbydate(String rdate,int baid);
 
     /**
      * 根据年+月份查询登记信息及用户信息
      * @param rdate
      * @return
      */
-    List<Register> selectbymonth(String rdate,int bid);
+    List<Register> selectbymonth(String rdate,int baid);
 }

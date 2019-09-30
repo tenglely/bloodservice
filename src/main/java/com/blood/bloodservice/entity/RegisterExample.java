@@ -224,63 +224,63 @@ public class RegisterExample {
             return (Criteria) this;
         }
 
-        public Criteria andBidIsNull() {
-            addCriterion("bid is null");
+        public Criteria andBaidIsNull() {
+            addCriterion("baid is null");
             return (Criteria) this;
         }
 
-        public Criteria andBidIsNotNull() {
-            addCriterion("bid is not null");
+        public Criteria andBaidIsNotNull() {
+            addCriterion("baid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBidEqualTo(Integer value) {
-            addCriterion("bid =", value, "bid");
+        public Criteria andBaidEqualTo(Integer value) {
+            addCriterion("baid =", value, "baid");
             return (Criteria) this;
         }
 
-        public Criteria andBidNotEqualTo(Integer value) {
-            addCriterion("bid <>", value, "bid");
+        public Criteria andBaidNotEqualTo(Integer value) {
+            addCriterion("baid <>", value, "baid");
             return (Criteria) this;
         }
 
-        public Criteria andBidGreaterThan(Integer value) {
-            addCriterion("bid >", value, "bid");
+        public Criteria andBaidGreaterThan(Integer value) {
+            addCriterion("baid >", value, "baid");
             return (Criteria) this;
         }
 
         public Criteria andBidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("bid >=", value, "bid");
+            addCriterion("baid >=", value, "baid");
             return (Criteria) this;
         }
 
-        public Criteria andBidLessThan(Integer value) {
-            addCriterion("bid <", value, "bid");
+        public Criteria andBaidLessThan(Integer value) {
+            addCriterion("baid <", value, "baid");
             return (Criteria) this;
         }
 
-        public Criteria andBidLessThanOrEqualTo(Integer value) {
-            addCriterion("bid <=", value, "bid");
+        public Criteria andBaidLessThanOrEqualTo(Integer value) {
+            addCriterion("baid <=", value, "baid");
             return (Criteria) this;
         }
 
         public Criteria andBidIn(List<Integer> values) {
-            addCriterion("bid in", values, "bid");
+            addCriterion("baid in", values, "baid");
             return (Criteria) this;
         }
 
         public Criteria andBidNotIn(List<Integer> values) {
-            addCriterion("bid not in", values, "bid");
+            addCriterion("baid not in", values, "baid");
             return (Criteria) this;
         }
 
         public Criteria andBidBetween(Integer value1, Integer value2) {
-            addCriterion("bid between", value1, value2, "bid");
+            addCriterion("baid between", value1, value2, "baid");
             return (Criteria) this;
         }
 
         public Criteria andBidNotBetween(Integer value1, Integer value2) {
-            addCriterion("bid not between", value1, value2, "bid");
+            addCriterion("baid not between", value1, value2, "baid");
             return (Criteria) this;
         }
 

@@ -7,7 +7,7 @@ public class Register implements Serializable {
 
     private Integer uid;
 
-    private Integer bid;
+    private Integer baid;
 
     private String rdate;
 
@@ -29,12 +29,12 @@ public class Register implements Serializable {
         this.uid = uid;
     }
 
-    public Integer getBid() {
-        return bid;
+    public Integer getBaid() {
+        return baid;
     }
 
-    public void setBid(Integer bid) {
-        this.bid = bid;
+    public void setBaid(Integer baid) {
+        this.baid = baid;
     }
 
     public String getRdate() {
@@ -58,7 +58,7 @@ public class Register implements Serializable {
         return "Register{" +
                 "id=" + id +
                 ", uid=" + uid +
-                ", bid=" + bid +
+                ", bid=" + baid +
                 ", rdate='" + rdate + '\'' +
                 ", people=" + people +
                 '}';
