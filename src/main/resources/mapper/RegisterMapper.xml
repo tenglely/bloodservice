@@ -7,6 +7,25 @@
     <result column="bid" property="bid" jdbcType="INTEGER" />
     <result column="rdate" property="rdate" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="WithUserResultMap" type="com.blood.bloodservice.entity.Register" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="bid" property="bid" jdbcType="INTEGER" />
+    <result column="rdate" property="rdate" jdbcType="VARCHAR" />
+    <association property="people" javaType="com.blood.bloodservice.entity.People">
+      <id column="uid" property="uid" jdbcType="INTEGER" />
+      <result column="uname" property="uname" jdbcType="VARCHAR" />
+      <result column="usex" property="usex" jdbcType="VARCHAR" />
+      <result column="uage" property="uage" jdbcType="VARCHAR" />
+      <result column="uidentity" property="uidentity" jdbcType="VARCHAR" />
+      <result column="uaddress" property="uaddress" jdbcType="VARCHAR" />
+      <result column="unation" property="unation" jdbcType="VARCHAR" />
+      <result column="uphone" property="uphone" jdbcType="VARCHAR" />
+      <result column="uemail" property="uemail" jdbcType="VARCHAR" />
+      <result column="ublood" property="ublood" jdbcType="VARCHAR" />
+      <result column="bid" property="bid" jdbcType="INTEGER" />
+    </association>
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -68,6 +87,32 @@
   <sql id="Base_Column_List" >
     id, uid, bid, rdate
   </sql>
+  <sql id="WithUser_Column_List">
+    r.id,r.uid,r.bid,r.rdate,p.uid,p.uname, p.usex, p.uage, p.uidentity, p.uaddress, p.unation, p.uphone, p.uemail, p.ublood, p.bid
+  </sql>
+  <!-- 联表查询 -->
+  <select id="selectByPrimaryKeyWithUser" resultMap="WithUserResultMap">
+    select
+    <include refid="WithUser_Column_List" />
+    from register r
+    left join people p on r.uid = p.uid
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByExampleWithUser" resultMap="WithUserResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="WithUser_Column_List" />
+    from register r
+    left join people p on r.uid = p.uid
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
 
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.blood.bloodservice.entity.RegisterExample" >
     select

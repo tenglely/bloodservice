@@ -27,9 +27,10 @@ public class PeopleController {
     @Autowired
     UserloginService userloginService;
 
-    @ApiOperation(value = "工作人员注册献血人员信息，并添加登记表信息,返回用户信息people")
+    @ApiOperation(value = "工作人员注册献血人员信息，并添加登记表信息,返回用户信息people",
+    notes = "填入用户信息people，和登记地址编号baid")
     @PostMapping("/doctor/addPeoplebydoctor")
-    public Msg addPeopleBydoctor(People people,int bid){
+    public Msg addPeopleBydoctor(People people,int baid){
         //查询身份证，看该用户是否已存在
         People pp=peopleService.selectbyidenty(people.getUidentity());
         if(pp!=null)
@@ -46,11 +47,12 @@ public class PeopleController {
         //根据登录id添加权限对象给献血人员
         peopleService.addRoot(did);
         //添加登记表信息
-        int id=registerService.addRegister(uid,bid);
+        int id=registerService.addRegister(uid,baid);
         return Msg.success().add("people",people);
     }
 
-    @ApiOperation(value = "工作人员根据用户身份证查找用户，然后添加登记表信息")
+    @ApiOperation(value = "工作人员根据用户身份证查找用户，然后添加登记表信息",
+    notes = "uidertity身份证号,bid登录地点编号")
     @PostMapping("/doctor/checkPeopleAndAddRegister")
     public Msg checkPeople(String uidertity,int bid){
         //查询身份证，看该用户是否已存在

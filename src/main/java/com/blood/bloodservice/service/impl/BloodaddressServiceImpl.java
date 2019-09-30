@@ -11,17 +11,16 @@ import com.blood.bloodservice.service.BloodaddressService;
 import java.util.List;
 
 @Service
-public class BloodaddressServiceImpl implements BloodaddressService{
+public class BloodaddressServiceImpl implements BloodaddressService {
 
 	@Autowired
 	BloodaddressMapper bloodaddressMapper;
 
-	//添加献血地址
 	@Override
 	public int addBloodaddressd(Bloodaddress bloodaddress) {
 		int id = bloodaddressMapper.insert(bloodaddress);
-		if(id>0)
-		return bloodaddress.getBid();
+		if (id > 0)
+			return bloodaddress.getBid();
 		else return 0;
 	}
 
@@ -29,13 +28,13 @@ public class BloodaddressServiceImpl implements BloodaddressService{
 	@Override
 	public List<Bloodaddress> selectBloodaddress() {
 		BloodaddressExample example = new BloodaddressExample();
-		BloodaddressExample.Criteria criteria=example.createCriteria();
+		BloodaddressExample.Criteria criteria = example.createCriteria();
 		criteria.andBstateEqualTo(true);
 		List<Bloodaddress> list = bloodaddressMapper.selectByExample(example);
-	if(list!=null)
-		return list;
-	else
-		return null;
+		if (list != null)
+			return list;
+		else
+			return null;
 	}
 
 	//查询所有地址
@@ -47,6 +46,17 @@ public class BloodaddressServiceImpl implements BloodaddressService{
 		else
 			return null;
 	}
+
+	@Override
+	public Bloodaddress selectbyaddress(String address) {
+		BloodaddressExample bloodaddressExample = new BloodaddressExample();
+		BloodaddressExample.Criteria criteria = bloodaddressExample.createCriteria();
+		criteria.andBaddressEqualTo(address);
+		List<Bloodaddress> lsit = bloodaddressMapper.selectByExample(bloodaddressExample);
+		if (lsit.isEmpty())
+			return null;
+		return lsit.get(0);
 	}
 
+}
 

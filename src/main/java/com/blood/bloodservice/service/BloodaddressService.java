@@ -19,5 +19,12 @@ public interface BloodaddressService {
 
 	//查询所有地址
 	List<Bloodaddress> selectAllBloodaddress();
+
+	/**
+	 * 根据地点address来查询
+	 * @param address
+	 * @return
+	 */
+	Bloodaddress selectbyaddress(String address);
 	
 }

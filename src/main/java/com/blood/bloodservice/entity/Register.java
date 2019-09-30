@@ -11,6 +11,8 @@ public class Register implements Serializable {
 
     private String rdate;
 
+    private People people;
+
     public Integer getId() {
         return id;
     }
@@ -43,12 +45,22 @@ public class Register implements Serializable {
         this.rdate = rdate == null ? null : rdate.trim();
     }
 
+    public People getPeople() {
+        return people;
+    }
+
+    public void setPeople(People people) {
+        this.people = people;
+    }
+
     @Override
     public String toString() {
         return "Register{" +
                 "id=" + id +
                 ", uid=" + uid +
+                ", bid=" + bid +
                 ", rdate='" + rdate + '\'' +
+                ", people=" + people +
                 '}';
     }
 }
