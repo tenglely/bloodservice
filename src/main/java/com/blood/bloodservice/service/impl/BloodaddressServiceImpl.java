@@ -41,10 +41,10 @@ public class BloodaddressServiceImpl implements BloodaddressService {
 	@Override
 	public List<Bloodaddress> selectAllBloodaddress() {
 		List<Bloodaddress> list = bloodaddressMapper.selectByExample(null);
-		if(list!=null)
-			return list;
-		else
+		if(list.isEmpty())
 			return null;
+		else
+		return list;
 	}
 
 	@Override

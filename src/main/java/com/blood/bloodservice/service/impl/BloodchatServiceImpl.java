@@ -28,10 +28,10 @@ public class BloodchatServiceImpl implements BloodchatService {
     public List<Bloodchat> selectBloodchat() {
 
         List<Bloodchat> list = bloodchatMapper.selectByExample(null);
-        if(list!=null)
-            return list;
+        if(list.isEmpty())
+             return null;
         else
-            return null;
+        return list;
     }
 
 }

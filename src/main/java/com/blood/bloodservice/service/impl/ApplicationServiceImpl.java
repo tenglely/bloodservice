@@ -30,9 +30,9 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public List<Application> selectAllapplication() {
         List<Application> list = applicationMapper.selectApplication();
-        if(list!=null)
-            return list;
-        else
+        if(list.isEmpty())
             return null;
+        else
+            return list;
     }
 }
