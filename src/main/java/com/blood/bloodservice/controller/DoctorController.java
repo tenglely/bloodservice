@@ -41,7 +41,6 @@ public class DoctorController {
         Doctor doctor=doctorServiceImpl.selectbydid(userlogin.getUid());
         //查找同一医院医生
         List<Doctor> list=doctorServiceImpl.findbyhospital(doctor.getDwork());
-
         return Msg.success().add("list",list);
     }
 

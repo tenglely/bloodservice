@@ -7,7 +7,6 @@ import com.blood.bloodservice.entity.DoctorExample;
 import com.blood.bloodservice.entity.UserRole;
 import com.blood.bloodservice.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +24,9 @@ public class DoctorServiceImpl implements DoctorService {
     @Autowired
     DoctorMapper doctorMapper;
 
-    RedisTemplate<String,Object> redisTemplate;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
-    HashOperations<String,String,Object> hashOperations;
 
     @Autowired
     private UserloginMapper userloginMapper;
@@ -77,21 +76,25 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public List<Doctor> findbyhospital(String dwork) {
-        DoctorExample example = new DoctorExample();
-        DoctorExample.Criteria criteria = example.createCriteria();
-        criteria.andDworkEqualTo(dwork);
-        List<Doctor> doctorlist = doctorMapper.selectByExample(example);
-        System.out.println(doctorlist);
-        Map<String,Object> parm=new HashMap<>();
-        parm.put(dwork,doctorlist);
-        hashOperations.putAll("医院",parm);
-
-        System.out.println( hashOperations.get("医院",dwork));
-
-        if(doctorlist.isEmpty())
-            return null;
-        else
-            return doctorlist;
+        List<Doctor> list= (List<Doctor>) redisTemplate.opsForHash().get("hospital",dwork);
+        if(list==null) {
+            DoctorExample example = new DoctorExample();
+            DoctorExample.Criteria criteria = example.createCriteria();
+            criteria.andDworkEqualTo(dwork);
+            List<Doctor> doctorlist = doctorMapper.selectByExample(example);
+            System.out.println(doctorlist);
+            if(doctorlist.isEmpty()){
+                return null;
+            }else{
+                Map<String, Object> parm = new HashMap<>();
+                parm.put(dwork, doctorlist);
+                redisTemplate.opsForHash().putAll("hospital", parm);
+                list= doctorlist;
+                System.out.println("redis添加成功");
+            }
+        }
+        System.out.println("从redis成功取出同一医院的人员");
+        return list;
     }
 
 }
