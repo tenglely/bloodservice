@@ -2,15 +2,23 @@ package com.blood.bloodservice.controller;
 
 import com.blood.bloodservice.entity.Doctor;
 import com.blood.bloodservice.entity.Msg;
+import com.blood.bloodservice.entity.Userlogin;
 import com.blood.bloodservice.service.impl.DoctorServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.print.Doc;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.List;
 
 /**
  * @author zyqfz
@@ -22,6 +30,20 @@ public class DoctorController {
 
     @Autowired
     DoctorServiceImpl doctorServiceImpl;
+
+
+    @ApiOperation(value = "查询同一医院的医务人员")
+    @GetMapping("/doctor/findbyhospital")
+    public Msg findByHospitol(){
+        //获取用户登录信息
+        Userlogin userlogin= (Userlogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //查找医生
+        Doctor doctor=doctorServiceImpl.selectbydid(userlogin.getUid());
+        //查找同一医院医生
+        List<Doctor> list=doctorServiceImpl.findbyhospital(doctor.getDwork());
+
+        return Msg.success().add("list",list);
+    }
 
     @ApiOperation(value = "注册医护人员信息")
     @PostMapping("/all/addDoctor")

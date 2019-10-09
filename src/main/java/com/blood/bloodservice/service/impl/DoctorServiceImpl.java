@@ -7,10 +7,14 @@ import com.blood.bloodservice.entity.DoctorExample;
 import com.blood.bloodservice.entity.UserRole;
 import com.blood.bloodservice.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.security.auth.login.CredentialException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zyqfz
@@ -20,6 +24,10 @@ import java.util.List;
 public class DoctorServiceImpl implements DoctorService {
     @Autowired
     DoctorMapper doctorMapper;
+
+    RedisTemplate<String,Object> redisTemplate;
+
+    HashOperations<String,String,Object> hashOperations;
 
     @Autowired
     private UserloginMapper userloginMapper;
@@ -61,10 +69,29 @@ public class DoctorServiceImpl implements DoctorService {
         DoctorExample.Criteria criteria = example.createCriteria();
         criteria.andPstateEqualTo(false);
         List<Doctor> doctorlist = doctorMapper.selectByExample(example);
-        if(doctorlist!=null)
-            return doctorlist;
-        else
+        if(doctorlist.isEmpty())
             return null;
+        else
+            return doctorlist;
+    }
+
+    @Override
+    public List<Doctor> findbyhospital(String dwork) {
+        DoctorExample example = new DoctorExample();
+        DoctorExample.Criteria criteria = example.createCriteria();
+        criteria.andDworkEqualTo(dwork);
+        List<Doctor> doctorlist = doctorMapper.selectByExample(example);
+        System.out.println(doctorlist);
+        Map<String,Object> parm=new HashMap<>();
+        parm.put(dwork,doctorlist);
+        hashOperations.putAll("医院",parm);
+
+        System.out.println( hashOperations.get("医院",dwork));
+
+        if(doctorlist.isEmpty())
+            return null;
+        else
+            return doctorlist;
     }
 
 }

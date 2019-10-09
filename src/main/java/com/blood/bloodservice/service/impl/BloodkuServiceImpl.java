@@ -2,9 +2,12 @@ package com.blood.bloodservice.service.impl;
 
 import com.blood.bloodservice.dao.BloodkuMapper;
 import com.blood.bloodservice.entity.Bloodku;
+import com.blood.bloodservice.entity.BloodkuExample;
 import com.blood.bloodservice.service.BloodkuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 血库添加
@@ -20,4 +23,17 @@ public class BloodkuServiceImpl implements BloodkuService {
         bloodkuMapper.insert(bloodku);
         return bloodku.getBid();
     }
+
+    @Override
+    public List<Bloodku> selectall() {
+        //BloodkuExample bloodkuExample=new BloodkuExample();
+        //BloodkuExample.Criteria criteria=bloodkuExample.createCriteria();
+
+        List<Bloodku> list=bloodkuMapper.selectByExample(null);
+        if(list.isEmpty())
+            return null;
+        else
+            return  list;
+    }
+
 }

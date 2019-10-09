@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -64,8 +65,8 @@ public class ZrootController {
     }
 
     @ApiOperation(value = "根据did查询医护人员详细信息")
-    @GetMapping("/admin/selectDoctorBydid")
-    public Msg selectDoctor( int did){
+    @GetMapping("/admin/selectDoctorBydid/{did}")
+    public Msg selectDoctor(@PathVariable("did") int did){
         Doctor doctor = doctorServiceImpl.selectbydid(did);
         return Msg.success().add("doctor" ,doctor);
     }

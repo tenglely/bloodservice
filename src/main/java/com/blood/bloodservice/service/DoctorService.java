@@ -26,4 +26,11 @@ public interface DoctorService {
 
     //查询医护人员信息
       List<Doctor> selectDoctor();
+
+    /**
+     * 查询同一医院的医生
+     * @param dwork
+     * @return
+     */
+    List<Doctor> findbyhospital(String dwork);
 }
