@@ -35,5 +35,22 @@ public class BloodkuServiceImpl implements BloodkuService {
         else
             return  list;
     }
+    
+    /**
+     * 根据血型查询血库信息
+     */
+	@Override
+	public List<Bloodku> selectByBtype(String btype) {
+		BloodkuExample bloodkuExample = new BloodkuExample();
+		BloodkuExample.Criteria criteria = bloodkuExample.createCriteria();
+		criteria.andBtypeEqualTo(btype);
+		
+		List<Bloodku> list = bloodkuMapper.selectByExample(bloodkuExample);
+		if(list.isEmpty()) {
+			return null;
+		}else {
+			return list;
+		}
+	}
 
 }

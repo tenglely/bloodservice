@@ -31,9 +31,9 @@ public class GiftServiceImpl implements GiftService {
     @Override
     public List<Gift> selectGift() {
         List<Gift> list =  giftMapper.selectByExample(null);
-        if(list!=null)
-            return list;
-        else
+        if(list.isEmpty())
             return null;
+        else
+            return list;
     }
 }

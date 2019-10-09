@@ -19,4 +19,10 @@ public interface BloodkuService {
      * @return
      */
     public List<Bloodku> selectall();
+    
+    /**
+     * 根据血型查询血库信息
+     * @return
+     */
+    public List<Bloodku> selectByBtype(String btype);
 }

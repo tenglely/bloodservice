@@ -16,6 +16,8 @@
     <result column="yid" property="yid" jdbcType="INTEGER" />
     <result column="cdate" property="cdate" jdbcType="VARCHAR" />
   </resultMap>
+
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

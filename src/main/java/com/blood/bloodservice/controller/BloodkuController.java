@@ -36,7 +36,16 @@ public class BloodkuController {
         PageInfo pageInfo = new PageInfo(list,5);
         return Msg.success().add("list",pageInfo);
     }
-
+    
+    @ApiOperation(value="根据血型查询血库信息")
+    @GetMapping("/doctor/selectbloodbybtype/{pn}/{btype}")
+    public Msg selectBloodkuByBtype(@PathVariable("pn") Integer pn,@PathVariable("btype") String btype) {
+    	PageHelper.startPage(pn,10);
+    	List<Bloodku> list = bloodkuServiceImpl.selectByBtype(btype);
+    	PageInfo pageInfo = new PageInfo(list, 5);
+		return Msg.success().add("list", pageInfo);
+    	
+    }
     @ApiOperation(value = "添加血库信息")
     @PostMapping("/doctor/addBloodku")
     public Msg addBloodku(Bloodku bloodku){

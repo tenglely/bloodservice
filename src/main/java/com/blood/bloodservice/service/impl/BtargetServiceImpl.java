@@ -28,9 +28,9 @@ public class BtargetServiceImpl implements BtargetService {
     @Override
     public List<Btarget> selectBtarget() {
         List<Btarget> list =  btargetMapper.selectByExample(null);
-        if(list!=null)
-            return list;
-        else
+        if(list.isEmpty())
             return null;
+        else
+           return list;
     }
 }
