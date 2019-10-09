@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +32,7 @@ public class BtargetController {
 
 
     @ApiOperation(value = "查询指标信息")
-    @PostMapping("/doctor/selectBtarget")
+    @GetMapping("/doctor/selectBtarget")
     public Msg selectBtarget(){
         List<Btarget> list = btargetServiceImpl.selectBtarget();
         return Msg.success().add("btarget",list);

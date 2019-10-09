@@ -31,7 +31,7 @@ public class BloodAddressController {
 	}
 
 	@ApiOperation(value = "查询可用献血地址信息")
-	@PostMapping("/doctor/selectBloodAddress")
+	@GetMapping("/doctor/selectBloodAddress")
 	public Msg selectBloodAddress() {
 		//获取医护人员登录信息
 		Userlogin userlogin= (Userlogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -41,7 +41,7 @@ public class BloodAddressController {
 	}
 
 	@ApiOperation(value = "查询所有献血地址信息,分页显示一页10条数据")
-	@PostMapping("/doctor/selectAllBloodAddress/{pn}")
+	@GetMapping("/doctor/selectAllBloodAddress/{pn}")
 	public Msg selectAllBloodAddress(@PathVariable("pn") Integer pn) {
 		//查询地址列表
 		PageHelper.startPage(pn,10);

@@ -84,6 +84,7 @@ public class Application implements Serializable {
                 ", applyamount=" + applyamount +
                 ", state=" + state +
                 ", adate='" + adate + '\'' +
+                ", doctor=" + doctor +
                 '}';
     }
 }

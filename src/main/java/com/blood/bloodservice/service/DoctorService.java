@@ -23,6 +23,7 @@ public interface DoctorService {
      */
     Doctor selectbydid(int did);
 
+
     //查询医护人员信息
       List<Doctor> selectDoctor();
 }

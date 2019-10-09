@@ -8,6 +8,7 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -32,7 +33,7 @@ public class BloodchatController {
     }
 
     @ApiOperation(value = "查询咨询表信息,分页查询显示一页10条数据")
-    @PostMapping("/doctor/selectBloodchat/{pn}")
+    @GetMapping("/doctor/selectBloodchat/{pn}")
     public Msg selectBloodchat(@PathVariable("pn") Integer pn)
     {
         PageHelper.startPage(pn,10);
