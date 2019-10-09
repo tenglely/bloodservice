@@ -25,4 +25,9 @@ public interface BloodkuService {
      * @return
      */
     public List<Bloodku> selectByBtype(String btype);
+    
+    /**
+     * 根据地址查询血库信息
+     */
+    public List<Bloodku> selectByBaddress(Integer BaddressId);
 }

@@ -44,6 +44,15 @@ public class BloodkuController {
     	List<Bloodku> list = bloodkuServiceImpl.selectByBtype(btype);
     	PageInfo pageInfo = new PageInfo(list, 5);
 		return Msg.success().add("list", pageInfo);
+    }
+    
+    @ApiOperation(value="根据地址查询血库信息")
+    @GetMapping("/doctor/selectbloodbybaddress/{pn}/{baddressId}")
+    public Msg selectBloodByBaddress(@PathVariable("pn")Integer pn,@PathVariable("baddressId")Integer baddressId) {
+		PageHelper.startPage(pn,10);
+		List<Bloodku> list = bloodkuServiceImpl.selectByBaddress(baddressId);
+		PageInfo pageInfo = new PageInfo(list,5);
+    	return Msg.success().add("list", pageInfo);
     	
     }
     @ApiOperation(value = "添加血库信息")
