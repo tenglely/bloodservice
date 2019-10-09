@@ -5,12 +5,18 @@ import com.blood.bloodservice.entity.People;
 import com.blood.bloodservice.service.PeopleService;
 import com.blood.bloodservice.service.impl.RegisterServiceImpl;
 import com.blood.bloodservice.service.impl.UserloginService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * 处理献血人员的控制器
@@ -26,6 +32,15 @@ public class PeopleController {
     RegisterServiceImpl registerService;
     @Autowired
     UserloginService userloginService;
+
+    @ApiOperation(value = "管理员，查看所有用户信息，分页，一页10条")
+    @GetMapping("/admin/findallpeople/{pn}")
+    public Msg findallpeople(@PathVariable("pn")Integer pn){
+        PageHelper.startPage(pn,10);
+        List<People> list=peopleService.selectall();
+        PageInfo page = new PageInfo(list,5);
+        return Msg.success().add("list",page);
+    }
 
     @ApiOperation(value = "工作人员注册献血人员信息，并添加登记表信息,返回用户信息people",
     notes = "填入用户信息people，和登记地址编号baid")

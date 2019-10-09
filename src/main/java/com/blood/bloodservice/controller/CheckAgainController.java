@@ -44,7 +44,7 @@ public class CheckAgainController {
     }
 
     @ApiOperation(value = "查询二次检测结果")
-    @GetMapping("/doctor/selectCheckagain{pn}")
+    @GetMapping("/doctor/selectCheckagain/{pn}")
     public Msg selectCheckagain(@PathVariable("pn")Integer pn){
 
         PageHelper.startPage(pn,10);

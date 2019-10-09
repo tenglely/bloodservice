@@ -64,4 +64,14 @@ public class PeopleServiceImpl implements PeopleService {
         else
             return list.get(0);
     }
+
+    @Override
+    public List<People> selectall() {
+        PeopleExample peopleExample=new PeopleExample();
+        peopleExample.setOrderByClause("uid desc");
+        List<People> list=peopleMapper.selectByExample(peopleExample);
+        if(list.isEmpty())
+            return null;
+        return list;
+    }
 }

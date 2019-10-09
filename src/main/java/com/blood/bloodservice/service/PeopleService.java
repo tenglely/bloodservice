@@ -2,6 +2,8 @@ package com.blood.bloodservice.service;
 
 import com.blood.bloodservice.entity.People;
 
+import java.util.List;
+
 /**
  * 医护人员添加献血人员登记业务
  * @author zyqfz
@@ -29,5 +31,11 @@ public interface PeopleService {
      * @return
      */
     People selectbyidenty(String uidentity);
+
+    /**
+     * 查找全部用户
+     * @return
+     */
+    List<People> selectall();
 }
 
