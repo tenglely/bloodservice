@@ -16,4 +16,11 @@ public interface GiftService {
 
     //查看所有礼品
     List<Gift> selectGift();
+
+    /**
+     * 根据lid查询物资信息
+     * @param lid
+     * @return
+     */
+    List<Gift> selectbylid(Integer lid);
 }

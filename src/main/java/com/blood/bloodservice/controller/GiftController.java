@@ -35,6 +35,13 @@ public class GiftController {
        return Msg.success();
     }
 
+    @ApiOperation(value = "管理员或医务人员根据lid查询所有物资信息")
+    @GetMapping("/doctor/findgiftbylid/{lid}")
+    public Msg findgiftbylid(@PathVariable("lid")Integer lid){
+        List<Gift> list=giftServiceimpl.selectbylid(lid);
+        return Msg.success().add("list",list);
+    }
+
     @ApiOperation(value = "查看献血物资,分页显示,一页10条数据")
     @GetMapping("/doctor/selectGift/{pn}")
     public Msg selectGift(@PathVariable("pn")Integer pn){

@@ -29,6 +29,8 @@ public class CbloodController {
     @Autowired
     GiftServiceImpl giftServiceImpl;
 
+
+
     @ApiOperation(value = "添加献血通知信息")
     @PostMapping("/doctor/addCblood")
     public Msg addCblood(Cblood cblood,String[] types,String[] name,int[] number)
