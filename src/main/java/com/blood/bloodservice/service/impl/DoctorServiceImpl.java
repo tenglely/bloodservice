@@ -97,4 +97,14 @@ public class DoctorServiceImpl implements DoctorService {
         return list;
     }
 
+    @Override
+    public List<Doctor> findalldoctor() {
+        DoctorExample doctorExample=new DoctorExample();
+        doctorExample.setOrderByClause("did desc");
+        List<Doctor> list=doctorMapper.selectByExample(doctorExample);
+        if(list.isEmpty())
+            return null;
+        return list;
+    }
+
 }

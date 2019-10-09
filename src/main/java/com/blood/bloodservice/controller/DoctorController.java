@@ -4,6 +4,8 @@ import com.blood.bloodservice.entity.Doctor;
 import com.blood.bloodservice.entity.Msg;
 import com.blood.bloodservice.entity.Userlogin;
 import com.blood.bloodservice.service.impl.DoctorServiceImpl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,8 +34,24 @@ public class DoctorController {
     @Autowired
     DoctorServiceImpl doctorServiceImpl;
 
+    @ApiOperation(value = "管理员根据医院查找医务人员")
+    @GetMapping("/admin/finddoctorbyhospital/{dwork}")
+    public Msg finddoctorbyhospital(@PathVariable("dwork")String dwork){
+        List<Doctor> list=doctorServiceImpl.findbyhospital(dwork);
+        return Msg.success().add("list",list);
+    }
 
-    @ApiOperation(value = "查询同一医院的医务人员")
+
+    @ApiOperation(value = "管理员，查询全部医务人员")
+    @GetMapping("/admin/findalldoctor/{pn}")
+    public Msg findalldoctor(@PathVariable("pn") Integer pn){
+        PageHelper.startPage(pn,10);
+        List<Doctor> list=doctorServiceImpl.findalldoctor();
+        PageInfo page = new PageInfo(list,5);
+        return Msg.success().add("list",page);
+    }
+
+    @ApiOperation(value = "医务人员，查询同一医院的医务人员")
     @GetMapping("/doctor/findbyhospital")
     public Msg findByHospitol(){
         //获取用户登录信息

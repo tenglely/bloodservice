@@ -2,6 +2,7 @@ package com.blood.bloodservice.service;
 
 import com.blood.bloodservice.entity.Doctor;
 
+import javax.print.Doc;
 import java.util.List;
 
 /**
@@ -33,4 +34,10 @@ public interface DoctorService {
      * @return
      */
     List<Doctor> findbyhospital(String dwork);
+
+    /**
+     * 查询所有医务人员
+     * @return
+     */
+    List<Doctor> findalldoctor();
 }
