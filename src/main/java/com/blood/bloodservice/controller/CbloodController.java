@@ -25,7 +25,7 @@ import java.util.List;
  * @author zyqfz
  * @date 2019/9/26 - 15:30
  */
-@Api(tags = "献血通知信息")
+@Api(tags = "献血活动信息接口")
 @RestController
 public class CbloodController {
 
@@ -41,7 +41,14 @@ public class CbloodController {
     @Autowired
     GiftServiceImpl giftServiceImpl;
 
-
+    @ApiOperation(value = "管理员审核活动，修改活动状态为1")
+    @GetMapping("/admin/updatecblood/{cid}")
+    public Msg updatecblood(@PathVariable("cid") Integer cid){
+        int i=cbloodServiceImpl.updatecstate(cid);
+        if(i>0)
+            return Msg.success();
+        return Msg.fail();
+    }
 
     @ApiOperation(value = "添加献血通知信息，需医务人员登录")
     @PostMapping("/doctor/addCblood")
@@ -60,9 +67,8 @@ public class CbloodController {
             gift.setLid(lid);
             giftServiceImpl.addGift(gift);
         }
-
         //活动状态
-        cblood.setCstate(1);
+        cblood.setCstate(0);
         //设置礼品编号
         cblood.setLid(lid);
         //活动创建时间
