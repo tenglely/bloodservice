@@ -16,6 +16,10 @@ public interface CbloodMapper {
 
     int insertSelective(Cblood record);
 
+    List<Cblood> selectByExampleWithUser(CbloodExample example);
+
+    Cblood selectByPrimaryKeyWithUser(Integer cid);
+
     List<Cblood> selectByExample(CbloodExample example);
 
     Cblood selectByPrimaryKey(Integer cid);

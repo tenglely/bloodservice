@@ -21,6 +21,8 @@ public class Cblood implements Serializable {
 
     private Integer cstate;
 
+    private Doctor doctor;
+
     public Integer getCid() {
         return cid;
     }
@@ -93,6 +95,14 @@ public class Cblood implements Serializable {
         this.cstate = cstate;
     }
 
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
     @Override
     public String toString() {
         return "Cblood{" +
@@ -105,7 +115,7 @@ public class Cblood implements Serializable {
                 ", ctime='" + ctime + '\'' +
                 ", covertime='" + covertime + '\'' +
                 ", cstate=" + cstate +
+                ", doctor=" + doctor +
                 '}';
     }
-
 }
