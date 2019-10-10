@@ -13,4 +13,8 @@ public interface ContentService {
      * @return
      */
     int addcontent(Content content);
+
+    //根据文章id查询文章内容
+    Content selectContentBypid(Integer pid);
+
 }

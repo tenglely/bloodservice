@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -33,5 +34,17 @@ public class PostServiceImpl implements PostService {
            return post.getPid();
         else
             return 0;
+    }
+
+    //查询文章信息
+    @Override
+    public List<Post> selectPost() {
+
+        List<Post> list = postMapper.selectByExample(null);
+        if(list.isEmpty())
+            return null;
+        else
+            return list;
+
     }
 }

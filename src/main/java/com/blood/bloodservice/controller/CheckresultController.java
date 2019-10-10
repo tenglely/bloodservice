@@ -1,13 +1,21 @@
 package com.blood.bloodservice.controller;
 
-import com.blood.bloodservice.entity.Checkresult;
-import com.blood.bloodservice.entity.Msg;
+import com.blood.bloodservice.entity.*;
 import com.blood.bloodservice.service.impl.CheckresultServiceImpl;
+import com.blood.bloodservice.service.impl.DoctorServiceImpl;
+import com.blood.bloodservice.service.impl.PeopleServiceImpl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 体检结果控制器
@@ -21,12 +29,34 @@ public class CheckresultController {
     @Autowired
     CheckresultServiceImpl checkresultServiceImpl;
 
+    @Autowired
+    PeopleServiceImpl peopleServiceImpl;
+    @Autowired
+    DoctorServiceImpl doctorServiceImpl;
+
     @ApiOperation(value = "添加体检结果")
     @PostMapping("/doctor/addCheckresult")
     public Msg addCheckresult(Checkresult checkresult){
-
-
        int id = checkresultServiceImpl.addCheckresult(checkresult);
        return Msg.success();
+    }
+
+    @ApiOperation(value = "查询体检结果,分页一页10条数据")
+    @GetMapping("/doctor/selectCheckresult/{pn}")
+    public Msg selectCheckresult(@PathVariable("pn")Integer pn){
+
+        PageHelper.startPage(pn,10);
+        List<Checkresult> list = checkresultServiceImpl.selectCheckresult();
+        List<String> listPeoplename = new ArrayList<>();
+        List<String> listDoctorname = new ArrayList<>();
+        for(Checkresult c : list){
+            People people = peopleServiceImpl.selectonebyid(c.getUid());
+            Doctor doctor = doctorServiceImpl.selectbydid(c.getYid());
+            listPeoplename.add(people.getUname());
+            listDoctorname.add(doctor.getDname());
+        }
+        PageInfo pageInfo = new PageInfo(list,5);
+        System.out.println(pageInfo);
+        return Msg.success().add("pageinfo",pageInfo).add("listpeoplename",listPeoplename).add("listdoctorname",listDoctorname);
     }
 }
