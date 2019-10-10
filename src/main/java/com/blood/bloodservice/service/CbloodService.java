@@ -40,4 +40,11 @@ public interface CbloodService {
      * @return
      */
     List<Cblood> findbyaddress(int did);
+
+    /**
+     * 修改活动状态为开启
+     * @param pn
+     * @return
+     */
+    int updatecstate(Integer cid);
 }

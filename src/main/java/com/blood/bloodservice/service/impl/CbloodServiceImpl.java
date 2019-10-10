@@ -66,4 +66,12 @@ public class CbloodServiceImpl implements CbloodService {
             return null;
         return list;
     }
+
+    @Override
+    public int updatecstate(Integer cid) {
+        Cblood cblood=cbloodMapper.selectByPrimaryKey(cid);
+        cblood.setCstate(1);
+        int i=cbloodMapper.updateByPrimaryKey(cblood);
+        return i;
+    }
 }
