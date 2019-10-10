@@ -44,7 +44,7 @@ public class CheckAgainController {
     }
 
     @ApiOperation(value = "查询二次检测结果,分页一页10条数据")
-    @GetMapping("/doctor/selectCheckagain{pn}")
+    @GetMapping("/doctor/selectCheckagain/{pn}")
     public Msg selectCheckagain(@PathVariable("pn")Integer pn){
 
         PageHelper.startPage(pn,10);
@@ -58,7 +58,38 @@ public class CheckAgainController {
             listDoctorname.add(doctor.getDname());
         }
         PageInfo pageInfo = new PageInfo(list,5);
-        System.out.println(pageInfo);
+       // System.out.println(pageInfo);
+        return Msg.success().add("pageinfo",pageInfo).add("listpeoplename",listPeoplename).add("listdoctorname",listDoctorname);
+    }
+
+    @ApiOperation(value = "根据cid查询二次检测结果详细信息")
+    @GetMapping("/doctor/selectOneCheckagain/{cid}")
+    public Msg selectOneCheckagain(@PathVariable("cid")Integer cid){
+        Checkagain c = checkAgainServiceImpl.selectOnecheckagain(cid);
+        //查询出献血人员的名字和医护人员的名字
+        People people = peopleServiceImpl.selectonebyid(c.getUid());
+        Doctor doctor = doctorServiceImpl.selectbydid(c.getYid());
+
+        // System.out.println(pageInfo);
+        return Msg.success().add("checkagain",c).add("people",people).add("doctor",doctor);
+    }
+
+    @ApiOperation(value = "复查结果状态cstate查询二次检测结果,分页一页10条数据")
+    @GetMapping("/doctor/selectCheckagain/{pn}/{cstate}")
+    public Msg selectCheckagain(@PathVariable("pn")Integer pn,@PathVariable("cstate")Boolean cstate){
+
+        PageHelper.startPage(pn,10);
+        List<Checkagain> list = checkAgainServiceImpl.selectCheckagainBycstate(cstate);
+        List<String> listPeoplename = new ArrayList<>();
+        List<String> listDoctorname = new ArrayList<>();
+        for(Checkagain c : list){
+            People people = peopleServiceImpl.selectonebyid(c.getUid());
+            Doctor doctor = doctorServiceImpl.selectbydid(c.getYid());
+            listPeoplename.add(people.getUname());
+            listDoctorname.add(doctor.getDname());
+        }
+        PageInfo pageInfo = new PageInfo(list,5);
+        // System.out.println(pageInfo);
         return Msg.success().add("pageinfo",pageInfo).add("listpeoplename",listPeoplename).add("listdoctorname",listDoctorname);
     }
 }

@@ -15,4 +15,11 @@ public interface CheckresultService {
 
     //查询所有体检结果
     List<Checkresult> selectCheckresult();
+
+    //根据体检结果id查询详细信息
+    Checkresult selectOneCheckresult(Integer id);
+
+    //根据体检结果状态查询体检结果列表
+    List<Checkresult> selectCheckresultBycstate(Boolean cstate);
+
 }

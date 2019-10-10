@@ -56,7 +56,37 @@ public class CheckresultController {
             listDoctorname.add(doctor.getDname());
         }
         PageInfo pageInfo = new PageInfo(list,5);
-        System.out.println(pageInfo);
+        //System.out.println(pageInfo);
+        return Msg.success().add("pageinfo",pageInfo).add("listpeoplename",listPeoplename).add("listdoctorname",listDoctorname);
+    }
+
+    @ApiOperation(value = "根据id查询检测结果详细信息")
+    @GetMapping("/doctor/selectOneCheckresult/{id}")
+    public Msg selectOneCheckresult(@PathVariable("id")Integer id){
+        Checkresult c = checkresultServiceImpl.selectOneCheckresult(id);
+        //查询出献血人员的名字和医护人员的名字
+        People people = peopleServiceImpl.selectonebyid(c.getUid());
+        Doctor doctor = doctorServiceImpl.selectbydid(c.getYid());
+        // System.out.println(pageInfo);
+        return Msg.success().add("checkresult",c).add("people",people).add("doctor",doctor);
+    }
+
+    @ApiOperation(value = "根据检查结果状态cstate查询体检结果,分页一页10条数据")
+    @GetMapping("/doctor/selectCheckresultBycstate/{pn}/{cstate}")
+    public Msg selectCheckresultBycstate(@PathVariable("cstate")Boolean cstate,@PathVariable("pn")Integer pn){
+
+        PageHelper.startPage(pn,10);
+        List<Checkresult> list = checkresultServiceImpl.selectCheckresultBycstate(cstate);
+        List<String> listPeoplename = new ArrayList<>();
+        List<String> listDoctorname = new ArrayList<>();
+        for(Checkresult c : list){
+            People people = peopleServiceImpl.selectonebyid(c.getUid());
+            Doctor doctor = doctorServiceImpl.selectbydid(c.getYid());
+            listPeoplename.add(people.getUname());
+            listDoctorname.add(doctor.getDname());
+        }
+        PageInfo pageInfo = new PageInfo(list,5);
+        //System.out.println(pageInfo);
         return Msg.success().add("pageinfo",pageInfo).add("listpeoplename",listPeoplename).add("listdoctorname",listDoctorname);
     }
 }

@@ -17,6 +17,8 @@ public interface PostService {
     int addpost(String title,String ptype,int uid,String utype,String uname);
 
     //查询文章信息
-
     List<Post> selectPost();
+
+    //根据文章id查询标题详细信息
+    Post selectOnePost(Integer pid);
 }

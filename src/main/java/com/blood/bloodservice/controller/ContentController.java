@@ -4,6 +4,7 @@ import com.blood.bloodservice.entity.Content;
 import com.blood.bloodservice.entity.Msg;
 import com.blood.bloodservice.entity.Post;
 import com.blood.bloodservice.service.impl.ContentServiceImpl;
+import com.blood.bloodservice.service.impl.PostServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -26,11 +27,17 @@ public class ContentController {
     @Autowired
     ContentServiceImpl contentServiceImpl;
 
+    @Autowired
+    PostServiceImpl postServiceImpl;
 
-    @ApiOperation(value = "根据文章id查询文章内容")
+
+
+    @ApiOperation(value = "根据文章pid查询文章内容")
     @GetMapping("/all/selectContent/{pid}")
     public Msg selectPost(@PathVariable("pid")Integer pid){
+        //显示标题内容
+        Post post = postServiceImpl.selectOnePost(pid);
         Content content = contentServiceImpl.selectContentBypid(pid);
-        return Msg.success().add("content",content);
+        return Msg.success().add("content",content).add("post",post);
     }
 }

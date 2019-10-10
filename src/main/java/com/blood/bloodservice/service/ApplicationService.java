@@ -16,4 +16,10 @@ public interface ApplicationService {
 
     //查询所有申请信息列表
     List<Application> selectAllapplication();
+
+    //根据申请id查询申请详细信息
+    Application selectOneApplication(Integer aid);
+
+    //根据申请状态查询申请列表
+    List<Application> selectApplicationBystate(Integer state);
 }

@@ -2,6 +2,7 @@ package com.blood.bloodservice.service.impl;
 
 import com.blood.bloodservice.dao.PostMapper;
 import com.blood.bloodservice.entity.Post;
+import com.blood.bloodservice.entity.PostExample;
 import com.blood.bloodservice.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,12 +40,24 @@ public class PostServiceImpl implements PostService {
     //查询文章信息
     @Override
     public List<Post> selectPost() {
-
-        List<Post> list = postMapper.selectByExample(null);
+        PostExample postExample = new PostExample();
+        postExample.setOrderByClause("pid desc");
+        List<Post> list = postMapper.selectByExample(postExample);
         if(list.isEmpty())
             return null;
         else
             return list;
 
+    }
+
+    //根据文章pid查询详细标题信息
+    @Override
+    public Post selectOnePost(Integer pid) {
+        Post post = postMapper.selectByPrimaryKey(pid);
+        if(post!=null) {
+            return post;
+        }
+        else
+        return null;
     }
 }
