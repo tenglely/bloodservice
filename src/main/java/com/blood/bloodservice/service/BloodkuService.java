@@ -35,4 +35,9 @@ public interface BloodkuService {
      * 根据使用状态查询血库信息
      */
     public List<Bloodku> selectByState(Boolean state);
+    
+    /**
+     * 根据是否入库bstate查询血库信息
+     */
+    public List<Bloodku> selectByBstate(Integer bstate);
 }

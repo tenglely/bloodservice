@@ -46,11 +46,19 @@ public class BloodkuController {
 		return Msg.success().add("list", pageInfo);
     }
 
-    @ApiOperation(value="根据使用状态查询血库信息")
+    @ApiOperation(value="根据使用状态state查询血库信息")
     @GetMapping("/doctor/selectbloodkubystate/{pn}/{state}")
     public Msg selectBloodKuByState(@PathVariable("pn")Integer pn, @PathVariable("state")Boolean state) {
     	PageHelper.startPage(pn,10);
     	List<Bloodku> list = bloodkuServiceImpl.selectByState(state);
+    	PageInfo pageInfo = new PageInfo(list,5);
+		return Msg.success().add("list", pageInfo);
+    }
+    @ApiOperation(value="根据是否入库bstate查询血库信息")
+    @GetMapping("/doctor/selectbloodkubybstate/{pn}/{bstate}")
+    public Msg selectBloodKuByBstate(@PathVariable("pn")Integer pn,@PathVariable("bstate")Integer bstate) {
+    	PageHelper.startPage(pn,10);
+    	List<Bloodku> list = bloodkuServiceImpl.selectByBstate(bstate);
     	PageInfo pageInfo = new PageInfo(list,5);
 		return Msg.success().add("list", pageInfo);
     	

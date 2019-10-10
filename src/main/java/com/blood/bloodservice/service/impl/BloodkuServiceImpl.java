@@ -84,5 +84,21 @@ public class BloodkuServiceImpl implements BloodkuService {
 			return list;
 		}
 	}
+	
+	/**
+     * 根据是否入库bstate查询血库信息
+     */
+	@Override
+	public List<Bloodku> selectByBstate(Integer bstate) {
+		BloodkuExample bloodkuExample = new BloodkuExample();
+		BloodkuExample.Criteria criteria = bloodkuExample.createCriteria();
+		criteria.andBstateEqualTo(bstate);
+		List<Bloodku> list = bloodkuMapper.selectByExample(bloodkuExample);
+		if(list.isEmpty()) {
+			return null;
+		}else {
+			return list;
+		}
+	}
 
 }
