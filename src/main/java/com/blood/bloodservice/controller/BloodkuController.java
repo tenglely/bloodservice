@@ -38,17 +38,34 @@ public class BloodkuController {
     }
     
     @ApiOperation(value="根据血型查询血库信息")
-    @GetMapping("/doctor/selectbloodbybtype/{pn}/{btype}")
+    @GetMapping("/doctor/selectbloodkubybtype/{pn}/{btype}")
     public Msg selectBloodkuByBtype(@PathVariable("pn") Integer pn,@PathVariable("btype") String btype) {
     	PageHelper.startPage(pn,10);
     	List<Bloodku> list = bloodkuServiceImpl.selectByBtype(btype);
     	PageInfo pageInfo = new PageInfo(list, 5);
 		return Msg.success().add("list", pageInfo);
     }
-    
+
+    @ApiOperation(value="根据使用状态state查询血库信息")
+    @GetMapping("/doctor/selectbloodkubystate/{pn}/{state}")
+    public Msg selectBloodKuByState(@PathVariable("pn")Integer pn, @PathVariable("state")Boolean state) {
+    	PageHelper.startPage(pn,10);
+    	List<Bloodku> list = bloodkuServiceImpl.selectByState(state);
+    	PageInfo pageInfo = new PageInfo(list,5);
+		return Msg.success().add("list", pageInfo);
+    }
+    @ApiOperation(value="根据是否入库bstate查询血库信息")
+    @GetMapping("/doctor/selectbloodkubybstate/{pn}/{bstate}")
+    public Msg selectBloodKuByBstate(@PathVariable("pn")Integer pn,@PathVariable("bstate")Integer bstate) {
+    	PageHelper.startPage(pn,10);
+    	List<Bloodku> list = bloodkuServiceImpl.selectByBstate(bstate);
+    	PageInfo pageInfo = new PageInfo(list,5);
+		return Msg.success().add("list", pageInfo);
+    	
+    }
     @ApiOperation(value="根据地址查询血库信息")
-    @GetMapping("/doctor/selectbloodbybaddress/{pn}/{baddressId}")
-    public Msg selectBloodByBaddress(@PathVariable("pn")Integer pn,@PathVariable("baddressId")Integer baddressId) {
+    @GetMapping("/doctor/selectbloodkubybaddress/{pn}/{baddressId}")
+    public Msg selectBloodKuByBaddress(@PathVariable("pn")Integer pn,@PathVariable("baddressId")Integer baddressId) {
 		PageHelper.startPage(pn,10);
 		List<Bloodku> list = bloodkuServiceImpl.selectByBaddress(baddressId);
 		PageInfo pageInfo = new PageInfo(list,5);
@@ -69,4 +86,5 @@ public class BloodkuController {
 
        return Msg.success();
     }
+    
 }

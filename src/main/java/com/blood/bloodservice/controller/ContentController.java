@@ -20,7 +20,7 @@ import java.util.List;
  * @author zyqfz
  * @date 2019/10/9 - 11:36
  */
-@Api(value = "文章内容管理")
+@Api(tags = "文章内容管理")
 @RestController
 public class ContentController {
     @Autowired

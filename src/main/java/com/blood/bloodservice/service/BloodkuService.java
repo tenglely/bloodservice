@@ -30,4 +30,14 @@ public interface BloodkuService {
      * 根据地址查询血库信息
      */
     public List<Bloodku> selectByBaddress(Integer BaddressId);
+    
+    /**
+     * 根据使用状态查询血库信息
+     */
+    public List<Bloodku> selectByState(Boolean state);
+    
+    /**
+     * 根据是否入库bstate查询血库信息
+     */
+    public List<Bloodku> selectByBstate(Integer bstate);
 }
