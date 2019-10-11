@@ -9,6 +9,7 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,13 +31,22 @@ public class SendbloodController {
     PeopleServiceImpl peopleService;
     @Autowired
     DoctorServiceImpl doctorService;
+    @Autowired
+    RedisTemplate redisTemplate;
 
 
-    @ApiOperation(value = "添加献血记录信息")
+    @ApiOperation(value = "添加献血记录信息,需医务人员登录")
     @PostMapping("/doctor/addSendblood")
     public Msg addSendblood(Sendblood sendblood)
     {
+        Userlogin userlogin= (Userlogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        sendblood.setYid(userlogin.getUid());
         int bid = sendbloodServiceImpl.addSendBlood(sendblood);
+        if(bid>0){
+            People people=peopleService.selectonebyid(sendblood.getUid());
+            redisTemplate.opsForList().remove("checkresult_people",1,people);
+            System.out.println("从redis的checkresult_people移除people成功!!");
+        }
         return Msg.success();
     }
 

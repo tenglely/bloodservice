@@ -9,6 +9,8 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,17 +30,39 @@ public class CheckresultController {
 
     @Autowired
     CheckresultServiceImpl checkresultServiceImpl;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @Autowired
     PeopleServiceImpl peopleServiceImpl;
     @Autowired
     DoctorServiceImpl doctorServiceImpl;
 
-    @ApiOperation(value = "添加体检结果")
+    @ApiOperation(value = "添加体检结果,需医务人员登录")
     @PostMapping("/doctor/addCheckresult")
     public Msg addCheckresult(Checkresult checkresult){
-       int id = checkresultServiceImpl.addCheckresult(checkresult);
+        Userlogin userlogin= (Userlogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        checkresult.setYid(userlogin.getUid());
+        int id = checkresultServiceImpl.addCheckresult(checkresult);
+        if(id>0) {
+            if(checkresult.getCstate()){
+                People people=peopleServiceImpl.selectonebyid(checkresult.getUid());
+                redisTemplate.opsForList().leftPush("checkresult_people",people);
+                System.out.println("redis放入成功!!");
+            }
+
+        }
        return Msg.success();
+    }
+
+    @ApiOperation(value = "输出体检成功的人员列表")
+    @GetMapping("/doctor/findCheckresultSuccessPeople")
+    public Msg findCheckresultSuccessPeople(){
+        int length = redisTemplate.opsForList().size("checkresult_people").intValue();
+        List<People> list=redisTemplate.opsForList().range("checkresult_people",0,length);
+        for(People people:list)
+            System.out.println(people);
+        return Msg.success().add("list",list);
     }
 
     @ApiOperation(value = "查询体检结果,分页一页10条数据")
@@ -71,7 +95,7 @@ public class CheckresultController {
         return Msg.success().add("checkresult",c).add("people",people).add("doctor",doctor);
     }
 
-    @ApiOperation(value = "根据检查结果状态cstate查询体检结果,分页一页10条数据")
+    @ApiOperation(value = "根据检查结果状态cstate查询体检结果,分页一页10条数据，返回体检结果，用户信息，医生信息")
     @GetMapping("/doctor/selectCheckresultBycstate/{pn}/{cstate}")
     public Msg selectCheckresultBycstate(@PathVariable("cstate")Boolean cstate,@PathVariable("pn")Integer pn){
 
