@@ -70,7 +70,16 @@ public class SendbloodServiceImpl implements SendbloodService {
         return list;
     }
 
-
+    @Override
+    public Sendblood selectonbybid(Integer bid) {
+        SendbloodExample sendbloodExample=new SendbloodExample();
+        SendbloodExample.Criteria criteria=sendbloodExample.createCriteria();
+        criteria.andBidEqualTo(bid);
+        List<Sendblood> list=sendbloodMapper.selectByExample(sendbloodExample);
+        if(list.isEmpty())
+            return null;
+        return list.get(0);
+    }
 
 
 }

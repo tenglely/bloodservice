@@ -34,5 +34,10 @@ public interface SendbloodService {
      */
     List<Sendblood> selectbyuid(Integer uid);
 
-
+    /**
+     * 根据献血记录编号bid查找一条
+     * @param bid
+     * @return
+     */
+    Sendblood selectonbybid(Integer bid);
 }

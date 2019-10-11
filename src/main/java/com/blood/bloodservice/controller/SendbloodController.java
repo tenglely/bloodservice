@@ -46,8 +46,26 @@ public class SendbloodController {
             People people=peopleService.selectonebyid(sendblood.getUid());
             redisTemplate.opsForList().remove("checkresult_people",1,people);
             System.out.println("从redis的checkresult_people移除people成功!!");
+            redisTemplate.opsForList().leftPush("sendblood_people",people);
+            System.out.println("从redis的sendblood_people中添加people成功");
+            sendblood.setBid(bid);
+            redisTemplate.opsForList().leftPush("sendblood_list",sendblood);
+            System.out.println("从redis的sendblood_list中添加sendblood成功");
+            Doctor doctor=doctorService.selectbydid(sendblood.getYid());
+            redisTemplate.opsForList().leftPush("sendblood_doctor",doctor);
+            System.out.println("从redis的sendblood_doctor中添加doctor成功");
         }
         return Msg.success();
+    }
+
+    @ApiOperation(value = "输出未填写血液复测的献血记录(献血记录、用户、医生)列表")
+    @GetMapping("/doctor/findSendbloodList")
+    public Msg findCheckresultSuccessPeople(){
+        int length = redisTemplate.opsForList().size("sendblood_people").intValue();
+        List<People> plist=redisTemplate.opsForList().range("sendblood_people",0,length);
+        List<Sendblood>  slist=redisTemplate.opsForList().range("sendblood_list",0,length);
+        List<Doctor> dlist=redisTemplate.opsForList().range("sendblood_doctor",0,length);
+        return Msg.success().add("plist",plist).add("dlist",dlist).add("slist",slist);
     }
 
     @ApiOperation(value = "管理员查看所有献血记录,分页-页10条.返回献血记录，用户信")

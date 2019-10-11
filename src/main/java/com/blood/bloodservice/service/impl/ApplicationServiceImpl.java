@@ -61,4 +61,16 @@ public class ApplicationServiceImpl implements ApplicationService {
         else
             return list;
     }
+    //根据yid查询全部
+    @Override
+    public List<Application> selectByYid(Integer uid) {
+        ApplicationExample applicationExample=new ApplicationExample();
+        ApplicationExample.Criteria criteria=applicationExample.createCriteria();
+        applicationExample.setOrderByClause("aid desc");
+        criteria.andYidEqualTo(uid);
+        List<Application> list=applicationMapper.selectByExample(applicationExample);
+        if(list.isEmpty())
+            return null;
+        return list;
+    }
 }

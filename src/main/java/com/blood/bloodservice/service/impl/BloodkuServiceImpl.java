@@ -27,10 +27,9 @@ public class BloodkuServiceImpl implements BloodkuService {
 
     @Override
     public List<Bloodku> selectall() {
-        //BloodkuExample bloodkuExample=new BloodkuExample();
-        //BloodkuExample.Criteria criteria=bloodkuExample.createCriteria();
-
-        List<Bloodku> list=bloodkuMapper.selectByExample(null);
+        BloodkuExample bloodkuExample=new BloodkuExample();
+		bloodkuExample.setOrderByClause("bid desc");
+        List<Bloodku> list=bloodkuMapper.selectByExample(bloodkuExample);
         if(list.isEmpty())
             return null;
         else
@@ -43,6 +42,7 @@ public class BloodkuServiceImpl implements BloodkuService {
 	@Override
 	public List<Bloodku> selectByBtype(String btype) {
 		BloodkuExample bloodkuExample = new BloodkuExample();
+		bloodkuExample.setOrderByClause("bid desc");
 		BloodkuExample.Criteria criteria = bloodkuExample.createCriteria();
 		criteria.andBtypeEqualTo(btype);
 		List<Bloodku> list = bloodkuMapper.selectByExample(bloodkuExample);
@@ -59,6 +59,7 @@ public class BloodkuServiceImpl implements BloodkuService {
 	@Override
 	public List<Bloodku> selectByBaddress(Integer BaddressId) {
 		BloodkuExample bloodkuExample = new BloodkuExample();
+		bloodkuExample.setOrderByClause("bid desc");
 		BloodkuExample.Criteria criteria = bloodkuExample.createCriteria();
 		criteria.andBaddressidEqualTo(BaddressId);
 		List<Bloodku> list = bloodkuMapper.selectByExample(bloodkuExample);
@@ -75,6 +76,7 @@ public class BloodkuServiceImpl implements BloodkuService {
 	@Override
 	public List<Bloodku> selectByState(Boolean state) {
 		BloodkuExample bloodkuExample = new BloodkuExample();
+		bloodkuExample.setOrderByClause("bid desc");
 		BloodkuExample.Criteria criteria = bloodkuExample.createCriteria();
 		criteria.andStateEqualTo(state);
 		List<Bloodku> list = bloodkuMapper.selectByExample(bloodkuExample);
@@ -91,6 +93,7 @@ public class BloodkuServiceImpl implements BloodkuService {
 	@Override
 	public List<Bloodku> selectByBstate(Integer bstate) {
 		BloodkuExample bloodkuExample = new BloodkuExample();
+		bloodkuExample.setOrderByClause("bid desc");
 		BloodkuExample.Criteria criteria = bloodkuExample.createCriteria();
 		criteria.andBstateEqualTo(bstate);
 		List<Bloodku> list = bloodkuMapper.selectByExample(bloodkuExample);

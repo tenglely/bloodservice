@@ -37,9 +37,11 @@ public class ApplicationController {
     @Autowired
     DoctorServiceImpl doctorServiceImpl;
     //
-    @ApiOperation(value ="添加血液使用申请信息" )
+    @ApiOperation(value ="添加血液使用申请信息,需医务人员登录" )
     @PostMapping("/doctor/addApplication")
     public Msg addApplition(Application application){
+        Userlogin userlogin= (Userlogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        application.setYid(userlogin.getUid());
         //设置状态
         application.setState(0);
         //时间设置
@@ -50,6 +52,15 @@ public class ApplicationController {
         int aid = applicationServiceImpl.addApplication(application);
         return Msg.success();
     }
+
+    @ApiOperation(value = "医务人员查看自己的所有申请记录")
+    @GetMapping("/doctor/finddoctorapply")
+    public Msg finddoctorapply(){
+        Userlogin userlogin = (Userlogin) SecurityContextHolder.getContext().getAuthentication();
+        List<Application> list=applicationServiceImpl.selectByYid(userlogin.getUid());
+        return Msg.success().add("list",list);
+    }
+
     @ApiOperation(value ="添加页面显示时查询出医护人员id信息" )
     @GetMapping("/doctor/showdid")
     public Msg addApplition(){

@@ -22,4 +22,7 @@ public interface ApplicationService {
 
     //根据申请状态查询申请列表
     List<Application> selectApplicationBystate(Integer state);
+
+    //根据yid查询申请列表
+    List<Application> selectByYid(Integer uid);
 }

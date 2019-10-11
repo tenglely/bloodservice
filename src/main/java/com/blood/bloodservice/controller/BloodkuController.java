@@ -1,13 +1,14 @@
 package com.blood.bloodservice.controller;
 
-import com.blood.bloodservice.entity.Bloodku;
-import com.blood.bloodservice.entity.Msg;
-import com.blood.bloodservice.service.impl.BloodkuServiceImpl;
+import com.blood.bloodservice.entity.*;
+import com.blood.bloodservice.service.impl.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,17 @@ import java.util.List;
 @RestController
 public class BloodkuController {
     @Autowired
+    RedisTemplate redisTemplate;
+    @Autowired
     BloodkuServiceImpl bloodkuServiceImpl;
+    @Autowired
+    CheckAgainServiceImpl checkAgainService;
+    @Autowired
+    SendbloodServiceImpl sendbloodService;
+    @Autowired
+    PeopleServiceImpl peopleService;
+    @Autowired
+    DoctorServiceImpl doctorService;
 
     @ApiOperation(value = "查询全部血液")
     @GetMapping("/doctor/selectbloodkuall/{pn}")
@@ -72,9 +83,11 @@ public class BloodkuController {
     	return Msg.success().add("list", pageInfo);
     	
     }
-    @ApiOperation(value = "添加血库信息")
+    @ApiOperation(value = "添加血库信息，需要医务人员登录")
     @PostMapping("/doctor/addBloodku")
     public Msg addBloodku(Bloodku bloodku){
+        Userlogin userlogin= (Userlogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        bloodku.setYid(userlogin.getUid());
         //添加使用状态
         bloodku.setState(false);
         //设置入库时间
@@ -83,6 +96,16 @@ public class BloodkuController {
         String dateString = formatter.format(currentTime);
         bloodku.setInputdate(dateString);
        int bid= bloodkuServiceImpl.addBloodku(bloodku);
+       if(bid>0){
+           Checkagain checkagain=checkAgainService.selectOnecheckagain(bloodku.getCid());
+           People people=peopleService.selectonebyid(checkagain.getUid());
+           Sendblood sendblood=sendbloodService.selectonbybid(checkagain.getBid());
+           Doctor doctor=doctorService.selectbydid(checkagain.getYid());
+           redisTemplate.opsForList().remove("checkagain",1,checkagain);
+           redisTemplate.opsForList().remove("checkagain_people",1,people);
+           redisTemplate.opsForList().remove("checkagain_sendblood",1,sendblood);
+           redisTemplate.opsForList().remove("checkagain_doctor",1,doctor);
+       }
 
        return Msg.success();
     }

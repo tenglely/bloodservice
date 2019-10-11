@@ -50,7 +50,6 @@ public class CheckresultController {
                 redisTemplate.opsForList().leftPush("checkresult_people",people);
                 System.out.println("redis放入成功!!");
             }
-
         }
        return Msg.success();
     }
