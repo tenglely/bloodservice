@@ -52,8 +52,10 @@ public class BloodcardController {
 	    bloodcard.setUid(uid);
 	    bloodcard.setSenddate(dateString);
 	    bloodcard.setState(true);
-	    
-		return Msg.success();
+	    //添加
+	    int index = bloodcardServiceImpl.addBloodcard(bloodcard);
+	    return Msg.success();
+			
 	}
 	
 	@ApiOperation(value="查询全部献血证")
