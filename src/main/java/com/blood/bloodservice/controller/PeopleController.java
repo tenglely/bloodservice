@@ -44,8 +44,8 @@ public class PeopleController {
 
     @ApiOperation(value = "工作人员注册献血人员信息，并添加登记表信息,返回用户信息people",
     notes = "填入用户信息people，和登记地址编号baid")
-    @PostMapping("/doctor/addPeoplebydoctor")
-    public Msg addPeopleBydoctor(People people,int baid){
+    @PostMapping("/doctor/addPeoplebydoctor/{baid}")
+    public Msg addPeopleBydoctor(People people,@PathVariable("baid") int baid){
         //查询身份证，看该用户是否已存在
         People pp=peopleService.selectbyidenty(people.getUidentity());
         if(pp!=null)
