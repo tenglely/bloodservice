@@ -58,9 +58,9 @@ public class PeopleController {
         String pwd = p.substring(p.length()-6,p.length());
         //System.out.println(pwd);
         //根据用户id添加献血人员的数据到表userlogin中
-        int did = userloginService.addUserlogin(uid,people.getUemail(),pwd,"用户");
+        int ddid = userloginService.addUserlogin(uid,people.getUemail(),pwd,"用户");
         //根据登录id添加权限对象给献血人员
-        peopleService.addRoot(did);
+        peopleService.addRoot(ddid);
         //添加登记表信息
         int id=registerService.addRegister(uid,baid);
         return Msg.success().add("people",people);
