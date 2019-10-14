@@ -53,23 +53,7 @@ public class CheckresultController {
                 String message="医务人员"+userlogin.getUid()+"：把编号"+people.getUid()+" 姓名为"+people.getUname()+"的用户，添加了体检结果";
                 redisTemplate.opsForList().leftPush("newlist",message);
                 //发送邮件
-                String result="体检不通过";
-                if(checkresult.getCstate())
-                    result="体检通过";
-                String title=people.getUname()+"献血体检结果单";
-                String msg="姓名:"+people.getUname()+"</br>"+
-                        "性别:"+people.getUsex()+"</br>"+
-                        "体重:"+checkresult.getWeight()+"公斤  （男50公斤>=/女 45公斤>=）</br>"+
-                        "心率:"+checkresult.getBlv()+"/min  （60-100/min）</br>"+
-                        "血压:"+checkresult.getBya()+"mmHg  (90-140/60-90mmHg)</br>"+
-                        "血型:"+checkresult.getBtype()+"</br>"+
-                        "血红蛋白:"+checkresult.getBdan()+"  (110-150)</br>"+
-                        "乙肝:"+checkresult.getByi()+"  (阴性 true/阳性 false)</br>"+
-                        "转氨酶:"+checkresult.getBmei()+"  (<50)</br>"+
-                        "体检结果:"+result+"</br>"+
-                        "体检时间:"+checkresult.getCtime()+"</br>";
-                EmailUtil emailUtil=new EmailUtil();
-                emailUtil.sendEamilCode(people.getUemail(),title,msg);
+                checkresultServiceImpl.sendemail(userlogin,people,checkresult);
             }
         }
        return Msg.success();
