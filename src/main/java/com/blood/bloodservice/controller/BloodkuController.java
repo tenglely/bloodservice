@@ -105,6 +105,8 @@ public class BloodkuController {
            redisTemplate.opsForList().remove("checkagain_people",1,people);
            redisTemplate.opsForList().remove("checkagain_sendblood",1,sendblood);
            redisTemplate.opsForList().remove("checkagain_doctor",1,doctor);
+           String message="医务人员"+userlogin.getUid()+"：把献血记录编号为"+sendblood.getBid()+"进行了血液入库";
+           redisTemplate.opsForList().leftPush("newlist",message);
        }
 
        return Msg.success();

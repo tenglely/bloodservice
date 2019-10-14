@@ -63,6 +63,8 @@ public class CheckAgainController {
                 redisTemplate.opsForList().leftPush("checkagain_people",people);
                 redisTemplate.opsForList().leftPush("checkagain_doctor",doctor);
             }
+            String message="医务人员"+userlogin.getUid()+"：把编号"+people.getUid()+" 姓名为"+people.getUname()+"的用户，添加了血液复测结果";
+            redisTemplate.opsForList().leftPush("newlist",message);
         }
         return Msg.success();
     }

@@ -1,5 +1,6 @@
 package com.blood.bloodservice.service.impl;
 
+import com.blood.bloodservice.config.EmailUtil;
 import com.blood.bloodservice.dao.DoctorMapper;
 import com.blood.bloodservice.dao.PeopleMapper;
 import com.blood.bloodservice.dao.SendbloodMapper;
@@ -79,6 +80,19 @@ public class SendbloodServiceImpl implements SendbloodService {
         if(list.isEmpty())
             return null;
         return list.get(0);
+    }
+
+    @Override
+    public void sendEmail(Sendblood sendblood, People people, Doctor doctor) {
+        String title="感谢您的献血，这是你的献血记录";
+        String msg="亲爱的"+people.getUname()+",感谢您的献血。如下是您本次的献血记录：</br>"+
+                "本次抽血:"+sendblood.getSbnumber()+"毫升</br>"+
+                "抽血地址："+sendblood.getSbaddress()+"</br>"+
+                "抽血执行人:"+sendblood.getSbpeople()+"</br>"+
+                "献血时间:"+sendblood.getSbdate()+"</br>"+
+                "ps:请不要忘了领取您的献血证和献血小礼物哦。</br>";
+        EmailUtil emailUtil=new EmailUtil();
+        emailUtil.sendEamilCode(people.getUemail(),title,msg);
     }
 
 

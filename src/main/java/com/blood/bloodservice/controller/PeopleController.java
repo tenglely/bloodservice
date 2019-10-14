@@ -10,6 +10,7 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,8 @@ public class PeopleController {
     RegisterServiceImpl registerService;
     @Autowired
     UserloginService userloginService;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @ApiOperation(value = "管理员，查看所有用户信息，分页，一页10条")
     @GetMapping("/admin/findallpeople/{pn}")
@@ -63,6 +66,8 @@ public class PeopleController {
         peopleService.addRoot(ddid);
         //添加登记表信息
         int id=registerService.addRegister(uid,baid);
+        String message="医务人员：注册了编号为"+uid+" 姓名为"+people.getUname()+"的用户，并放入了登记列表";
+        redisTemplate.opsForList().leftPush("newlist",message);
         return Msg.success().add("people",people);
     }
 
@@ -76,6 +81,8 @@ public class PeopleController {
             return Msg.fail().add("state","该用户不存在!!!");
         //添加登记表信息
         int id=registerService.addRegister(pp.getUid(),bid);
+        String message="医务人员：把编号"+pp.getUid()+" 姓名为"+pp.getUname()+"的用户，放入了登记列表";
+        redisTemplate.opsForList().leftPush("newlist",message);
         return Msg.success().add("state","用户登记成功");
     }
 
