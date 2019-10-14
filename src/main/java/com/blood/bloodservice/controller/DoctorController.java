@@ -90,4 +90,12 @@ public class DoctorController {
         }
         return Msg.success();
     }
+    @ApiOperation(value = "医务人员查询个人信息")
+    @GetMapping("/doctor/selectdoctor/{did}")
+    public Msg selectdoctor(@PathVariable("did")Integer did){
+        //查找医生
+        Doctor doctor=doctorServiceImpl.selectbydid(did);
+        return Msg.success().add("doctor",doctor);
+    }
+
 }

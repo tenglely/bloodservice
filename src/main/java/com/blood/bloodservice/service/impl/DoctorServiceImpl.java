@@ -52,6 +52,7 @@ public class DoctorServiceImpl implements DoctorService {
         }
     }
 
+    //根据did查找一个doctor信息
     @Override
     public Doctor selectbydid(int did) {
         Doctor d = doctorMapper.selectByPrimaryKey(did);
