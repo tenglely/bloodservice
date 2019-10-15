@@ -33,6 +33,16 @@ public class DoctorController {
 
     @Autowired
     DoctorServiceImpl doctorServiceImpl;
+    @Autowired
+    RedisTemplate redisTemplate;
+
+    @ApiOperation(value = "把医务人员的操作信息的最新的10条显示出来")
+    @GetMapping("/doctor/selectallmessage")
+    public Msg selectallmessage(){
+        int length = redisTemplate.opsForList().size("newlist").intValue();
+        List<String> list=redisTemplate.opsForList().range("newlist",length-10,length);
+        return Msg.success().add("newlist",list);
+    }
 
     @ApiOperation(value = "管理员根据医院查找医务人员")
     @GetMapping("/admin/finddoctorbyhospital/{dwork}")
@@ -90,4 +100,12 @@ public class DoctorController {
         }
         return Msg.success();
     }
+    @ApiOperation(value = "医务人员查询个人信息")
+    @GetMapping("/doctor/selectdoctor/{did}")
+    public Msg selectdoctor(@PathVariable("did")Integer did){
+        //查找医生
+        Doctor doctor=doctorServiceImpl.selectbydid(did);
+        return Msg.success().add("doctor",doctor);
+    }
+
 }

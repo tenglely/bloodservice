@@ -1,5 +1,7 @@
 package com.blood.bloodservice.service;
 
+import com.blood.bloodservice.entity.Doctor;
+import com.blood.bloodservice.entity.People;
 import com.blood.bloodservice.entity.Sendblood;
 
 import java.util.List;
@@ -40,4 +42,7 @@ public interface SendbloodService {
      * @return
      */
     Sendblood selectonbybid(Integer bid);
+
+    //发送邮件
+    void sendEmail(Sendblood sendblood, People people, Doctor doctor);
 }

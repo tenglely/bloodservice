@@ -145,7 +145,7 @@
     </if>
   </delete>
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.blood.bloodservice.entity.Register" >
-    insert into register (id, uid, bid, 
+    insert into register (id, uid, baid,
       rdate)
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{baid,jdbcType=INTEGER},
       #{rdate,jdbcType=VARCHAR})

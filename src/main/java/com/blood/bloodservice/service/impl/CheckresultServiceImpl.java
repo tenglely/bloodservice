@@ -1,13 +1,16 @@
 package com.blood.bloodservice.service.impl;
 
+import com.blood.bloodservice.config.EmailUtil;
 import com.blood.bloodservice.dao.CheckresultMapper;
-import com.blood.bloodservice.entity.Checkresult;
-import com.blood.bloodservice.entity.CheckresultExample;
+import com.blood.bloodservice.dao.InformMapper;
+import com.blood.bloodservice.entity.*;
 import com.blood.bloodservice.service.CheckresultService;
 import com.sun.java.accessibility.util.java.awt.CheckboxTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +22,8 @@ import java.util.List;
 public class CheckresultServiceImpl implements CheckresultService {
     @Autowired
     CheckresultMapper checkresultMapper;
+    @Autowired
+    InformMapper informMapper;
     //添加体检结果
     @Override
     public int addCheckresult(Checkresult checkresult) {
@@ -63,6 +68,38 @@ public class CheckresultServiceImpl implements CheckresultService {
             return null;
         else
             return list;
+    }
+
+    @Override
+    public void sendemail(Userlogin userlogin, People people,Checkresult checkresult) {
+        String result="体检不通过";
+        if(checkresult.getCstate())
+            result="体检通过";
+        String title=people.getUname()+"献血体检结果单";
+        String msg="姓名:"+people.getUname()+"</br>"+
+                "性别:"+people.getUsex()+"</br>"+
+                "体重:"+checkresult.getWeight()+"公斤  （男50公斤>=/女 45公斤>=）</br>"+
+                "心率:"+checkresult.getBlv()+"/min  （60-100/min）</br>"+
+                "血压:"+checkresult.getBya()+"mmHg  (90-140/60-90mmHg)</br>"+
+                "血型:"+checkresult.getBtype()+"</br>"+
+                "血红蛋白:"+checkresult.getBdan()+"  (110-150)</br>"+
+                "乙肝:"+checkresult.getByi()+"  (阴性 true/阳性 false)</br>"+
+                "转氨酶:"+checkresult.getBmei()+"  (<50)</br>"+
+                "体检结果:"+result+"</br>"+
+                "体检时间:"+checkresult.getCtime()+"</br>";
+        EmailUtil emailUtil=new EmailUtil();
+        emailUtil.sendEamilCode(people.getUemail(),title,msg);
+        Inform inform=new Inform();
+        inform.setUid(userlogin.getUid());
+        inform.setUsertype("医务人员");
+        inform.setContent(title+"</br>"+msg);
+        Date currentTime = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(currentTime);
+        inform.setSenddate(dateString);
+        int id=informMapper.insert(inform);
+        if(id>0)
+            System.out.println("信息添加成功！！");
     }
 
 }

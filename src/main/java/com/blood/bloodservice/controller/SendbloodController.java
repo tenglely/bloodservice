@@ -45,15 +45,18 @@ public class SendbloodController {
         if(bid>0){
             People people=peopleService.selectonebyid(sendblood.getUid());
             redisTemplate.opsForList().remove("checkresult_people",1,people);
-            System.out.println("从redis的checkresult_people移除people成功!!");
+            //System.out.println("从redis的checkresult_people移除people成功!!");
             redisTemplate.opsForList().leftPush("sendblood_people",people);
-            System.out.println("从redis的sendblood_people中添加people成功");
+            //System.out.println("从redis的sendblood_people中添加people成功");
             sendblood.setBid(bid);
             redisTemplate.opsForList().leftPush("sendblood_list",sendblood);
-            System.out.println("从redis的sendblood_list中添加sendblood成功");
+            //System.out.println("从redis的sendblood_list中添加sendblood成功");
             Doctor doctor=doctorService.selectbydid(sendblood.getYid());
             redisTemplate.opsForList().leftPush("sendblood_doctor",doctor);
-            System.out.println("从redis的sendblood_doctor中添加doctor成功");
+            //System.out.println("从redis的sendblood_doctor中添加doctor成功");
+            String message="医务人员"+userlogin.getUid()+"：把编号"+people.getUid()+" 姓名为"+people.getUname()+"的用户，添加了献血记录";
+            redisTemplate.opsForList().leftPush("newlist",message);
+            sendbloodServiceImpl.sendEmail(sendblood,people,doctor);
         }
         return Msg.success();
     }

@@ -1,6 +1,8 @@
 package com.blood.bloodservice.service;
 
 import com.blood.bloodservice.entity.Checkresult;
+import com.blood.bloodservice.entity.People;
+import com.blood.bloodservice.entity.Userlogin;
 
 import java.util.List;
 
@@ -22,4 +24,6 @@ public interface CheckresultService {
     //根据体检结果状态查询体检结果列表
     List<Checkresult> selectCheckresultBycstate(Boolean cstate);
 
+    //发送邮件
+    void sendemail(Userlogin userlogin, People people,Checkresult checkresult);
 }

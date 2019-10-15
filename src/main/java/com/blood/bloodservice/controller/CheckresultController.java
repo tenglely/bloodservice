@@ -1,5 +1,6 @@
 package com.blood.bloodservice.controller;
 
+import com.blood.bloodservice.config.EmailUtil;
 import com.blood.bloodservice.entity.*;
 import com.blood.bloodservice.service.impl.CheckresultServiceImpl;
 import com.blood.bloodservice.service.impl.DoctorServiceImpl;
@@ -49,6 +50,10 @@ public class CheckresultController {
                 People people=peopleServiceImpl.selectonebyid(checkresult.getUid());
                 redisTemplate.opsForList().leftPush("checkresult_people",people);
                 System.out.println("redis放入成功!!");
+                String message="医务人员"+userlogin.getUid()+"：把编号"+people.getUid()+" 姓名为"+people.getUname()+"的用户，添加了体检结果";
+                redisTemplate.opsForList().leftPush("newlist",message);
+                //发送邮件
+                checkresultServiceImpl.sendemail(userlogin,people,checkresult);
             }
         }
        return Msg.success();
