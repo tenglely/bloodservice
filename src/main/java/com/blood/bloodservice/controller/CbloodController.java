@@ -90,7 +90,7 @@ public class CbloodController {
     }
 
     @ApiOperation(value = "管理员查询所有献血活动")
-    @GetMapping("/admin/findallcblood/{pn}")
+    @GetMapping("/api/admin/findallcblood/{pn}")
     public Msg findallcblood(@PathVariable("pn")Integer pn){
         PageHelper.startPage(pn,10);
         List<Cblood> list=cbloodServiceImpl.findallcblood();

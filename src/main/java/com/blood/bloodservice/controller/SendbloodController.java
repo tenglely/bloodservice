@@ -69,7 +69,7 @@ public class SendbloodController {
     }
 
     @ApiOperation(value = "管理员查看所有献血记录,分页-页10条.返回献血记录，用户信")
-    @GetMapping("/admin/findallsendblood/{pn}")
+    @GetMapping("/api/admin/findallsendblood/{pn}")
     public Msg findallsendblood(@PathVariable("pn")Integer pn){
         PageHelper.startPage(pn,10);
         List<Sendblood> blist=sendbloodServiceImpl.selectall();
