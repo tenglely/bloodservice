@@ -29,10 +29,16 @@ public class PageJumpController {
         return "/doctor/doctorlogin";
     }
 
-
+    @ApiOperation(value = "医务人员首页")
     @GetMapping("/doctor/index")
     public String hello(){
         return "/doctor/index";
+    }
+
+    @ApiOperation(value = "添加献血活动")
+    @GetMapping("/doctor/cblood.html")
+    public String cblood(){
+        return "/doctor/addcblood";
     }
 
 }
