@@ -41,7 +41,8 @@ public class DoctorController {
     public Msg selectallmessage(){
         int length = redisTemplate.opsForList().size("newlist").intValue();
         List<String> list=redisTemplate.opsForList().range("newlist",length-10,length);
-        return Msg.success().add("newlist",list);
+        return Msg.success().add("newlist",list
+        );
     }
 
     @ApiOperation(value = "管理员根据医院查找医务人员")
