@@ -56,7 +56,7 @@ public class ZrootController {
 
     @ApiOperation(value = "查询pstate值为false的医护人员列表,分页查询，一页10条数据")
     @GetMapping("/admin/selectDoctor/{pn}")
-    public Msg selectDoctor(@PathParam("pn")Integer pn){
+    public Msg selectDoctor(@PathVariable("pn")Integer pn){
         PageHelper.startPage(pn,10);
         List<Doctor> list = doctorServiceImpl.selectDoctor();
         PageInfo pageInfo = new PageInfo(list,5);
