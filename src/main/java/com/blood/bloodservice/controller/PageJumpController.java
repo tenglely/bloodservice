@@ -49,12 +49,18 @@ public class PageJumpController {
     @ApiOperation(value = "添加献血活动")
     @GetMapping("/doctor/cblood.html")
     public String cblood(){
-        return "/doctor/addcblood";
+        return "doctor/addcblood";
+    }
+
+    @ApiOperation(value="医护人员注册页面")
+    @GetMapping("/all/adddoctor.html")
+    public String adddoctor(){
+
+        return "/doctor/adddoctor";
     }
 
     @ApiOperation(value = "注册医护人员信息")
-    @PostMapping("/all/addDoctor")
-    @ResponseBody
+    @PostMapping("/all/DoctorJump")
     public String addDoctor(Doctor doctor, MultipartFile file, HttpServletRequest req){
         try {
             //保存上传的文件路径
@@ -78,7 +84,7 @@ public class PageJumpController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "/all/doctorlogin";
+        return "/doctor/doctorlogin";
     }
 
 }
