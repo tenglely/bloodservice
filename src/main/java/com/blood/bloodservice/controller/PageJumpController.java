@@ -59,6 +59,13 @@ public class PageJumpController {
         return "/doctor/adddoctor";
     }
 
+    @ApiOperation(value = "人员登记页面")
+    @GetMapping("/doctor/registerpeople.html")
+    public String registerhtml(){
+        return "/doctor/registerpeople";
+    }
+
+
     @ApiOperation(value = "注册医护人员信息")
     @PostMapping("/all/DoctorJump")
     public String addDoctor(Doctor doctor, MultipartFile file, HttpServletRequest req){

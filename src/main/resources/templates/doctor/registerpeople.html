@@ -195,91 +195,108 @@
         <div class="main-page">
             <div class="tables">
                 <div class="bs-example " data-example-id="bordered-table">
-                    <h4>申请献血活动:</h4>
+                    <h4>献血人员登记:</h4>
                     <table class="table table-bordered widget-shadow">
                         <tr>
-                            <td>
-                              献血通知内容:
-                            </td>
-                            <td>
-                                <textarea cols="90" rows="5"></textarea>
+                            <td colspan="2" align="right">
+                                <button class="btn btn-primary">身份证进行人员登记</button>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                献血地点:
-                            </td>
-                            <td>
-                                <select>
-                                    <option>肇庆市端州区第一人民医院</option>
+                            <td align="right" style="width: 250px">姓名:</td>
+                            <td><input id="uname" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 250px">性别:</td>
+                            <td >
+                                <select id="usex" class="form-control">
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                抽血时间:
-                            </td>
-                            <td>
-                               <input type="text" placeholder="如：早8点-11点半">
-                            </td>
+                            <td align="right" style="width: 250px">年龄:</td>
+                            <td><input id="uage" type="text" class="form-control"></td>
                         </tr>
                         <tr>
-                            <td>
-                               活动截止时间:
-                            </td>
-                            <td>
-                                <input type="date"  placeholder="2019-10-14">
-                            </td>
+                            <td align="right" style="width: 250px">身份证:</td>
+                            <td><input id="uidentity" type="text" class="form-control"></td>
                         </tr>
                         <tr>
-                            <td>活动物资:</td>
-                            <td id="a">
-                                <select>
-                                    <option>物资</option>
-                                    <option>礼物</option>
-                                </select>
-                                &nbsp;&nbsp;
-                                <input type="text" placeholder="物资名称">
-                                &nbsp;&nbsp;
-                                <input type="text" placeholder="物资数量">
-                                &nbsp;&nbsp;
-                                <button class="btn btn-primary" onclick="add()">添加新物资</button>
-                            </td>
+                            <td align="right" style="width: 300px">地址:</td>
+                            <td><input id="uaddress" type="text" class="form-control"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><button class="btn btn-primary">提交申请</button></td>
+                            <td align="right" style="width: 250px">民族:</td>
+                            <td><input id="unation" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 250px">电话:</td>
+                            <td><input id="uphone" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 250px">邮箱:</td>
+                            <td><input id="uemail" type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 250px">血型:</td>
+                            <td><input type="text" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td align="right" style="width: 250px">献血证证书编号:</td>
+                            <td><input id="bid" type="text" class="form-control" placeholder="没有可以不填"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button onclick="add()" class="btn btn-primary">提交人员登记</button></td>
                         </tr>
                     </table>
                 </div>
             </div>
-       </div>
+        </div>
     </div>
 
 
-<script >
-    function add() {
-        var s=$("<select></select>").append($("<option></option>").append("物资")).append($("<option></option>").append("礼物"));
-        var t1=$("<input></input>").attr("type","text").attr("placeholder","物资名称");
-        var t2=$("<input></input>").attr("type","text").attr("placeholder","物资数量");
-        $("#a").append("<br><br>").append(s).append("&nbsp;&nbsp;")
-            .append(t1).append("&nbsp;&nbsp;").append(t2).append("&nbsp;&nbsp;");
-    }
+    <script >
+        function add() {
+            var uaddress=$("#uaddress").val();
+            var uage=$("#uage").val();
+            var ublood=$("#ublood").val();
+            var uemail=$("#uemail").val();
+            var uidentity=$("#uidentity").val();
+            var uname=$("#uname").val();
+            var unation=$("#unation").val();
+            var uphone=$("#uphone").val();
+            var usex=$("#usex").val();
+            $.ajax({
+               url:"/doctor/addPeoplebydoctor",
+               type:"POST",
+                data:"baid=1&uaddress="+uaddress+"&uage="+uage+"&ublood="+ublood+"&uemail="+uemail
+                      +"&uidentity="+uidentity+"&uname="+uname+"&unation="+unation+"&uphone="+uphone
+                      +"&usex="+usex+"&bid=0",
+               success:function (result) {
+                    if(result.code=200)
+                        alert("登记成功!!");
+                   else
+                        alert("登记失败!!");
+               } 
+            });
+        }
+
+    </script>
 
 
-</script>
 
 
+    <!-- side nav js -->
+    <script src='/js/SidebarNav.min.js' type='text/javascript'></script>
+    <script>
+        $('.sidebar-menu').SidebarNav()
+    </script>
 
-
-<!-- side nav js -->
-<script src='/js/SidebarNav.min.js' type='text/javascript'></script>
-<script>
-    $('.sidebar-menu').SidebarNav()
-</script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.js"> </script>
-<!-- //Bootstrap Core JavaScript -->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.js"> </script>
+    <!-- //Bootstrap Core JavaScript -->
 
 </body>
 </html>
