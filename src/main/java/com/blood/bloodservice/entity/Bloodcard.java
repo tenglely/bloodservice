@@ -15,6 +15,8 @@ public class Bloodcard implements Serializable {
 
     private Boolean state;
 
+    private People people;
+
     public Integer getId() {
         return id;
     }
@@ -63,6 +65,14 @@ public class Bloodcard implements Serializable {
         this.state = state;
     }
 
+    public People getPeople() {
+        return people;
+    }
+
+    public void setPeople(People people) {
+        this.people = people;
+    }
+
     @Override
     public String toString() {
         return "Bloodcard{" +
@@ -72,6 +82,7 @@ public class Bloodcard implements Serializable {
                 ", senddate='" + senddate + '\'' +
                 ", sendaddress='" + sendaddress + '\'' +
                 ", state=" + state +
+                ", people=" + people +
                 '}';
     }
 }

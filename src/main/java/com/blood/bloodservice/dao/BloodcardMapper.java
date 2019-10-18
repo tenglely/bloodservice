@@ -16,6 +16,8 @@ public interface BloodcardMapper {
 
     int insertSelective(Bloodcard record);
 
+    List<Bloodcard> selectByExampleWithUser(BloodcardExample example);
+
     List<Bloodcard> selectByExample(BloodcardExample example);
 
     Bloodcard selectByPrimaryKey(Integer id);

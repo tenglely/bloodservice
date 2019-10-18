@@ -48,7 +48,9 @@ public class BloodcardController {
 		Date currentTime = new Date();
 	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	    String dateString = formatter.format(currentTime);
-	    
+	    int a=(int)(Math.random()*10000+1);
+	    String bid=String.valueOf(a);
+	    bloodcard.setBid(bid);
 	    bloodcard.setUid(uid);
 	    bloodcard.setSenddate(dateString);
 	    bloodcard.setState(true);
