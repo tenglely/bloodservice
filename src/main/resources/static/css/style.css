@@ -1431,14 +1431,14 @@ section#tables  p {
     color: #777777;
 }
 .tables .panel-body ,.tables .bs-example{
-    padding: 2em 2em 0.5em;
+    padding: 1em 1em 0.5em;
 }
 .tables .table > thead > tr > th, .tables .table > tbody > tr > th, .tables .table > tfoot > tr > th, .tables .table > thead > tr > td, .tables .table > tbody > tr > td, .tables .table > tfoot > tr > td {
     padding: 13px;
 	border-top: 1px solid #E0E0E0;
 }
 .bs-example {
-    margin-top: 2em;
+    margin-top: 0.1em;
 }
 .table-hover > tbody > tr:hover {
     background-color: #E8E6E6;

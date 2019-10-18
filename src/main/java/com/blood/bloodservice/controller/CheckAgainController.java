@@ -93,17 +93,17 @@ public class CheckAgainController {
 
         PageHelper.startPage(pn,10);
         List<Checkagain> list = checkAgainServiceImpl.selectCheckagain();
-        List<String> listPeoplename = new ArrayList<>();
-        List<String> listDoctorname = new ArrayList<>();
+        List<People> listPeople = new ArrayList<>();
+        List<Doctor> listDoctor = new ArrayList<>();
         for(Checkagain c : list){
             People people = peopleServiceImpl.selectonebyid(c.getUid());
             Doctor doctor = doctorServiceImpl.selectbydid(c.getYid());
-            listPeoplename.add(people.getUname());
-            listDoctorname.add(doctor.getDname());
+            listPeople.add(people);
+            listDoctor.add(doctor);
         }
         PageInfo pageInfo = new PageInfo(list,5);
        // System.out.println(pageInfo);
-        return Msg.success().add("pageinfo",pageInfo).add("listpeoplename",listPeoplename).add("listdoctorname",listDoctorname);
+        return Msg.success().add("pageinfo",pageInfo).add("listpeoplename",listPeople).add("listdoctorname",listDoctor);
     }
 
     @ApiOperation(value = "根据cid查询二次检测结果详细信息")
@@ -124,16 +124,16 @@ public class CheckAgainController {
 
         PageHelper.startPage(pn,10);
         List<Checkagain> list = checkAgainServiceImpl.selectCheckagainBycstate(cstate);
-        List<String> listPeoplename = new ArrayList<>();
-        List<String> listDoctorname = new ArrayList<>();
+        List<People> listPeople = new ArrayList<>();
+        List<Doctor> listDoctor = new ArrayList<>();
         for(Checkagain c : list){
             People people = peopleServiceImpl.selectonebyid(c.getUid());
             Doctor doctor = doctorServiceImpl.selectbydid(c.getYid());
-            listPeoplename.add(people.getUname());
-            listDoctorname.add(doctor.getDname());
+            listPeople.add(people);
+            listDoctor.add(doctor);
         }
         PageInfo pageInfo = new PageInfo(list,5);
         // System.out.println(pageInfo);
-        return Msg.success().add("pageinfo",pageInfo).add("listpeoplename",listPeoplename).add("listdoctorname",listDoctorname);
+        return Msg.success().add("pageinfo",pageInfo).add("listpeoplename",listPeople).add("listdoctorname",listDoctor);
     }
 }
