@@ -27,8 +27,7 @@ public class BloodcardServiceImpl implements BloodcardService{
 
 	@Override
 	public List<Bloodcard> selectBloodcards() {
-		
-		List<Bloodcard> list = bloodcardMapper.selectByExample(null);
+		List<Bloodcard> list = bloodcardMapper.selectByExampleWithUser(null);
 		if(list.isEmpty()) {
 			return null;
 		}else {
