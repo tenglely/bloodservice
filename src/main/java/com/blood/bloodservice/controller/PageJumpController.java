@@ -52,6 +52,11 @@ public class PageJumpController {
         return "doctor/addcblood";
     }
 
+    @ApiOperation(value = "查询献血活动")
+    @GetMapping("/doctor/selectcblood.html")
+    public String selectcblood(){
+        return "doctor/selectCblood";
+    }
     @ApiOperation(value="医护人员注册页面")
     @GetMapping("/all/adddoctor.html")
     public String adddoctor(){
