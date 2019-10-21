@@ -1,0 +1,383 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel='stylesheet' type='text/css' />
+
+    <!-- font-awesome icons CSS -->
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons CSS-->
+
+    <!-- side nav css file -->
+    <link href='/css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
+    <!-- //side nav css file -->
+
+    <!-- js-->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/modernizr.custom.js"></script>
+
+
+    <!-- Metis Menu -->
+    <script src="/js/metisMenu.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <link href="/css/custom.css" rel="stylesheet">
+    <!--//Metis Menu -->
+    <style>
+        #chartdiv {
+            width: 100%;
+            height: 295px;
+        }
+        .td1{
+            background-color: #cccccc;
+        }
+        .a1{
+            background-color: deepskyblue;
+            color: white;
+        }
+    </style>
+    <!--pie-chart --><!-- index page sales reviews visitors pie chart -->
+    <script src="/js/pie-chart.js" type="text/javascript"></script>
+    <!-- //pie-chart --><!-- index page sales reviews visitors pie chart -->
+
+    <!-- requried-jsfiles-for owl -->
+    <link href="/css/owl.carousel.css" rel="stylesheet">
+    <script src="/js/owl.carousel.js"></script>
+    <!-- //requried-jsfiles-for owl -->
+</head>
+<body class="cbp-spmenu-push">
+<div class="main-content">
+    <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+        <!--left-fixed -navigation-->
+        <aside class="sidebar-left">
+            <nav class="navbar navbar-inverse">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h1><a class="navbar-brand" href="index.html"></span> 无偿献血服务<span class="dashboard_text">医务人员</span></a></h1>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="sidebar-menu">
+                        <li class="header">操作列表</li>
+                        <li class="treeview"> <a href="/doctor/index"> <em class="fa fa-dashboard"></em> 首页</a></li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>献血活动</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/cblood.html"><i class="fa fa-angle-right"></i>申请献血活动</a></li>
+                                <li><a href="/doctor/selectcblood.html"><i class="fa fa-angle-right"></i> 献血活动查询</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>献血人员登记</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/registerpeople.html"><i class="fa fa-angle-right"></i>人员登记</a></li>
+                                <li><a href="#"><i class="fa fa-angle-right"></i>过往登记</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>体检记录</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/addcheck.html"><i class="fa fa-angle-right"></i>体检添加</a></li>
+                                <li><a href="#"><i class="fa fa-angle-right"></i>体检记录查询</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>献血记录</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/addsendblood.html"><i class="fa fa-angle-right"></i>添加献血记录</a></li>
+                                <li><a href="#"><i class="fa fa-angle-right"></i>献血记录查询</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>血液复测</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-angle-right"></i>血液复测结果添加</a></li>
+                                <li><a href="#"><i class="fa fa-angle-right"></i>复测记录查询</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>血液入库</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-angle-right"></i>入库批准</a></li>
+                                <li><a href="#"><i class="fa fa-angle-right"></i>血液入库记录</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>血液申请</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-angle-right"></i>填写血液申请</a></li>
+                                <li><a href="#"><i class="fa fa-angle-right"></i>血液申请记录</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </aside>
+    </div>
+    <!--left-fixed -navigation-->
+
+    <!-- header-starts -->
+    <div class="sticky-header header-section ">
+        <div class="header-left">
+            <!--toggle button start-->
+            <!--toggle button end-->
+            <!--notification menu end -->
+        </div>
+        <div class="header-right">
+
+
+
+
+            <div class="profile_details">
+                <ul>
+                    <li class="dropdown profile_details_drop">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <div class="profile_img">
+                                <span class="prfil-img"><img src="/images/2.jpg" alt=""> </span>
+                                <div class="user-name">
+                                    <p>刘合伙</p>
+                                    <span>护士长</span>
+                                </div>
+                                <i class="fa fa-angle-down lnr"></i>
+                                <i class="fa fa-angle-up lnr"></i>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu drp-mnu">
+                            <li> <a href="#"><i class="fa fa-cog"></i>个人设置</a> </li>
+                            <li> <a href="/all/doctorlogin"><i class="fa fa-sign-out"></i> 退出登录</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <!-- //header-ends -->
+    <!-- main content start-->
+    <div id="page-wrapper">
+        <div class="main-page">
+            <div class="col-md-3">
+                <div class="tables">
+                    <div class="bs-example " data-example-id="bordered-table">
+                        <h4>待血液复测</h4>
+                        <table id="plist" class="table table-bordered widget-shadow">
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="tables">
+                    <div class="bs-example " data-example-id="bordered-table">
+                        <h4>填写体检信息</h4>
+                        <input id="uid" type="hidden">
+                        <table class="table table-bordered widget-shadow">
+                            <tr>
+                                <td align="right">体重:</td>
+                                <td><input id="weight" type="text" class="form-control" placeholder="男>=50公斤 / 女>=45公斤"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">心率:</td>
+                                <td><input id="blv" type="text" class="form-control" placeholder="60-100/min"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">血压:</td>
+                                <td><input id="bya" type="text" class="form-control" placeholder="90-140/60-90mmHg"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">血型:</td>
+                                <td><input id="btype" type="text" class="form-control" placeholder="A/B/O/AB/熊猫"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">血红蛋白:</td>
+                                <td><input id="bdan" type="text" class="form-control" placeholder="110-150"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">乙肝:</td>
+                                <td>
+                                    <select id="byi" class="form-control">
+                                        <option value="1">阴性</option>
+                                        <option value="0">阳性</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right">转氨酶:</td>
+                                <td><input id="bmei" type="text" class="form-control" placeholder="小于50正常"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">体检时间:</td>
+                                <td><input id="ctime" type="date" class="form-control" ></td>
+                            </tr>
+                            <tr>
+                                <td align="right">体检结果:</td>
+                                <td>
+                                    <select id="cstate" class="form-control">
+                                        <option value="1">合格</option>
+                                        <option value="0">不合格</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center">
+                                    <button class="btn btn-primary" onclick="addcheck()">提交体检信息</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="tables">
+                    <div class="bs-example " data-example-id="bordered-table">
+                        <h4>人员信息</h4>
+                        <table id="people" class="table table-bordered widget-shadow">
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script >
+        var nowindex=0;
+        $(function(){
+            putlist(0);
+        });
+
+        function addcheck() {
+            $.ajax({
+                url:"/doctor/addCheckresult",
+                type:"POST",
+                data:"bdan="+$("#bdan").val()+"&blv"+$("#blv").val()+"&bmei="+$("#bmei").val()
+                    +"&btype="+$("#btype").val()+"&bya="+$("#bya").val()+"&byi="+$("#byi").val()
+                    +"&cstate="+$("#cstate").val()+"&ctime="+$("#ctime").val()+"&uid="+$("#uid").val()
+                    +"&weight="+$("#weight").val(),
+                success:function (result) {
+
+                }
+            });
+        }
+
+        function putlist(i) {
+            $.ajax({
+                url:"/doctor/findSendbloodList",
+                type:"GET",
+                success:function(result){
+                    console.log(result);
+                    $.each(result.extend.plist,function(index,item){
+                        var uid=$("<td></td>").addClass("td1").append("编号").append(item.uid);
+                        if(index==i){
+                            $("#uid").val(item.people.uid);
+                            var name=$("<td></td>").addClass("cc a1").attr("i",index).append(item.uname);
+                           // $("#people").empty();
+                            //people(index);
+                        }else{
+                            var name=$("<td></td>").addClass("cc").attr("i",index).append(item.uname);
+                        }
+                        $("#plist").append($("<tr></tr>").append(uid).append(name));
+                    });
+                }
+            });
+        }
+
+        $(document).on("click",".cc",function () {
+            //获取某一属性的值
+            var index=$(this).attr("i");
+            $(this).addClass("a1");
+            $("#plist").empty();
+            putlist(index);
+        });
+
+        function people(index){
+            $.ajax({
+                url:"/doctor/selectRegisterByDate/2019-10-14/1",
+                type:"GET",
+                success:function(result){
+                    var people=result.extend.pageinfo.list[index].people;
+                    //console.log(people);
+                    var uname=$("<tr></tr>").append($("<td></td>").append("用户名:"))
+                        .append($("<td></td>").append(people.uname));
+                    var a=people.uidentity;
+                    var uidentity=$("<tr></tr>").append($("<td></td>").append("身份证:"))
+                        .append($("<td></td>").append(a.substring(0,4)).append("****").append(a.substring(a.length-5,a.length)));
+                    var uage=$("<tr></tr>").append($("<td></td>").append("年龄:"))
+                        .append($("<td></td>").append(people.uage));
+                    var usex=$("<tr></tr>").append($("<td></td>").append("性别:"))
+                        .append($("<td></td>").append(people.usex));
+                    var unation=$("<tr></tr>").append($("<td></td>").append("民族:"))
+                        .append($("<td></td>").append(people.unation));
+                    var uphone=$("<tr></tr>").append($("<td></td>").append("电话:"))
+                        .append($("<td></td>").append(people.uphone));
+                    var uaddress=$("<tr></tr>").append($("<td></td>").append("住址:"))
+                        .append($("<td></td>").append(people.uaddress));
+                    var uemail=$("<tr></tr>").append($("<td></td>").append("邮箱:"))
+                        .append($("<td></td>").append(people.uemail));
+                    $("#people").append(uname).append(uidentity).append(uage).append(usex)
+                        .append(unation).append(uphone).append(uaddress).append(uemail);
+                }
+            });
+        }
+
+    </script>
+
+
+
+
+    <!-- side nav js -->
+    <script src='/js/SidebarNav.min.js' type='text/javascript'></script>
+    <script>
+        $('.sidebar-menu').SidebarNav()
+    </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.js"> </script>
+    <!-- //Bootstrap Core JavaScript -->
+
+</body>
+</html>
