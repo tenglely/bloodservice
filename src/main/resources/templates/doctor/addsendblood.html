@@ -203,7 +203,7 @@
             <div class="col-md-3">
                 <div class="tables">
                     <div class="bs-example " data-example-id="bordered-table">
-                        <h4>待录入体检名单</h4>
+                        <h4>待录入献血记录</h4>
                         <table id="plist" class="table table-bordered widget-shadow">
 
                         </table>
@@ -213,58 +213,48 @@
             <div class="col-md-5">
                 <div class="tables">
                     <div class="bs-example " data-example-id="bordered-table">
-                        <h4>填写体检信息</h4>
+                        <h4>填写献血记录</h4>
                         <input id="uid" type="hidden">
                         <table class="table table-bordered widget-shadow">
                             <tr>
-                                <td align="right">体重:</td>
-                                <td><input id="weight" type="text" class="form-control" placeholder="男>=50公斤 / 女>=45公斤"></td>
-                            </tr>
-                            <tr>
-                                <td align="right">心率:</td>
-                                <td><input id="blv" type="text" class="form-control" placeholder="60-100/min"></td>
-                            </tr>
-                            <tr>
-                                <td align="right">血压:</td>
-                                <td><input id="bya" type="text" class="form-control" placeholder="90-140/60-90mmHg"></td>
+                                <td align="right">抽血量:</td>
+                                <td><input id="sbnumber" type="text" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td align="right">血型:</td>
-                                <td><input id="btype" type="text" class="form-control" placeholder="A/B/O/AB/熊猫"></td>
-                            </tr>
-                            <tr>
-                                <td align="right">血红蛋白:</td>
-                                <td><input id="bdan" type="text" class="form-control" placeholder="110-150"></td>
-                            </tr>
-                            <tr>
-                                <td align="right">乙肝:</td>
                                 <td>
-                                    <select id="byi" class="form-control">
-                                        <option value="1">阴性</option>
-                                        <option value="0">阳性</option>
+                                    <select class="form-control" id="sbtype">
+                                        <option value="A">A型</option>
+                                        <option value="B">B型</option>
+                                        <option value="O">O型</option>
+                                        <option value="RH">RH型</option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right">转氨酶:</td>
-                                <td><input id="bmei" type="text" class="form-control" placeholder="小于50正常"></td>
-                            </tr>
-                            <tr>
-                                <td align="right">体检时间:</td>
-                                <td><input id="ctime" type="date" class="form-control" ></td>
-                            </tr>
-                            <tr>
-                                <td align="right">体检结果:</td>
+                                <td align="right">是否稀有血型:</td>
                                 <td>
-                                    <select id="cstate" class="form-control">
-                                        <option value="1">合格</option>
-                                        <option value="0">不合格</option>
+                                    <select id="bless" class="form-control">
+                                        <option value="否">否</option>
+                                        <option value="是">是</option>
                                     </select>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td align="right">抽血地址:</td>
+                                <td><input id="sbaddress" type="text" class="form-control" value="第一人民医院"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">执行抽血人:</td>
+                                <td><input id="sbpeople" type="text" class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td align="right">抽血时间:</td>
+                                <td><input id="sbdate" type="date" class="form-control"></td>
                             </tr>
                             <tr>
                                 <td colspan="2" align="center">
-                                    <button class="btn btn-primary" onclick="addcheck()">提交体检信息</button>
+                                    <button class="btn btn-primary" onclick="addcheck()">提交献血记录</button>
                                 </td>
                             </tr>
                         </table>
@@ -292,12 +282,11 @@
 
         function addcheck() {
             $.ajax({
-                url:"/doctor/addCheckresult",
+                url:"/doctor/addSendblood",
                 type:"POST",
-                data:"bdan="+$("#bdan").val()+"&blv"+$("#blv").val()+"&bmei="+$("#bmei").val()
-                    +"&btype="+$("#btype").val()+"&bya="+$("#bya").val()+"&byi="+$("#byi").val()
-                    +"&cstate="+$("#cstate").val()+"&ctime="+$("#ctime").val()+"&uid="+$("#uid").val()
-                    +"&weight="+$("#weight").val(),
+                data:"sbnumber="+$("#sbnumber").val()+"&sbtype"+$("#sbtype").val()+"&bless="+$("#bless").val()
+                    +"&sbaddress="+$("#sbaddress").val()+"&sbpeople="+$("#sbpeople").val()+"&sbdate="+$("#sbdate").val()
+                    +"&uid="+$("#uid").val(),
                 success:function (result) {
 
                 }
@@ -306,19 +295,19 @@
 
         function putlist(i) {
             $.ajax({
-                url:"/doctor/selectRegisterByDate/2019-10-14/1",
+                url:"/doctor/findCheckresultSuccessPeople",
                 type:"GET",
                 success:function(result){
                     console.log(result);
-                    $.each(result.extend.pageinfo.list,function(index,item){
-                        var uid=$("<td></td>").addClass("td1").append("编号").append(item.people.uid);
+                    $.each(result.extend.list,function(index,item){
+                        var uid=$("<td></td>").addClass("td1").append("编号").append(item.uid);
                         if(index==i){
-                            $("#uid").val(item.people.uid);
-                            var name=$("<td></td>").addClass("cc a1").attr("i",index).append(item.people.uname);
+                            $("#uid").val(item.uid);
+                            var name=$("<td></td>").addClass("cc a1").attr("i",index).append(item.uname);
                             $("#people").empty();
                             people(index);
                         }else{
-                            var name=$("<td></td>").addClass("cc").attr("i",index).append(item.people.uname);
+                            var name=$("<td></td>").addClass("cc").attr("i",index).append(item.uname);
                         }
                         $("#plist").append($("<tr></tr>").append(uid).append(name));
                     });
@@ -336,15 +325,15 @@
 
         function people(index){
             $.ajax({
-                url:"/doctor/selectRegisterByDate/2019-10-14/1",
+                url:"/doctor/findCheckresultSuccessPeople",
                 type:"GET",
                 success:function(result){
-                    var people=result.extend.pageinfo.list[index].people;
+                    var people=result.extend.list[index];
                     //console.log(people);
                     var uname=$("<tr></tr>").append($("<td></td>").append("用户名:"))
                         .append($("<td></td>").append(people.uname));
                     var a=people.uidentity;
-                    var uidentity=$("<tr></tr>").append($("<td></td>").append("电话:"))
+                    var uidentity=$("<tr></tr>").append($("<td></td>").append("身份证:"))
                         .append($("<td></td>").append(a.substring(0,4)).append("****").append(a.substring(a.length-5,a.length)));
                     var uage=$("<tr></tr>").append($("<td></td>").append("年龄:"))
                         .append($("<td></td>").append(people.uage));
