@@ -210,7 +210,7 @@
                 </div>
             </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="tables">
                     <div class="bs-example " data-example-id="bordered-table">
                         <h4>填写体检信息</h4>
@@ -233,8 +233,8 @@
                                 <td><input id="btype" type="text" class="form-control" placeholder="A/B/O/AB/熊猫"></td>
                             </tr>
                             <tr>
-                                <td align="right">血型:</td>
-                                <td><input id="btype" type="text" class="form-control" placeholder="A/B/O/AB/熊猫"></td>
+                                <td align="right">血红蛋白:</td>
+                                <td><input id="bdan" type="text" class="form-control" placeholder="110-150"></td>
                             </tr>
                             <tr>
                                 <td align="right">乙肝:</td>
@@ -264,14 +264,14 @@
                             </tr>
                             <tr>
                                 <td colspan="2" align="center">
-                                    <button class="btn btn-primary">提交体检信息</button>
+                                    <button class="btn btn-primary" onclick="addcheck()">提交体检信息</button>
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="tables">
                     <div class="bs-example " data-example-id="bordered-table">
                         <h4>人员信息</h4>
@@ -289,7 +289,21 @@
         $(function(){
             putlist(0);
         });
+        
+        function addcheck() {
+            $.ajax({
+               url:"/doctor/addCheckresult",
+               type:"POST",
+               data:"bdan="+$("#bdan").val()+"&blv"+$("#blv").val()+"&bmei="+$("#bmei").val()
+                    +"&btype="+$("#btype").val()+"&bya="+$("#bya").val()+"&byi="+$("#byi").val()
+                    +"&cstate="+$("#cstate").val()+"&ctime="+$("#ctime").val()+"&uid="+$("#uid").val()
+                    +"&weight="+$("#weight").val(),
+               success:function (result) {
 
+               } 
+            });
+        }
+        
         function putlist(i) {
             $.ajax({
                url:"/doctor/selectRegisterByDate/2019-10-14/1",
@@ -301,6 +315,8 @@
                        if(index==i){
                            $("#uid").val(item.people.uid);
                            var name=$("<td></td>").addClass("cc a1").attr("i",index).append(item.people.uname);
+                           $("#people").empty();
+                            people(index);
                        }else{
                            var name=$("<td></td>").addClass("cc").attr("i",index).append(item.people.uname);
                        }
@@ -317,6 +333,36 @@
             $("#plist").empty();
             putlist(index);
         });
+
+        function people(index){
+            $.ajax({
+                url:"/doctor/selectRegisterByDate/2019-10-14/1",
+                type:"GET",
+                success:function(result){
+                   var people=result.extend.pageinfo.list[index].people;
+                   //console.log(people);
+                   var uname=$("<tr></tr>").append($("<td></td>").append("用户名:"))
+                       .append($("<td></td>").append(people.uname));
+                   var a=people.uidentity;
+                    var uidentity=$("<tr></tr>").append($("<td></td>").append("电话:"))
+                        .append($("<td></td>").append(a.substring(0,4)).append("****").append(a.substring(a.length-5,a.length)));
+                    var uage=$("<tr></tr>").append($("<td></td>").append("年龄:"))
+                        .append($("<td></td>").append(people.uage));
+                    var usex=$("<tr></tr>").append($("<td></td>").append("性别:"))
+                        .append($("<td></td>").append(people.usex));
+                    var unation=$("<tr></tr>").append($("<td></td>").append("民族:"))
+                        .append($("<td></td>").append(people.unation));
+                    var uphone=$("<tr></tr>").append($("<td></td>").append("电话:"))
+                        .append($("<td></td>").append(people.uphone));
+                    var uaddress=$("<tr></tr>").append($("<td></td>").append("住址:"))
+                        .append($("<td></td>").append(people.uaddress));
+                    var uemail=$("<tr></tr>").append($("<td></td>").append("邮箱:"))
+                        .append($("<td></td>").append(people.uemail));
+                    $("#people").append(uname).append(uidentity).append(uage).append(usex)
+                        .append(unation).append(uphone).append(uaddress).append(uemail);
+                }
+            });
+        }
 
     </script>
 
