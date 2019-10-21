@@ -15,7 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * 配置全局资源， CORS跨域请求
  * @author zyqfz
- * @date 2019/9/27 - 9:15
+ * @date 2019/10/15 - 9:15
  */
 @Configuration
 @EnableSwagger2

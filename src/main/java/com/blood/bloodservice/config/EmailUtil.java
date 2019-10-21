@@ -1,5 +1,6 @@
 package com.blood.bloodservice.config;
 
+//import org.apache.commons.mail4.EmailException;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
