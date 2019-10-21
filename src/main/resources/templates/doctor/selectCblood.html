@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+	<!-- Custom CSS -->
+	<link href="/css/style.css" rel='stylesheet' type='text/css' />
+
+	<!-- font-awesome icons CSS -->
+	<link href="/css/font-awesome.css" rel="stylesheet">
+	<!-- //font-awesome icons CSS-->
+
+	<!-- side nav css file -->
+	<link href="/css/SidebarNav.min.css" media='all' rel='stylesheet' type='text/css'/>
+	<!-- //side nav css file -->
+
+	<!-- js-->
+	<script src="/js/jquery-1.11.1.min.js"></script>
+	<script src="/js/modernizr.custom.js"></script>
+
+	<!--webfonts-->
+	<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+	<!--//webfonts-->
+
+	<!-- chart -->
+	<script src="/js/Chart.js"></script>
+	<!-- //chart -->
+
+<!--<script type="text/javascript" src="js/jquery-3.4.1/jquery-3.4.1.min.js" ></script>
+		--><!--<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<script type="text/javascript" src="js/docs.min.js" ></script>
+		<script type="text/javascript" src="bootstrap-3.3.7-dist/js/bootstrap.min.js" ></script>-->
+	
+
+	<!-- Metis Menu -->
+	<script src="/js/metisMenu.min.js"></script>
+	<script src="/js/custom.js"></script>
+	<link href="/css/custom.css" rel="stylesheet">
+	<!--//Metis Menu -->
+	<style>
+		#chartdiv {
+			width: 100%;
+			height: 295px;
+		}
+	</style>
+	<!--pie-chart --><!-- index page sales reviews visitors pie chart -->
+	<script src="/js/pie-chart.js" type="text/javascript"></script>
+	<!-- //pie-chart --><!-- index page sales reviews visitors pie chart -->
+
+	<!-- requried-jsfiles-for owl -->
+	<link href="/css/owl.carousel.css" rel="stylesheet">
+	<script src="/js/owl.carousel.js"></script>
+	<!-- //requried-jsfiles-for owl -->
+</head>
+<body class="cbp-spmenu-push">
+<div class="main-content">
+	<div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+		<!--left-fixed -navigation-->
+		<aside class="sidebar-left">
+			<nav class="navbar navbar-inverse">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<h1><a class="navbar-brand" href="index.html"></span> 无偿献血服务<span class="dashboard_text">医务人员</span></a></h1>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="sidebar-menu">
+						<li class="header">操作列表</li>
+						<li class="treeview"> <a href="/doctor/index"> <em class="fa fa-dashboard"></em> 首页</a></li>
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-laptop"></i>
+								<span>献血活动</span>
+								<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li><a href="/doctor/cblood.html"><i class="fa fa-angle-right"></i>申请献血活动</a></li>
+								<li><a href="/doctor/selectcblood.html"><i class="fa fa-angle-right"></i> 献血活动查询</a></li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-laptop"></i>
+								<span>献血人员登记</span>
+								<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li><a href="/doctor/registerpeople.html"><i class="fa fa-angle-right"></i>人员登记</a></li>
+								<li><a href="#"><i class="fa fa-angle-right"></i>过往登记</a></li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-laptop"></i>
+								<span>体检记录</span>
+								<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li><a href="/doctor/addcheck.html"><i class="fa fa-angle-right"></i>体检添加</a></li>
+								<li><a href="#"><i class="fa fa-angle-right"></i>体检记录查询</a></li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-laptop"></i>
+								<span>献血记录</span>
+								<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li><a href="/doctor/addsendblood.html"><i class="fa fa-angle-right"></i>添加献血记录</a></li>
+								<li><a href="#"><i class="fa fa-angle-right"></i>献血记录查询</a></li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-laptop"></i>
+								<span>血液复测</span>
+								<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li><a href="#"><i class="fa fa-angle-right"></i>血液复测结果添加</a></li>
+								<li><a href="#"><i class="fa fa-angle-right"></i>复测记录查询</a></li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-laptop"></i>
+								<span>血液入库</span>
+								<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li><a href="#"><i class="fa fa-angle-right"></i>入库批准</a></li>
+								<li><a href="#"><i class="fa fa-angle-right"></i>血液入库记录</a></li>
+							</ul>
+						</li>
+						<li class="treeview">
+							<a href="#">
+								<i class="fa fa-laptop"></i>
+								<span>血液申请</span>
+								<i class="fa fa-angle-left pull-right"></i>
+							</a>
+							<ul class="treeview-menu">
+								<li><a href="#"><i class="fa fa-angle-right"></i>填写血液申请</a></li>
+								<li><a href="#"><i class="fa fa-angle-right"></i>血液申请记录</a></li>
+							</ul>
+						</li>
+
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+		</aside>
+	</div>
+	<!--left-fixed -navigation-->
+
+	<!-- header-starts -->
+	<div class="sticky-header header-section ">
+		<div class="header-left">
+			<!--toggle button start-->
+			<!--toggle button end-->
+			<!--notification menu end -->
+		</div>
+		<div class="header-right">
+
+
+
+
+			<div class="profile_details">
+				<ul>
+					<li class="dropdown profile_details_drop">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							<div class="profile_img">
+								<span class="prfil-img"><img src="/images/2.jpg" alt=""> </span>
+								<div class="user-name">
+									<p>刘合伙</p>
+									<span>护士长</span>
+								</div>
+								<i class="fa fa-angle-down lnr"></i>
+								<i class="fa fa-angle-up lnr"></i>
+								<div class="clearfix"></div>
+							</div>
+						</a>
+						<ul class="dropdown-menu drp-mnu">
+							<li> <a href="#"><i class="fa fa-cog"></i>个人设置</a> </li>
+							<li> <a href="/all/doctorlogin"><i class="fa fa-sign-out"></i> 退出登录</a> </li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	<!-- //header-ends -->
+	<!-- main content start-->
+	<div id="page-wrapper">
+		
+	<!--<div class="main-page">
+		<div class="tables">-->
+		<div class="bs-example " data-example-id="bordered-table">
+			<h3>献血活动信息:</h3>
+		</div>
+		 <br/>
+		<div class="container " >
+            <div class="row" id="row1">
+
+			</div>
+
+
+			<div class="row hidden">
+			<div id="div1" class="col-md-5 col-md-offset-1" style="background-color: pink;height: 600px;">
+				
+				<table class="table" id="tb1" >
+				<tr>
+						<td width="20%">献血活动编号</td>
+		
+						<td id="td1" >1</td>
+					</tr>
+					<tr>
+						<td >医护人员编号</td>
+						<td id="td2">4</td>
+					
+					</tr>
+					<tr>
+						<td >医护人员姓名</td>
+						<td id="td3">张大大</td>
+					</tr>
+					<tr>
+						<td >献血礼品</td>
+						<td id="td4">psjkjiiohihih干活干活干活韩国共和国化工股份发过火恢复发货后fggfdfgffdfgfgfoh</td>
+					</tr>
+					<tr>
+						<td >通知内容</td>
+						<td id="td5">我们会在第一人民医院进行抽血，有意愿献血的朋友，可以在活动时间过来进行献血</td>
+					</tr>
+					<tr>
+						<td >抽血时间</td>
+					<td id="td6">早上9:00到下午5:00</td>
+						</tr>
+					<tr>
+						<td >抽血地址</td>
+						<td id="td7">广东省肇庆市端州区第一人民医院</td>
+					</tr>
+					<tr>
+						<td >创建时间</td>
+						<td id="td8">  ghgh</td>
+					</tr>
+					<tr>
+						<td >截止时间</td>
+						<td id="td9">2019-12-10</td>
+					</tr>
+					<tr>
+						<td >活动状态</td>
+						<td id="td10">进行中</td>
+					</tr>
+				</table>
+				</div>
+			</div>				
+			</div>
+		
+	<div></div>
+	<nav aria-label="Page navigation" style="align">
+    <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+</div>
+	</div>
+</div>
+
+
+
+<script >
+	//加载完页面就自动执行这个方法
+	$(function(){
+		selectlist();
+	});
+	//同一医院的活动通知列表
+	function selectlist() {
+		$.ajax({
+			url:"/doctor/findcbloodbydoctor",
+			type:"GET",
+			success:function (result) {
+				$.each(result.extend.list,function(index,item){
+					var td1= $("<td ></td>").append(item.cid);
+					var td2= $("<td></td>").append(item.uid);
+					var td3= $("<td></td>").append(item.doctor.dname);
+					var td4= $("<td></td>").append(item.lid);
+					var td5= $("<td></td>").append(item.cmain);
+					var td6= $("<td></td>").append(item.cdate);
+					var td7= $("<td></td>").append(item.doctor.dwork);
+					var td8= $("<td></td>").append(item.covertime);
+					var td9= $("<td></td>").append(item.ctime);
+
+					var td10= $("<td></td>").append("进行中");
+					if(!item.cstate)
+						td10=$("<td></td>").append("活动已停止");
+
+					var tr1 = $("<tr></tr>").append("<td width='20%'>献血活动编号:</td>").append(td1);
+
+					var tr2 = $("<tr></tr>").append("<td width='20%'>医护人员编号:</td>").append(td2);
+					var tr3 = $("<tr></tr>").append("<td width='20%'>医护人员姓名:</td>").append(td3);
+					var tr4 = $("<tr></tr>").append("<td width='20%'>献血礼品:</td>").append(td4);
+					var tr5 =$("<tr></tr>").append("<td width='20%'>通知内容:</td>").append(td5);
+					var tr6 = $("<tr></tr>").append("<td width='20%'>抽血时间:</td>").append(td6);
+					var tr7 = $("<tr></tr>").append("<td width='20%'>抽血地址:</td>").append(td7);
+					var tr8 = $("<tr></tr>").append("<td width='20%'>创建时间:</td>").append(td8);
+					var tr9 =  $("<tr></tr>").append("<td width='20%'>截止时间:</td>").append(td9);
+
+
+					var tr10 = $("<tr></tr>").append("<td>活动状态:</td>").append(td10);
+                   var b1 = $("<button class='btn-success'></button>").append("编辑");
+					var b2 = $("<button class='btn-danger'></button>").append("删除");
+					var tb1 = $("<td></td>").append(b1);
+					var tb2 = $("<td></td>").append(b2)
+					var tr11 = $("<tr></tr>").append(tb1).append(tb2);
+
+					var table = $("<table class='table' id='tb1'></table>").append(tr1).append(tr2)
+							.append(tr3).append(tr4)
+							.append(tr5).append(tr6)
+							.append(tr7).append(tr8)
+							.append(tr9).append(tr10).append(tr11);
+					$("<div class='col-md-5 col-md-offset-1' style='background-color: white;height: 700px;margin: 10px;'></div>").append(table).appendTo("#row1");
+
+				});
+			}
+		});
+	}
+	
+	function getlist(){
+		           $("#td1,#td2,#td3,#td4,#td5,#td6,#td7,#td8,#td9,#td10").empty();
+		          alert("nh");
+		          
+		          $("#td1").append("100");
+		         //var div = $("#tb1").appendTo("#div2");
+		          $("<div class='col-md-5 col-md-offset-1' style='background-color: white;height: 600px;margin: 10px;'></div>").append($("#tb1")).appendTo("#row1");
+		        //  $("<div class='row'></div>").append(row).appendTo("#row1");
+					$("#td2").append(item.uid);
+					$("#td3").append(item.doctor.name);
+					$("#td4").append(item.lid);
+					$("#td5").append(item.cmain);
+					$("#td6").append(item.cdate);
+					$("#td7").append(item.doctor.dwork);
+					$("#td8").append(item.covertime);
+					$("#td9").append(item.ctime);	
+					$("#td10").append("进行中");
+					if(!item.cstate)
+						$("#td10").append("活动已停止");
+					
+		
+					
+		
+	}
+
+</script>
+
+
+
+
+<!-- side nav js -->
+<script src='/js/SidebarNav.min.js' type='text/javascript'></script>
+<script>
+	$('.sidebar-menu').SidebarNav()
+</script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.js"> </script>
+<!-- //Bootstrap Core JavaScript -->
+
+</body>
+</html>

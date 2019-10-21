@@ -38,6 +38,7 @@ public class RegisterServiceImpl implements RegisterService {
     public List<Register> selectbydate(String rdate,int baid) {
         RegisterExample registerExample=new RegisterExample();
         RegisterExample.Criteria criteria=registerExample.createCriteria();
+        registerExample.setOrderByClause("id desc");
         criteria.andRdateEqualTo(rdate);
         criteria.andBaidEqualTo(baid);
         List<Register> list=registerMapper.selectByExampleWithUser(registerExample);

@@ -52,6 +52,11 @@ public class PageJumpController {
         return "doctor/addcblood";
     }
 
+    @ApiOperation(value = "查询献血活动")
+    @GetMapping("/doctor/selectcblood.html")
+    public String selectcblood(){
+        return "doctor/selectCblood";
+    }
     @ApiOperation(value="医护人员注册页面")
     @GetMapping("/all/adddoctor.html")
     public String adddoctor(){
@@ -65,6 +70,17 @@ public class PageJumpController {
         return "/doctor/registerpeople";
     }
 
+    @ApiOperation(value = "添加体检信息页面")
+    @GetMapping("/doctor/addcheck.html")
+    public String addcheckhtml(){
+        return "/doctor/addcheck";
+    }
+
+    @ApiOperation(value = "添加献血记录页面")
+    @GetMapping("/doctor/addsendblood.html")
+    public String addsendblood(){
+        return "/doctor/addsendblood";
+    }
 
     @ApiOperation(value = "注册医护人员信息")
     @PostMapping("/all/DoctorJump")
