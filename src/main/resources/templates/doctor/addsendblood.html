@@ -201,14 +201,14 @@
     <div id="page-wrapper">
         <div class="main-page">
             <div class="col-md-3">
-            <div class="tables">
-                <div class="bs-example " data-example-id="bordered-table">
-                    <h4>待录入体检名单</h4>
-                    <table id="plist" class="table table-bordered widget-shadow">
+                <div class="tables">
+                    <div class="bs-example " data-example-id="bordered-table">
+                        <h4>待录入体检名单</h4>
+                        <table id="plist" class="table table-bordered widget-shadow">
 
-                    </table>
+                        </table>
+                    </div>
                 </div>
-            </div>
             </div>
             <div class="col-md-5">
                 <div class="tables">
@@ -280,49 +280,49 @@
                         </table>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
-</div>
 
     <script >
         var nowindex=0;
         $(function(){
             putlist(0);
         });
-        
+
         function addcheck() {
             $.ajax({
-               url:"/doctor/addCheckresult",
-               type:"POST",
-               data:"bdan="+$("#bdan").val()+"&blv"+$("#blv").val()+"&bmei="+$("#bmei").val()
+                url:"/doctor/addCheckresult",
+                type:"POST",
+                data:"bdan="+$("#bdan").val()+"&blv"+$("#blv").val()+"&bmei="+$("#bmei").val()
                     +"&btype="+$("#btype").val()+"&bya="+$("#bya").val()+"&byi="+$("#byi").val()
                     +"&cstate="+$("#cstate").val()+"&ctime="+$("#ctime").val()+"&uid="+$("#uid").val()
                     +"&weight="+$("#weight").val(),
-               success:function (result) {
+                success:function (result) {
 
-               } 
+                }
             });
         }
-        
+
         function putlist(i) {
             $.ajax({
-               url:"/doctor/selectRegisterByDate/2019-10-14/1",
-               type:"GET",
-               success:function(result){
-                   console.log(result);
-                   $.each(result.extend.pageinfo.list,function(index,item){
-                       var uid=$("<td></td>").addClass("td1").append("编号").append(item.people.uid);
-                       if(index==i){
-                           $("#uid").val(item.people.uid);
-                           var name=$("<td></td>").addClass("cc a1").attr("i",index).append(item.people.uname);
-                           $("#people").empty();
+                url:"/doctor/selectRegisterByDate/2019-10-14/1",
+                type:"GET",
+                success:function(result){
+                    console.log(result);
+                    $.each(result.extend.pageinfo.list,function(index,item){
+                        var uid=$("<td></td>").addClass("td1").append("编号").append(item.people.uid);
+                        if(index==i){
+                            $("#uid").val(item.people.uid);
+                            var name=$("<td></td>").addClass("cc a1").attr("i",index).append(item.people.uname);
+                            $("#people").empty();
                             people(index);
-                       }else{
-                           var name=$("<td></td>").addClass("cc").attr("i",index).append(item.people.uname);
-                       }
+                        }else{
+                            var name=$("<td></td>").addClass("cc").attr("i",index).append(item.people.uname);
+                        }
                         $("#plist").append($("<tr></tr>").append(uid).append(name));
-                   });
-               }
+                    });
+                }
             });
         }
 
@@ -339,11 +339,11 @@
                 url:"/doctor/selectRegisterByDate/2019-10-14/1",
                 type:"GET",
                 success:function(result){
-                   var people=result.extend.pageinfo.list[index].people;
-                   //console.log(people);
-                   var uname=$("<tr></tr>").append($("<td></td>").append("用户名:"))
-                       .append($("<td></td>").append(people.uname));
-                   var a=people.uidentity;
+                    var people=result.extend.pageinfo.list[index].people;
+                    //console.log(people);
+                    var uname=$("<tr></tr>").append($("<td></td>").append("用户名:"))
+                        .append($("<td></td>").append(people.uname));
+                    var a=people.uidentity;
                     var uidentity=$("<tr></tr>").append($("<td></td>").append("电话:"))
                         .append($("<td></td>").append(a.substring(0,4)).append("****").append(a.substring(a.length-5,a.length)));
                     var uage=$("<tr></tr>").append($("<td></td>").append("年龄:"))

@@ -76,6 +76,12 @@ public class PageJumpController {
         return "/doctor/addcheck";
     }
 
+    @ApiOperation(value = "添加献血记录页面")
+    @GetMapping("/doctor/addsendblood.html")
+    public String addsendblood(){
+        return "/doctor/addsendblood";
+    }
+
     @ApiOperation(value = "注册医护人员信息")
     @PostMapping("/all/DoctorJump")
     public String addDoctor(Doctor doctor, MultipartFile file, HttpServletRequest req){
