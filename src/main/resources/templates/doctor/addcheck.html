@@ -123,7 +123,7 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-angle-right"></i>血液复测结果添加</a></li>
+                                <li><a href="/doctor/addcheckagain.html"><i class="fa fa-angle-right"></i>血液复测结果添加</a></li>
                                 <li><a href="#"><i class="fa fa-angle-right"></i>复测记录查询</a></li>
                             </ul>
                         </li>
@@ -230,7 +230,14 @@
                             </tr>
                             <tr>
                                 <td align="right">血型:</td>
-                                <td><input id="btype" type="text" class="form-control" placeholder="A/B/O/AB/熊猫"></td>
+                                <td>
+                                    <select class="form-control" id="btype">
+                                        <option value="A">A型</option>
+                                        <option value="B">B型</option>
+                                        <option value="O">O型</option>
+                                        <option value="RH">RH型</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td align="right">血红蛋白:</td>
