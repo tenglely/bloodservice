@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,13 +40,23 @@ public class BloodkuController {
     @Autowired
     DoctorServiceImpl doctorService;
 
+
     @ApiOperation(value = "查询全部血液")
     @GetMapping("/doctor/selectbloodkuall/{pn}")
     public Msg selectblookuall(@PathVariable("pn") Integer pn){
         PageHelper.startPage(pn,10);
         List<Bloodku> list=bloodkuServiceImpl.selectall();
+        List<People> peopleList = new ArrayList<>();
+        List<Doctor> listDoctor = new ArrayList<>();
+        for(Bloodku b : list){
+            People people = peopleService.selectonebyid(b.getUid());
+            Doctor doctor = doctorService.selectbydid(b.getYid());
+            listDoctor.add(doctor);
+            peopleList.add(people);
+        }
         PageInfo pageInfo = new PageInfo(list,5);
-        return Msg.success().add("list",pageInfo);
+
+        return Msg.success().add("pageinfo",pageInfo).add("peoplelist",peopleList).add("listdoctor",listDoctor);
     }
     
     @ApiOperation(value="根据血型查询血库信息")
@@ -53,8 +64,17 @@ public class BloodkuController {
     public Msg selectBloodkuByBtype(@PathVariable("pn") Integer pn,@PathVariable("btype") String btype) {
     	PageHelper.startPage(pn,10);
     	List<Bloodku> list = bloodkuServiceImpl.selectByBtype(btype);
+        List<People> peopleList = new ArrayList<>();
+        List<Doctor> listDoctor = new ArrayList<>();
+        for(Bloodku b : list){
+            People people = peopleService.selectonebyid(b.getUid());
+            Doctor doctor = doctorService.selectbydid(b.getYid());
+            listDoctor.add(doctor);
+            peopleList.add(people);
+        }
+
     	PageInfo pageInfo = new PageInfo(list, 5);
-		return Msg.success().add("list", pageInfo);
+		return Msg.success().add("list", pageInfo).add("peoplelist",peopleList).add("listdoctor",listDoctor);
     }
 
     @ApiOperation(value="根据使用状态state查询血库信息")
@@ -62,16 +82,34 @@ public class BloodkuController {
     public Msg selectBloodKuByState(@PathVariable("pn")Integer pn, @PathVariable("state")Boolean state) {
     	PageHelper.startPage(pn,10);
     	List<Bloodku> list = bloodkuServiceImpl.selectByState(state);
+        List<People> peopleList = new ArrayList<>();
+        List<Doctor> listDoctor = new ArrayList<>();
+        for(Bloodku b : list){
+            People people = peopleService.selectonebyid(b.getUid());
+            Doctor doctor = doctorService.selectbydid(b.getYid());
+            listDoctor.add(doctor);
+            peopleList.add(people);
+        }
+
     	PageInfo pageInfo = new PageInfo(list,5);
-		return Msg.success().add("list", pageInfo);
+		return Msg.success().add("list", pageInfo).add("peoplelist",peopleList).add("listdoctor",listDoctor);
     }
     @ApiOperation(value="根据是否入库bstate查询血库信息")
     @GetMapping("/doctor/selectbloodkubybstate/{pn}/{bstate}")
     public Msg selectBloodKuByBstate(@PathVariable("pn")Integer pn,@PathVariable("bstate")Integer bstate) {
     	PageHelper.startPage(pn,10);
     	List<Bloodku> list = bloodkuServiceImpl.selectByBstate(bstate);
+        List<People> peopleList = new ArrayList<>();
+        List<Doctor> listDoctor = new ArrayList<>();
+        for(Bloodku b : list){
+            People people = peopleService.selectonebyid(b.getUid());
+            Doctor doctor = doctorService.selectbydid(b.getYid());
+            listDoctor.add(doctor);
+            peopleList.add(people);
+        }
+
     	PageInfo pageInfo = new PageInfo(list,5);
-		return Msg.success().add("list", pageInfo);
+		return Msg.success().add("list", pageInfo).add("peoplelist",peopleList).add("listdoctor",listDoctor);
     	
     }
     @ApiOperation(value="根据地址查询血库信息")
@@ -79,8 +117,16 @@ public class BloodkuController {
     public Msg selectBloodKuByBaddress(@PathVariable("pn")Integer pn,@PathVariable("baddressId")Integer baddressId) {
 		PageHelper.startPage(pn,10);
 		List<Bloodku> list = bloodkuServiceImpl.selectByBaddress(baddressId);
+        List<People> peopleList = new ArrayList<>();
+        List<Doctor> listDoctor = new ArrayList<>();
+        for(Bloodku b : list){
+            People people = peopleService.selectonebyid(b.getUid());
+            Doctor doctor = doctorService.selectbydid(b.getYid());
+            listDoctor.add(doctor);
+            peopleList.add(people);
+        }
 		PageInfo pageInfo = new PageInfo(list,5);
-    	return Msg.success().add("list", pageInfo);
+    	return Msg.success().add("list", pageInfo).add("peoplelist",peopleList).add("listdoctor",listDoctor);
     	
     }
     @ApiOperation(value = "添加血库信息，需要医务人员登录")

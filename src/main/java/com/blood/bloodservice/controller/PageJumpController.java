@@ -70,10 +70,22 @@ public class PageJumpController {
         return "/doctor/registerpeople";
     }
 
+    @ApiOperation(value = "查询人员登记记录列表")
+    @GetMapping("/doctor/registerpeoplelist.html")
+    public String registerpeoplelist(){
+        return "/doctor/registerpeoplelist";
+    }
+
     @ApiOperation(value = "添加体检信息页面")
     @GetMapping("/doctor/addcheck.html")
     public String addcheckhtml(){
         return "/doctor/addcheck";
+    }
+
+    @ApiOperation(value = "查询体检信息列表页面")
+    @GetMapping("/doctor/checkresultlist.html")
+    public String checkresultlist(){
+        return "/doctor/checkresultlist";
     }
 
     @ApiOperation(value = "添加献血记录页面")
@@ -82,10 +94,34 @@ public class PageJumpController {
         return "/doctor/addsendblood";
     }
 
+    @ApiOperation(value = "查询献血记录列表页面")
+    @GetMapping("/doctor/sendbloodlist.html")
+    public String sendbloodlist(){
+        return "/doctor/sendbloodlist";
+    }
+
     @ApiOperation(value = "血液复测页面")
     @GetMapping("/doctor/addcheckagain.html")
     public String addcheckagain(){
         return "/doctor/addcheckagain";
+    }
+
+    @ApiOperation(value = "查询血液复测记录列表页面")
+    @GetMapping("/doctor/checkagainlist.html")
+    public String checkagainlist(){
+        return "/doctor/checkagainlist";
+    }
+
+    @ApiOperation(value = "查询血库列表页面")
+    @GetMapping("/doctor/bloodkulist.html")
+    public String bloodkulist(){
+        return "/doctor/bloodkulist";
+    }
+
+    @ApiOperation(value = "查询血液使用申请列表页面")
+    @GetMapping("/doctor/applicationlist.html")
+    public String applicationlist(){
+        return "doctor/applicationlist";
     }
 
     @ApiOperation(value = "注册医护人员信息")

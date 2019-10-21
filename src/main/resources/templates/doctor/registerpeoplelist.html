@@ -199,117 +199,100 @@
 	<!-- //header-ends -->
 	<!-- main content start-->
 	<div id="page-wrapper">
+		<!--<div class="main-page">
+            <div class="tables">-->
 		<div class="main-page">
-			<div class="col_3">
-				<div class="col-md-4 widget widget1">
-					<div class="r3_counter_box">
-						<i class="pull-left fa fa-laptop user1 icon-rounded"></i>
-						<div class="stats">
-							<h5><strong>1</strong></h5>
-							<span>当前献血活动数</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 widget widget1">
-					<div class="r3_counter_box">
-						<i class="pull-left fa fa-pie-chart dollar1 icon-rounded"></i>
-						<div class="stats">
-							<h5><strong>122</strong></h5>
-							<span>今日献血数</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 widget">
-					<div class="r3_counter_box">
-						<i class="pull-left fa fa-users dollar2 icon-rounded"></i>
-						<div class="stats">
-							<h5><strong>6人</strong></h5>
-							<span>献血点人员</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<br></br>
-		<div class="main-page">
-			<div class="tables">
+
+			<!--<div class="tables">-->
 			<div class="bs-example " data-example-id="bordered-table">
-			<h4>第一人民医院献血点人员:</h4>
-			<table class="table table-bordered widget-shadow">
+				<h3>登记人员记录:</h3>
+				<br />
+				<div class="col-md-3">
+				<select style="height: 35px;background-color: pink;">
+					<option >根据月份查询</option>
+					<option>根据日查询</option>
+				</select>
+			</div>
+			<button onclick="get();" class="btn btn-success">查询</button>
+		</div>
+		<br/>
+		<div >
+			<table class="table table-bordered widget-shadow" >
 				<thead>
-					<tr>
-						<th>姓名</th>
-						<th>性别</th>
-						<th>电话</th>
-						<th>邮箱</th>
-						<th>工作状态</th>
-					</tr>
+				<tr>
+					<th>编号</th>
+					<th>用户编号</th>
+					<th>姓名</th>
+					<th>登记地点</th>
+					<th>登记时间</th>
+					<th>操作</th>
+				</tr>
 				</thead>
-				<tbody id="tbody">
+				<tbody id="tb1">
 				</tbody>
 			</table>
-		    </div>
-				<div class="bs-example " data-example-id="bordered-table">
-					<h4>第一人民医院献血点人员操作消息:</h4>
-					<table class="table" id="newlist">
-
-					</table>
-				</div>
-			</div>
 		</div>
+		<nav aria-label="Page navigation" >
+			<ul class="pagination">
+				<li>
+					<a href="#" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li>
+					<a href="#" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
-	</div>
+</div>
+
 </div>
 
 
 
-<script >
+<script type="text/javascript">
+
 	$(function(){
-		doctorlist();
-		newlist();
+		getlist();
 	});
-	
-	//人员操作信息了列表
-	function newlist() {
-		$.ajax({
-			url:"/doctor/selectallmessage",
-			type:"GET",
-			success:function (result) {
-				$.each(result.extend.newlist,function(index,item){
-					var main=$("<td></td>").append(item);
-					$("<tr></tr>").append(main).appendTo("#newlist");
-				});
-			}
-		});
-	}
-	
-	//同一医院的人员列表
-	function doctorlist() {
-		$.ajax({
-			url:"/doctor/findbyhospital",
-			type:"GET",
-			success:function (result) {
-				$.each(result.extend.list,function(index,item){
-					var name=$("<td></td>").append(item.dname);
-					var sex=$("<td></td>").append(item.dsex);
-					var phone=$("<td></td>").append(item.dphone);
-					var email=$("<td></td>").append(item.demail);
-					var dstate="在职";
-					if(!item.dstate)
-						dstate="离职";
-					var state=$("<td></td>").append(dstate);
-					$("<tr></tr>").append(name).append(sex).append(phone).append(email)
-							.append(state).appendTo("#tbody");
-				});
-			}
-		});
-	}
+		function getlist() {
 
+			var month = "2019-10";
+			var pn = 1;
+			$.ajax({
+				url:"/doctor/selectRegisterByMonth/"+month+"/"+pn,
+				type:"GET",
+				success:function (result) {
+					$.each(result.extend.pageinfo.list,function(index,item){
+
+
+			            var td1= $("<td ></td>").append(item.id);
+			            var td2= $("<td></td>").append(item.uid);
+						var td3= $("<td></td>").append(item.people.uname);
+						var td4= $("<td></td>").append("肇庆市端州区第一人民医院");
+						var td5= $("<td></td>").append(item.rdate);
+						 var btn1 = $("<button></button>").addClass("btn-success").append("编辑");
+	var btn2 = $("<button></button>").addClass("btn-danger").append("删除");
+	var td6= $("<td></td>").append(btn1).append(btn2);
+
+		 $("<tr></tr>").append(td1)
+			.append(td2)
+	        .append(td3).append(td4)
+	        .append(td5).append(td6)
+			 .appendTo("#tb1");
+					});
+				}
+			});
+		}
 </script>
-
-
-
-
 <!-- side nav js -->
 <script src='/js/SidebarNav.min.js' type='text/javascript'></script>
 <script>

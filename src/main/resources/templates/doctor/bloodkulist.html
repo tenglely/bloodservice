@@ -198,117 +198,6 @@
 	</div>
 	<!-- //header-ends -->
 	<!-- main content start-->
-	<div id="page-wrapper">
-		<div class="main-page">
-			<div class="col_3">
-				<div class="col-md-4 widget widget1">
-					<div class="r3_counter_box">
-						<i class="pull-left fa fa-laptop user1 icon-rounded"></i>
-						<div class="stats">
-							<h5><strong>1</strong></h5>
-							<span>当前献血活动数</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 widget widget1">
-					<div class="r3_counter_box">
-						<i class="pull-left fa fa-pie-chart dollar1 icon-rounded"></i>
-						<div class="stats">
-							<h5><strong>122</strong></h5>
-							<span>今日献血数</span>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 widget">
-					<div class="r3_counter_box">
-						<i class="pull-left fa fa-users dollar2 icon-rounded"></i>
-						<div class="stats">
-							<h5><strong>6人</strong></h5>
-							<span>献血点人员</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<br></br>
-		<div class="main-page">
-			<div class="tables">
-			<div class="bs-example " data-example-id="bordered-table">
-			<h4>第一人民医院献血点人员:</h4>
-			<table class="table table-bordered widget-shadow">
-				<thead>
-					<tr>
-						<th>姓名</th>
-						<th>性别</th>
-						<th>电话</th>
-						<th>邮箱</th>
-						<th>工作状态</th>
-					</tr>
-				</thead>
-				<tbody id="tbody">
-				</tbody>
-			</table>
-		    </div>
-				<div class="bs-example " data-example-id="bordered-table">
-					<h4>第一人民医院献血点人员操作消息:</h4>
-					<table class="table" id="newlist">
-
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-</div>
-
-
-
-<script >
-	$(function(){
-		doctorlist();
-		newlist();
-	});
-	
-	//人员操作信息了列表
-	function newlist() {
-		$.ajax({
-			url:"/doctor/selectallmessage",
-			type:"GET",
-			success:function (result) {
-				$.each(result.extend.newlist,function(index,item){
-					var main=$("<td></td>").append(item);
-					$("<tr></tr>").append(main).appendTo("#newlist");
-				});
-			}
-		});
-	}
-	
-	//同一医院的人员列表
-	function doctorlist() {
-		$.ajax({
-			url:"/doctor/findbyhospital",
-			type:"GET",
-			success:function (result) {
-				$.each(result.extend.list,function(index,item){
-					var name=$("<td></td>").append(item.dname);
-					var sex=$("<td></td>").append(item.dsex);
-					var phone=$("<td></td>").append(item.dphone);
-					var email=$("<td></td>").append(item.demail);
-					var dstate="在职";
-					if(!item.dstate)
-						dstate="离职";
-					var state=$("<td></td>").append(dstate);
-					$("<tr></tr>").append(name).append(sex).append(phone).append(email)
-							.append(state).appendTo("#tbody");
-				});
-			}
-		});
-	}
-
-</script>
-
-
-
 
 <!-- side nav js -->
 <script src='/js/SidebarNav.min.js' type='text/javascript'></script>
@@ -319,6 +208,128 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="/js/bootstrap.js"> </script>
 <!-- //Bootstrap Core JavaScript -->
+	<div id="page-wrapper">
+		<!--<div class="main-page">
+            <div class="tables">-->
+		<div class="main-page">
 
+			<!--<div class="tables">-->
+			<div class="bs-example " data-example-id="bordered-table">
+				<h3>血液入库记录:</h3>
+				<br />
+				<div class="col-md-3" >
+				<select style="height: 35px;background-color: pink;">
+					<option >血库所有血液记录</option>
+					<option >根据血型查询血液记录</option>
+					<option >根据血库地址查询血液记录</option>
+					<option >查询已经入库的血液记录</option>
+					<option >查询没有入库的血液记录</option>
+					<option>查询已经使用的血液的记录</option>
+
+				</select>
+			</div>
+			<button onclick="get();" class="btn btn-success">查询</button>
+		</div>
+		<br/>
+		<div >
+			<table class="table table-bordered widget-shadow" id="rtable">
+				<thead>
+				<tr>
+					<th>编号</th>
+					<th>献血人编号</th>
+					<th>献血人姓名</th>
+					<th>献血量（/ml）</th>
+					<th>血型</th>
+					<th>是否稀有血型</th>
+					<th>献血时间</th>
+					<th>使用状态</th>
+					<th>是否入库</th>
+					<th>血库地址</th>
+					<th>入库监督员</th>
+					<th>入库时间</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody id="tb6"	>
+				</tbody>
+			</table>
+		</div>
+		<nav aria-label="Page navigation">
+			<ul class="pagination">
+				<li>
+					<a href="#" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+				<li><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li>
+					<a href="#" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+</div>
+
+<script type="text/javascript">
+
+	$(function(){
+		getlist();
+	});
+	//同一医院的人员列表
+		function getlist() {
+
+			var pn = 1;
+			$.ajax({
+				url:"/doctor/selectbloodkuall/"+pn,
+				type:"GET",
+				success:function (result) {
+					$.each(result.extend.pageinfo.list,function(index,item){
+
+						var td2= $("<td></td>").append(item.bid);
+						var td3= $("<td></td>").append(item.uid);
+						// var td4= $("<td></td>").append(result.peoplelist[index].uname);
+						var td4= $("<td></td>").append("你好");
+						var td5= $("<td></td>").append(item.amount);
+						var td6= $("<td></td>").append(item.btype);
+						var td7= $("<td></td>").append(item.bless);
+						var td8= $("<td></td>").append(item.btime);
+						var td9= $("<td></td>").append("已使用");
+	         	 if(!item.state)
+	          	var td9= $("<td></td>").append("未使用");
+				if(item.bstate=="1")
+					var td10= $("<td></td>").append("已入库");
+	          if(item.bstate=="0")
+	   				 var td10= $("<td></td>").append("未入库");
+			if(item.bstate=="2")
+	   			 var td10= $("<td></td>").append("已损坏");
+				var td11= $("<td></td>").append("广州天河");
+				//var td12= $("<td></td>").append(result.listdoctor.dname[1]);
+						var td12= $("<td></td>").append(index);
+				 var td13=$("<td></td>").append(item.inputdate)
+			if(item.bstate!="1")
+				var td13=$("<td></td>").append("还没有入库")
+				var btn1 = $("<button></button>").addClass("btn-success hidden").append("入库");
+
+			if(item.bstate!="1")
+				var btn1 = $("<button></button>").addClass("btn-success").append("入库");
+				var btn2 = $("<button></button>").addClass("btn-danger").append("删除");
+				var td14= $("<td></td>").append(btn1).append(btn2);
+				 $("<tr></tr>")
+			      .append(td2).append(td3).append(td4)
+						 .append(td5).append(td6).append(td7).append(td8)
+	       				 .append(td9).append(td10).append(td11).append(td12).append(td13).append(td14)
+ 							.appendTo("#tb6");
+					});
+				}
+			});
+		}
+		</script>
 </body>
 </html>

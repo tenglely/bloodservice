@@ -11,6 +11,7 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,7 +72,7 @@ public class ApplicationController {
 
     @ApiOperation(value ="查询出申请列表信息含医护人员信息,分页一页10条" )
     @GetMapping("/doctor/selectAllapplication/{pn}")
-    public Msg selectAllapplition(@PathVariable("pn") Integer pn){
+    public Msg selectAllapplition(@PathVariable("pn")Integer pn){
         PageHelper.startPage(pn,10);
         List<Application> list = applicationServiceImpl.selectAllapplication();
         PageInfo pageInfo = new PageInfo(list,5);

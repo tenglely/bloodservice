@@ -71,6 +71,20 @@ public class SendbloodController {
         return Msg.success().add("plist",plist).add("dlist",dlist).add("slist",slist);
     }
 
+    @ApiOperation(value = "医护人员查看所有献血记录,分页-页10条.返回献血记录，用户信")
+    @GetMapping("/doctor/findallsendblood/{pn}")
+    public Msg findallsendbloodBydoctor(@PathVariable("pn")Integer pn){
+        PageHelper.startPage(pn,10);
+        List<Sendblood> blist=sendbloodServiceImpl.selectall();
+        List<People> plist=new ArrayList<>();
+        List<Doctor> dlist=new ArrayList<>();
+        for(Sendblood sendblood:blist){
+            plist.add(peopleService.selectonebyid(sendblood.getUid()));
+            dlist.add(doctorService.selectbydid(sendblood.getYid()));
+        }
+        PageInfo page = new PageInfo(blist,5);
+        return Msg.success().add("pageinfo",page).add("plist",plist).add("dlist",dlist);
+    }
     @ApiOperation(value = "管理员查看所有献血记录,分页-页10条.返回献血记录，用户信")
     @GetMapping("/api/admin/findallsendblood/{pn}")
     public Msg findallsendblood(@PathVariable("pn")Integer pn){

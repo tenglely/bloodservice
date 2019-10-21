@@ -29,7 +29,8 @@ public class RegisterController {
 
     @ApiOperation(value = "根据年+月份(如,2019-09)，和地点(需要登录后拿到该数据)来查找登记信息及用户信息，分页：1页10条")
     @GetMapping("/doctor/selectRegisterByMonth/{month}/{pn}")
-    public Msg selectbymonth(@PathVariable("month")String month,@PathVariable(value = "pn") Integer pn){
+    public Msg selectbymonth(@PathVariable("month")String month,@PathVariable("pn") Integer pn){
+
         //获取用户登录信息
         Userlogin userlogin= (Userlogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //查询doctor信息
@@ -42,6 +43,7 @@ public class RegisterController {
         PageInfo page = new PageInfo(list,5);
         if(list.isEmpty())
             return Msg.fail();
+
         return Msg.success().add("pageinfo",page);
     }
 
