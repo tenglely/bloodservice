@@ -70,6 +70,11 @@ public class PageJumpController {
         return "/doctor/registerpeople";
     }
 
+    @ApiOperation(value = "添加体检信息页面")
+    @GetMapping("/doctor/addcheck.html")
+    public String addcheckhtml(){
+        return "/doctor/addcheck";
+    }
 
     @ApiOperation(value = "注册医护人员信息")
     @PostMapping("/all/DoctorJump")
