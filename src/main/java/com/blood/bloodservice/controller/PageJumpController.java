@@ -100,11 +100,18 @@ public class PageJumpController {
         return "/doctor/sendbloodlist";
     }
 
+    @ApiOperation(value = "血液入库页面")
+    @GetMapping("/doctor/addbloodku.html")
+    public String addbloodku(){
+        return "/doctor/bloodku";
+    }
+
     @ApiOperation(value = "血液复测页面")
     @GetMapping("/doctor/addcheckagain.html")
     public String addcheckagain(){
         return "/doctor/addcheckagain";
     }
+
 
     @ApiOperation(value = "查询血液复测记录列表页面")
     @GetMapping("/doctor/checkagainlist.html")

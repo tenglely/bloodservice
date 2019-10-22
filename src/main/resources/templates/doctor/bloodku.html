@@ -203,68 +203,32 @@
             <div class="col-md-3">
                 <div class="tables">
                     <div class="bs-example " data-example-id="bordered-table">
-                        <h4>待录入献血记录</h4>
+                        <h4>待入库血液列表</h4>
                         <table id="plist" class="table table-bordered widget-shadow">
 
                         </table>
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-3">
                 <div class="tables">
                     <div class="bs-example " data-example-id="bordered-table">
-                        <h4>填写献血记录</h4>
-                        <input id="uid" type="hidden">
-                        <table class="table table-bordered widget-shadow">
-                            <tr>
-                                <td align="right">抽血量:</td>
-                                <td><input id="sbnumber" type="text" class="form-control"></td>
-                            </tr>
-                            <tr>
-                                <td align="right">血型:</td>
-                                <td>
-                                    <select class="form-control" id="sbtype">
-                                        <option value="A">A型</option>
-                                        <option value="B">B型</option>
-                                        <option value="O">O型</option>
-                                        <option value="RH">RH型</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">是否稀有血型:</td>
-                                <td>
-                                    <select id="bless" class="form-control">
-                                        <option value="否">否</option>
-                                        <option value="是">是</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">抽血地址:</td>
-                                <td><input id="sbaddress" type="text" class="form-control" value="第一人民医院"></td>
-                            </tr>
-                            <tr>
-                                <td align="right">执行抽血人:</td>
-                                <td><input id="sbpeople" type="text" class="form-control"></td>
-                            </tr>
-                            <tr>
-                                <td align="right">抽血时间:</td>
-                                <td><input id="sbdate" type="date" class="form-control"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" align="center">
-                                    <button class="btn btn-primary" onclick="addcheck()">提交献血记录</button>
-                                </td>
-                            </tr>
+                        <h4>血液检查信息</h4>
+                        <table id="slist" class="table table-bordered widget-shadow">
+
                         </table>
+                        <button class="btn btn-primary" onclick="aa()">检查完毕</button>
+                        <select id="bstate">
+                            <option value="1">无损入库</option>
+                            <option value="0">损坏登记</option>
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="tables">
                     <div class="bs-example " data-example-id="bordered-table">
-                        <h4>人员信息</h4>
+                        <h4>献血者信息</h4>
                         <table id="people" class="table table-bordered widget-shadow">
 
                         </table>
@@ -280,13 +244,23 @@
             putlist(0);
         });
 
+        function aa() {
+            var r=confirm("血液认真检查好了吗，确认无损请继续？");
+            if (r==true)
+            {
+                alert("血液入库成功!!");
+            }
+
+        }
+
         function addcheck() {
             $.ajax({
-                url:"/doctor/addSendblood",
+                url:"/doctor/addCheckresult",
                 type:"POST",
-                data:"sbnumber="+$("#sbnumber").val()+"&sbtype"+$("#sbtype").val()+"&bless="+$("#bless").val()
-                    +"&sbaddress="+$("#sbaddress").val()+"&sbpeople="+$("#sbpeople").val()+"&sbdate="+$("#sbdate").val()
-                    +"&uid="+$("#uid").val(),
+                data:"bdan="+$("#bdan").val()+"&blv"+$("#blv").val()+"&bmei="+$("#bmei").val()
+                    +"&btype="+$("#btype").val()+"&bya="+$("#bya").val()+"&byi="+$("#byi").val()
+                    +"&cstate="+$("#cstate").val()+"&ctime="+$("#ctime").val()+"&uid="+$("#uid").val()
+                    +"&weight="+$("#weight").val(),
                 success:function (result) {
 
                 }
@@ -295,19 +269,20 @@
 
         function putlist(i) {
             $.ajax({
-                url:"/doctor/findCheckresultSuccessPeople",
+                url:"/doctor/findCheckagainlist",
                 type:"GET",
                 success:function(result){
                     console.log(result);
-                    $.each(result.extend.list,function(index,item){
-                        var uid=$("<td></td>").addClass("td1").append("编号").append(item.uid);
+                    $.each(result.extend.clist,function(index,item){
+                        var uid=$("<td></td>").addClass("td1").append("复测编号").append(item.cid);
                         if(index==i){
-                            $("#uid").val(item.uid);
-                            var name=$("<td></td>").addClass("cc a1").attr("i",index).append(item.uname);
+                            $("#uid").val(result.extend.plist[index].uid);
+                            var name=$("<td></td>").addClass("cc a1").attr("i",index).append(result.extend.plist[index].uname);
                             $("#people").empty();
+                            $("#slist").empty();
                             people(index);
                         }else{
-                            var name=$("<td></td>").addClass("cc").attr("i",index).append(item.uname);
+                            var name=$("<td></td>").addClass("cc").attr("i",index).append(result.extend.plist[index].uname);
                         }
                         $("#plist").append($("<tr></tr>").append(uid).append(name));
                     });
@@ -325,11 +300,33 @@
 
         function people(index){
             $.ajax({
-                url:"/doctor/findCheckresultSuccessPeople",
+                url:"/doctor/findCheckagainlist",
                 type:"GET",
                 success:function(result){
-                    var people=result.extend.list[index];
+                    var people=result.extend.plist[index];
                     //console.log(people);
+                    var clist=result.extend.clist[index];
+                    var btype=$("<tr></tr>").append($("<td></td>").append("血型:"))
+                        .append($("<td></td>").append(clist.btype));
+                    var cdan=$("<tr></tr>").append($("<td></td>").append("血红蛋白:"))
+                        .append($("<td></td>").append(clist.cdan));
+                    var cmei=$("<tr></tr>").append($("<td></td>").append("乙肝:"))
+                        .append($("<td></td>").append(clist.cmei));
+                    var cyi=$("<tr></tr>").append($("<td></td>").append("乙肝:"))
+                        .append($("<td></td>").append(clist.cyi==true?"阴性":"阳性"));
+                    var cbing=$("<tr></tr>").append($("<td></td>").append("丙肝:"))
+                        .append($("<td></td>").append(clist.cbing==true?"阴性":"阳性"));
+                    var cmeidu=$("<tr></tr>").append($("<td></td>").append("梅毒:"))
+                        .append($("<td></td>").append(clist.cmeidu==true?"阴性":"阳性"));
+                    var chiv=$("<tr></tr>").append($("<td></td>").append("HIV:"))
+                        .append($("<td></td>").append(clist.chiv==true?"阴性":"阳性"));
+                    var cstate=$("<tr></tr>").append($("<td></td>").append("复测结果:"))
+                        .append($("<td></td>").append(clist.cstate==true?"通过":"不通过"));
+                    var doctor=$("<tr></tr>").append($("<td></td>").append("检测人:"))
+                        .append($("<td></td>").append(result.extend.dlist[index].dname));
+                    $("#slist").append(btype).append(cdan).append(cmei).append(cyi).append(cbing)
+                        .append(cmeidu).append(chiv).append(cstate).append(doctor);
+
                     var uname=$("<tr></tr>").append($("<td></td>").append("用户名:"))
                         .append($("<td></td>").append(people.uname));
                     var a=people.uidentity;
