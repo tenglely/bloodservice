@@ -112,6 +112,12 @@ public class PageJumpController {
         return "/doctor/addcheckagain";
     }
 
+    @ApiOperation(value = "申请血液页面")
+    @GetMapping("/doctor/applyblood.html")
+    public String applyblood(){
+        return "/doctor/applayblood";
+    }
+
 
     @ApiOperation(value = "查询血液复测记录列表页面")
     @GetMapping("/doctor/checkagainlist.html")
