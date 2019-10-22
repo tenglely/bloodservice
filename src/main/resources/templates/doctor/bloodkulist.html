@@ -219,7 +219,7 @@
 				<br />
 				<div class="col-md-3" >
 				<select style="height: 35px;background-color: pink;">
-					<option >血库所有血液记录</option>
+					<option>血库所有血液记录</option>
 					<option >根据血型查询血液记录</option>
 					<option >根据血库地址查询血液记录</option>
 					<option >查询已经入库的血液记录</option>
@@ -290,12 +290,14 @@
 				url:"/doctor/selectbloodkuall/"+pn,
 				type:"GET",
 				success:function (result) {
+
+
 					$.each(result.extend.pageinfo.list,function(index,item){
 
 						var td2= $("<td></td>").append(item.bid);
 						var td3= $("<td></td>").append(item.uid);
-						// var td4= $("<td></td>").append(result.peoplelist[index].uname);
-						var td4= $("<td></td>").append("你好");
+						 var td4= $("<td></td>").append(result.extend.peoplelist[index].uname);
+						//var td4= $("<td></td>").append("你好");
 						var td5= $("<td></td>").append(item.amount);
 						var td6= $("<td></td>").append(item.btype);
 						var td7= $("<td></td>").append(item.bless);
@@ -310,8 +312,8 @@
 			if(item.bstate=="2")
 	   			 var td10= $("<td></td>").append("已损坏");
 				var td11= $("<td></td>").append("广州天河");
-				//var td12= $("<td></td>").append(result.listdoctor.dname[1]);
-						var td12= $("<td></td>").append(index);
+				var td12= $("<td></td>").append(result.extend.listdoctor[index].dname);
+					//	var td12= $("<td></td>").append("nh");
 				 var td13=$("<td></td>").append(item.inputdate)
 			if(item.bstate!="1")
 				var td13=$("<td></td>").append("还没有入库")
