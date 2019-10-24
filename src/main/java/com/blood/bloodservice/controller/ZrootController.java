@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.print.Doc;
 import javax.websocket.server.PathParam;
 import java.util.List;
 
@@ -72,8 +73,10 @@ public class ZrootController {
     }
 
     @ApiOperation(value = "批准医护人员")
-    @PostMapping ("/admin/updateDoctor")
-    public Msg updateDoctor(Doctor doctor) {
+    @GetMapping ("/admin/updateDoctor/{did}")
+    public Msg updateDoctor(@PathVariable("did") int uid) {
+        Doctor doctor=doctorServiceImpl.selectbydid(uid);
+        doctor.setPstate(true);
         //更新完医护人员信息
         zrootService.updateDoctor(doctor);
         //去一个字符串的最后六个字符作为密码

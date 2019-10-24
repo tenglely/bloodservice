@@ -9,10 +9,14 @@ import com.blood.bloodservice.entity.UserRole;
 import com.blood.bloodservice.entity.Zroot;
 import com.blood.bloodservice.service.ZrootService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class ZrootServiceImpl implements ZrootService {
@@ -20,6 +24,8 @@ public class ZrootServiceImpl implements ZrootService {
     private ZrootMapper zrootMapper;
     @Autowired
     private UserloginMapper userloginMapper;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Autowired
     private DoctorMapper doctorMapper;

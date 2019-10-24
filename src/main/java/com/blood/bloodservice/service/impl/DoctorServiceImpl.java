@@ -77,25 +77,26 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public List<Doctor> findbyhospital(String dwork) {
-        List<Doctor> list= (List<Doctor>) redisTemplate.opsForHash().get("hospital",dwork);
-        if(list==null) {
+//        List<Doctor> list= (List<Doctor>) redisTemplate.opsForHash().get("hospital",dwork);
+//        if(list==null) {
             DoctorExample example = new DoctorExample();
             DoctorExample.Criteria criteria = example.createCriteria();
             criteria.andDworkEqualTo(dwork);
             List<Doctor> doctorlist = doctorMapper.selectByExample(example);
-            System.out.println(doctorlist);
-            if(doctorlist.isEmpty()){
-                return null;
-            }else{
-                Map<String, Object> parm = new HashMap<>();
-                parm.put(dwork, doctorlist);
-                redisTemplate.opsForHash().putAll("hospital", parm);
-                list= doctorlist;
-                System.out.println("redis添加成功");
-            }
-        }
-        System.out.println("从redis成功取出同一医院的人员");
-        return list;
+            return doctorlist;
+//            System.out.println(doctorlist);
+//            if(doctorlist.isEmpty()){
+//                return null;
+//            }else{
+//                Map<String, Object> parm = new HashMap<>();
+//                parm.put(dwork, doctorlist);
+//                redisTemplate.opsForHash().putAll("hospital", parm);
+//                list= doctorlist;
+//                System.out.println("redis添加成功");
+//            }
+//        }
+//        System.out.println("从redis成功取出同一医院的人员");
+//        return list;
     }
 
     @Override
