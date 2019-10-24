@@ -5,9 +5,11 @@ import com.blood.bloodservice.dao.UserloginMapper;
 import com.blood.bloodservice.entity.Doctor;
 import com.blood.bloodservice.entity.DoctorExample;
 import com.blood.bloodservice.entity.UserRole;
+import com.blood.bloodservice.entity.Userlogin;
 import com.blood.bloodservice.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.security.auth.login.CredentialException;
@@ -107,6 +109,24 @@ public class DoctorServiceImpl implements DoctorService {
         if(list.isEmpty())
             return null;
         return list;
+    }
+
+    @Override
+    public int updateDoctor(String dname, String dsex, String didentity, String daddress, String dnation, String dphone, String demail) {
+        Userlogin userlogin = (Userlogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        Doctor doctor= doctorMapper.selectByPrimaryKey(userlogin.getUid());
+         doctor.setDphoto(dphone);
+         doctor.setDname(dname);
+         doctor.setDaddress(daddress);
+         doctor.setDidentity(didentity);
+         doctor.setDemail(demail);
+         doctor.setDnation(dnation);
+         doctor.setDsex(dsex);
+        int i = doctorMapper.updateByPrimaryKey(doctor);
+       if(i>0)
+           return i;
+        return 0;
     }
 
 }
