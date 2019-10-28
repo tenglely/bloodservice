@@ -199,74 +199,23 @@
     <!-- main content start-->
     <div id="page-wrapper">
         <div class="main-page">
-            <div class="col-md-4" style="margin-left: 150px;">
             <div class="tables">
                 <div class="bs-example " data-example-id="bordered-table">
-                    <h4>血液申请:</h4>
+                    <h4>献血人员身份证登记:</h4>
                     <table class="table table-bordered widget-shadow">
+
                         <tr>
-                            <td align="right" style="width: 250px">申请血型:</td>
-                            <td>
-                                <select class="form-control" id="applyblood">
-                                    <option value="A">A型</option>
-                                    <option value="B">B型</option>
-                                    <option value="O">O型</option>
-                                    <option value="RH">RH型</option>
-                                </select>
-                            </td>
+                            <td align="right" style="width: 250px">身份证:</td>
+                            <td><input id="uidentity" type="text" class="form-control" placeholder="身份证为18位，请正确填写"></td>
                         </tr>
                         <tr>
-                            <td align="right" style="width: 250px">申请容量:</td>
-                            <td >
-                                <select id="applyamount" class="form-control">
-                                    <option value="100">100</option>
-                                    <option value="150">150</option>
-                                    <option value="200">200</option>
-                                    <option value="250">250</option>
-                                    <option value="300">300</option>
-                                </select>
-                            </td>
+                            <td align="right" style="width: 300px">地址:</td>
+                            <td><input id="bid" type="text" class="form-control" value="第一人民医院"></td>
                         </tr>
                         <tr>
-                            <td colspan="2" align="center"><button onclick="add()" class="btn btn-primary">申请血液</button></td>
+                            <td colspan="2"><button onclick="add()" class="btn btn-primary">提交人员登记</button></td>
                         </tr>
                     </table>
-                </div>
-            </div>
-            </div>
-            <div class="col-md-4">
-                <div class="tables">
-                    <div class="bs-example " data-example-id="bordered-table">
-                        <table  class="table table-bordered widget-shadow">
-                            <thead>
-                                <tr>
-                                    <td style="color: red">血液申请准则</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        1、血液申请后，申请人将对该血液负责
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        2、血液申请应遵守靠近原则，申请相对应量的血液，避免浪费与不足
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        3、血液申请后，请注意审核信息的接收，及时领取
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        4、血液领取时间过期，只能重新申请
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>
@@ -275,12 +224,15 @@
 
     <script >
         function add() {
-           var type=$("#applyblood").val();
-           var num=$("#applyamount").val();
+            var uidentity=$("#uidentity").val();
+            var bid=1;
             $.ajax({
-                url:"/doctor/addApplication",
+                url:"/doctor/checkPeopleAndAddRegister",
                 type:"POST",
-                data:"applyblood="+type+"&applyamount="+num,
+                data:{
+                    "uidentity":uidentity,
+                    "bid":bid,
+                },
                 success:function (result) {
                     if(result.code=200)
                         alert("登记成功!!");

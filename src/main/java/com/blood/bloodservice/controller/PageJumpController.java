@@ -70,6 +70,12 @@ public class PageJumpController {
         return "/doctor/registerpeople";
     }
 
+    @ApiOperation(value = "人员身份证登记页面")
+    @GetMapping("/doctor/registertwo.html")
+    public String registertwo(){
+        return "/doctor/registertwo";
+    }
+
     @ApiOperation(value = "查询人员登记记录列表")
     @GetMapping("/doctor/registerpeoplelist.html")
     public String registerpeoplelist(){
@@ -123,6 +129,12 @@ public class PageJumpController {
     @GetMapping("/doctor/checkagainlist.html")
     public String checkagainlist(){
         return "/doctor/checkagainlist";
+    }
+
+    @ApiOperation(value = "查询问询页面")
+    @GetMapping("/doctor/seetoask.html")
+    public String seetoask(){
+        return "/doctor/seetoask";
     }
 
     @ApiOperation(value = "查询血库列表页面")

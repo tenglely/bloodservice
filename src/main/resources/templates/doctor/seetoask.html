@@ -1,0 +1,505 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
+    <!-- Custom CSS -->
+    <link href="/css/style.css" rel='stylesheet' type='text/css' />
+
+    <!-- font-awesome icons CSS -->
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome icons CSS-->
+
+    <!-- side nav css file -->
+    <link href='/css/SidebarNav.min.css' media='all' rel='stylesheet' type='text/css'/>
+    <!-- //side nav css file -->
+
+    <!-- js-->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script src="/js/modernizr.custom.js"></script>
+
+
+    <!-- Metis Menu -->
+    <script src="/js/metisMenu.min.js"></script>
+    <script src="/js/custom.js"></script>
+    <link href="/css/custom.css" rel="stylesheet">
+    <!--//Metis Menu -->
+    <style>
+        #chartdiv {
+            width: 100%;
+            height: 295px;
+        }
+    </style>
+    <!--pie-chart --><!-- index page sales reviews visitors pie chart -->
+    <script src="/js/pie-chart.js" type="text/javascript"></script>
+    <!-- //pie-chart --><!-- index page sales reviews visitors pie chart -->
+
+    <!-- requried-jsfiles-for owl -->
+    <link href="/css/owl.carousel.css" rel="stylesheet">
+    <script src="/js/owl.carousel.js"></script>
+    <!-- //requried-jsfiles-for owl -->
+</head>
+<body class="cbp-spmenu-push">
+<div class="main-content">
+    <div class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+        <!--left-fixed -navigation-->
+        <aside class="sidebar-left">
+            <nav class="navbar navbar-inverse">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".collapse" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h1><a class="navbar-brand" href="index.html"></span> 无偿献血服务<span class="dashboard_text">医务人员</span></a></h1>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="sidebar-menu">
+                        <li class="header">操作列表</li>
+                        <li class="treeview"> <a href="/doctor/index"> <em class="fa fa-dashboard"></em> 首页</a></li>
+                        <li class="treeview">
+                            <a href="/doctor/seetoask.html">
+                                <i class="fa fa-laptop"></i>
+                                <span>献血咨询信息</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>献血活动</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/cblood.html"><i class="fa fa-angle-right"></i>申请献血活动</a></li>
+                                <li><a href="/doctor/selectcblood.html"><i class="fa fa-angle-right"></i> 献血活动查询</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>献血人员登记</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/registerpeople.html"><i class="fa fa-angle-right"></i>人员登记</a></li>
+                                <li><a href="/doctor/registerpeoplelist.html"><i class="fa fa-angle-right"></i>过往登记</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>体检记录</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/addcheck.html"><i class="fa fa-angle-right"></i>体检添加</a></li>
+                                <li><a href="/doctor/checkresultlist.html"><i class="fa fa-angle-right"></i>体检记录查询</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>献血记录</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/addsendblood.html"><i class="fa fa-angle-right"></i>添加献血记录</a></li>
+                                <li><a href="/doctor/sendbloodlist.html"><i class="fa fa-angle-right"></i>献血记录查询</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>血液复测</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/addcheckagain.html"><i class="fa fa-angle-right"></i>血液复测结果添加</a></li>
+                                <li><a href="/doctor/checkagainlist.html"><i class="fa fa-angle-right"></i>复测记录查询</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>血液入库</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/addbloodku.html"><i class="fa fa-angle-right"></i>入库批准</a></li>
+                                <li><a href="/doctor/bloodkulist.html"><i class="fa fa-angle-right"></i>血液入库记录</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-laptop"></i>
+                                <span>血液申请</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/doctor/applyblood.html"><i class="fa fa-angle-right"></i>填写血液申请</a></li>
+                                <li><a href="/doctor/applicationlist.html"><i class="fa fa-angle-right"></i>血液申请记录</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </aside>
+    </div>
+    <!--left-fixed -navigation-->
+
+    <!-- header-starts -->
+    <div class="sticky-header header-section ">
+        <div class="header-left">
+            <!--toggle button start-->
+            <!--toggle button end-->
+            <!--notification menu end -->
+        </div>
+        <div class="header-right">
+
+
+
+
+            <div class="profile_details">
+                <ul>
+                    <li class="dropdown profile_details_drop">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <div class="profile_img">
+                                <span class="prfil-img"><img src="/images/2.jpg" alt=""> </span>
+                                <div class="user-name">
+                                    <p>刘合伙</p>
+                                    <span>护士长</span>
+                                </div>
+                                <i class="fa fa-angle-down lnr"></i>
+                                <i class="fa fa-angle-up lnr"></i>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu drp-mnu">
+                            <li> <a href="#"><i class="fa fa-cog"></i>个人设置</a> </li>
+                            <li> <a href="/all/doctorlogin"><i class="fa fa-sign-out"></i> 退出登录</a> </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <!-- //header-ends -->
+    <!-- main content start-->
+    <div id="page-wrapper">
+        <div class="main-page">
+            <!-- start: Content -->
+            <div id="content" class="span10">
+
+
+                <div class="row-fluid">
+
+                    <div class="span7">
+                        <div id="blood_print" class="">
+                            <h1>献血咨询信息</h1>
+                            <span>打印信息：</span>
+                            <a href="#" onclick='tableToExcel()'><img width="30em" src="/images/ddd.png" alt="打印信息" title="打印按钮"></a>
+                           <br>
+                        </div>
+
+                        <ul class="messagesList" style="margin-left: 150px;">
+
+                            <li>
+                                <!-- <span class="from"> -->
+                                <span class="glyphicons star"><i></i></span>
+                                <!-- </span> -->
+                                <span class="title"><span
+                                        class="label label-warning">warn</span>&nbsp;<strong>一、您今日/现时是否有下列情况？</strong></span>
+                                <!-- <span class="date">Today, <b>3:47 PM</b></span> -->
+                            </li>
+                            <li>
+                                <span class="from"></span>
+                                <blockquote>
+                                <span class="title">1.24小时内注射甲肝、乙肝、流感、伤寒或百白破疫苗。<br></span>
+                                <span class="from"></span>
+                                <span class="title">2.女性是否处于月经期及前后三天？是否已怀孕？是否在过去一年内分娩或六个月内流产？<br></span>
+                                </blockquote>
+                            </li>
+                            <!-- ------------------------------------ -->
+                            <li>
+                                <span class="glyphicons star"><i></i></span>
+                                <span class="title"><span
+                                        class="label label-warning">warn</span>&nbsp;<strong>二、您3日内是否有下列情况？</strong></span>
+                            </li>
+                            <li>
+                                <blockquote>
+                                <span class="from"></span>
+                                <span class="title">1、是否曾接受任何口腔护理（包括洗牙）？<br></span>
+                                </blockquote>
+                            </li>
+                            <!-- ------------------------------------ -->
+                            <li>
+                                <span class="glyphicons star"><i></i></span>
+                                <span class="title"><span
+                                        class="label label-warning">warn</span>&nbsp;<strong>三、您5日内是否有下列情况？</strong></span>
+                            </li>
+                            <li>
+                                <blockquote>
+                                <span class="from"></span>
+                                <span class="title">1、是否服用阿司匹林（不是抗生素）或含阿司匹林的药物？<br></span>
+                                </blockquote>
+                            </li>
+                            <!-- ------------------------------------ -->
+                            <li>
+                                <span class="glyphicons star"><i></i></span>
+                                <span class="title"><span
+                                        class="label label-warning">warn</span>&nbsp;<strong>四、您1周内是否含有下列情况？</strong></span>
+                            </li>
+                            <li>
+                                <blockquote>
+                                <span class="from"></span>
+                                <span class="title">1、是否有发热、头痛或腹泻？是否患有感冒、急性肠胃炎<br></span>
+                                <span class="from"></span>
+                                <span class="title">2、是否有任何未愈合的伤口或皮肤炎症？<br></span>
+                                <span class="from"></span>
+                                <span class="title">3、是否患活动性进展性眼科疾病？<br></span>
+                                </blockquote>
+                            </li>
+                            <!-- ------------------------------------ -->
+                            <li>
+                                <span class="glyphicons star"><i></i></span>
+                                <span class="title"><span
+                                        class="label label-warning">warn</span>&nbsp;<strong>五、您2周内是否含有下列情况？</strong></span>
+                            </li>
+                            <li>
+                                <blockquote>
+                                <span class="from"></span>
+                                <span class="title">1、是否曾拔牙或其他手术？是否有皮肤广泛性炎症？<br></span>
+                                <span class="from"></span>
+                                <span class="title">2、是否曾注射麻疹、黄热病等减毒活疫苗？<br></span>
+                                </blockquote>
+                            </li>
+                            <!-- ------------------------------------ -->
+                            <li>
+                                <span class="glyphicons star"><i></i></span>
+                                <span class="title"><span
+                                        class="label label-warning">warn</span>&nbsp;<strong>六、您4周内是否含有下列情况？</strong></span>
+                            </li>
+                            <li><blockquote>
+                                <span class="from"></span>
+                                <span class="title">1、是否曾接触传染病患者？是否有皮肤广泛性炎症？<br></span>
+                                <span class="from"></span>
+                                <span class="title">2、是否曾注射风疹、狂犬病、水痘等减毒活疫苗？<br></span>
+                                <span class="from"></span>
+                                <span class="title">3、是否曾患急性病泌尿道感染？<br></span>
+                            </blockquote>
+                            </li>
+                            <!-- ------------------------------------ -->
+                            <li>
+                                <span class="glyphicons star"><i></i></span>
+                                <span class="title"><span
+                                        class="label label-warning">warn</span>&nbsp;<strong>七、您3月内是否含有下列情况？</strong></span>
+                            </li>
+                            <li>
+                                <blockquote>
+                                <span class="from"></span>
+                                <span class="title">1、是否曾患肺炎、急性肾猛肾炎？<br></span>
+                                <span class="from"></span>
+                                <span class="title">2、是否曾做阑尾切除、眼科手术等？<br></span>
+                                </blockquote>
+                            </li>
+                            <!-- ------------------------------------ -->
+                            <li>
+                                <span class="glyphicons star"><i></i></span>
+                                <span class="title"><span
+                                        class="label label-warning">warn</span>&nbsp;<strong>八、您1年内是否含有下列情况？</strong></span>
+                            </li>
+                            <li><blockquote>
+                                <span class="from"></span>
+                                <span class="title">1、是否曾纹身？<br></span>
+                                <span class="from"></span>
+                                <span class="title">2、是否患甲型肝炎？<br></span>
+                                <span class="from"></span>
+                                <span class="title">3、是否曾接受输血治疗？<br></span>
+                                <span class="from"></span>
+                                <span class="title">4、是否曾注射乙型肝炎免疫球蛋白？<br></span>
+                                <span class="from"></span>
+                                <span class="title">5、是否曾被动物咬伤并因此注射狂犬疫苗？<br></span>
+                            </blockquote> </li>
+                            <!-- ------------------------------------ -->
+                            <li>
+                                <span class="glyphicons star"><i></i></span>
+                                <span class="title"><span
+                                        class="label label-warning">warn</span>&nbsp;<strong>九、您是否含有下列情况？</strong></span>
+                            </li>
+                            <li><blockquote>
+                                <span class="from"></span>
+                                <span class="title">1、是否有吸毒史、男男性行为、多个性伙伴？<br></span>
+                                <span class="from"></span>
+                                <span class="title">2、是否患艾滋病、梅毒、淋病、尖锐湿疹等？<br></span>
+                                <span class="from"></span>
+                                <span class="title">3、是否在近一年内与上述人员发生性行为？<br></span>
+                                <span class="from"></span>
+                                <span class="title">4、是否是乙型、丙型病毒性肝炎患者或感染者？<br></span>
+                                <span class="from"></span>
+                                <span class="title">5、近期是否到疫区旅行？<br></span>
+                            </blockquote></li>
+
+
+                        </ul>
+                        <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog"
+                             aria-hidden="true">
+                            <div class="modal-content">
+                                <ul class="list-inline item-details">
+                                    <li><a href="#">Admin templates</a></li>
+                                    <li><a href="http://themescloud.org">Bootstrap themes</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span5 noMarginLeft">
+
+                        <div class="message dark">
+                            <br><br>
+                            <div class="header">
+                                <h1>献血咨询信息-病例特别注意： </h1><br>
+                            </div>
+                            <div style="margin-left: 150px;">
+                                <p>是否有下列病例情况？<br></p>
+                                <blockquote>
+                                    1. 是否患或曾患结核病？<br>
+                                    2. 是否恶心肿瘤或影响健康的良性肿瘤？<br>
+                                    3. 是否患传染性、过敏性或炎症性全身皮肤病？<br>
+                                    4. 是否患严重寄生虫病（如血吸虫、丝虫病等）？<br>
+                                    5. 是否做过胃、肾、脾、肺等重要内脏器官切除？<br>
+                                    6. 是否患或曾患结核病？<br>
+                                    7. 是否恶心肿瘤或影响健康的良性肿瘤？<br>
+                                    8. 是否患传染性、过敏性或炎症性全身皮肤病？<br>
+                                    9. 是否患严重寄生虫病（如血吸虫、丝虫病等）？<br>
+                                    10. 是否做过胃、肾、脾、肺等重要内脏器官切除？<br>
+                                </blockquote>
+                                <p>
+                                    是否曾患下列疾病？<br></p>
+                                    <blockquote>
+                                    1. <strong>呼吸系统疾病</strong>(如支器官哮喘、支气管扩张、慢支炎等。)<br>
+                                    2. <strong>循环系统疾病</strong>(如各种心脏病、高血压、低血压、四肢动脉硬化等。)<br>
+                                    3. <strong>消化系统疾病</strong>(如活动期胃及十二指肠溃疡、慢性胰腺炎等。)<br>
+                                    4. <strong>血液系统疾病</strong>(如贫血、真性红细胞多症、白血病、淋巴瘤及出等。)<br>
+                                    5. <strong>泌尿系统疾病</strong>(如肾小球肾炎、慢性肾孟肾炎、肾病综合症等。)<br>
+                                    </blockquote>
+                            </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <!--/.fluid-container-->
+
+
+        </div>
+    </div>
+
+
+    <script >
+
+        function tableToExcel() {
+            //  json数据
+            const jsonData = [
+                {
+                    num: '001',
+                    title: '一、您今日/现时是否有下列情况？',
+                    detail1: ' 1.24小时内注射甲肝、乙肝、流感、伤寒或百白破疫苗。',
+                    detail2: ' 2.女性是否处于月经期及前后三天？是否已怀孕？是否在过去一年内分娩或六个月内流产？'
+                },
+                {
+                    num: '002',
+                    title: '二、您3日内是否有下列情况？',
+                    detail1: '1、是否曾接受任何口腔护理（包括洗牙）？',
+                },
+                {
+                    num: '003',
+                    title: '三、您5日内是否有下列情况？',
+                    detail1: '1、是否服用阿司匹林（不是抗生素）或含阿司匹林的药物？',
+                },
+                {
+                    num: '004',
+                    title: '四、您1周内是否含有下列情况？',
+                    detail1: ' 1、是否有发热、头痛或腹泻？是否患有感冒、急性肠胃炎',
+                    detail2: '2、是否有任何未愈合的伤口或皮肤炎症？'
+                },
+                {
+                    num: '005',
+                    title: '三、您5日内是否有下列情况？',
+                    detail1: '1、是否服用阿司匹林（不是抗生素）或含阿司匹林的药物？',
+                },
+                {
+                    num: '006',
+                    title: '四、您1周内是否含有下列情况？',
+                    detail1: ' 1、是否有发热、头痛或腹泻？是否患有感冒、急性肠胃炎',
+                    detail2: '2、是否有任何未愈合的伤口或皮肤炎症？'
+                },
+                {
+                    num: '007',
+                    title: '三、您5日内是否有下列情况？',
+                    detail1: '1、是否服用阿司匹林（不是抗生素）或含阿司匹林的药物？',
+                },
+                {
+                    num: '008',
+                    title: '四、您1周内是否含有下列情况？',
+                    detail1: ' 1、是否有发热、头痛或腹泻？是否患有感冒、急性肠胃炎',
+                    detail2: '2、是否有任何未愈合的伤口或皮肤炎症？'
+                },
+                {
+                    num: '009',
+                    title: '四、您1周内是否含有下列情况？',
+                    detail1: ' 1、是否有发热、头痛或腹泻？是否患有感冒、急性肠胃炎',
+                    detail2: '2、是否有任何未愈合的伤口或皮肤炎症？'
+                },
+            ];
+            // 列标题
+            // let str = '<tr><td>序号</td><td>标题</td><td>问题1</td><td>问题2</td></tr>';
+            let str = `序号,标题,问题1,问题2\n`;
+
+            for(let i = 0; i < jsonData.length; i++) {
+                for(let item in jsonData[i]) {
+                    str += `${jsonData[i][item] + '\t'},`;
+                }
+                str += '\n';
+            }
+            let uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(str);
+            let link = document.createElement("a");
+            link.href = uri;
+            link.download = "献血咨询信息表.csv";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+
+    </script>
+
+
+
+
+    <!-- side nav js -->
+    <script src='/js/SidebarNav.min.js' type='text/javascript'></script>
+    <script>
+        $('.sidebar-menu').SidebarNav()
+    </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.js"> </script>
+    <!-- //Bootstrap Core JavaScript -->
+
+</body>
+</html>
