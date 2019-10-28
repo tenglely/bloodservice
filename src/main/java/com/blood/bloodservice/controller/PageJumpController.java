@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -177,4 +178,10 @@ public class PageJumpController {
         return "/doctor/doctorlogin";
     }
 
+    //修改医护人员信息
+    @ApiOperation(value = "修改医护人员信息页面")
+    @RequestMapping("/doctor/selectdoctor.html")
+    public String selectdoctor(){
+        return "/doctor/editdoctor";
+    }
 }

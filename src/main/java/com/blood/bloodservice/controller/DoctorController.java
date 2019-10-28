@@ -1,21 +1,21 @@
 package com.blood.bloodservice.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.blood.bloodservice.entity.Doctor;
 import com.blood.bloodservice.entity.Msg;
 import com.blood.bloodservice.entity.Userlogin;
 import com.blood.bloodservice.service.impl.DoctorServiceImpl;
+import com.blood.bloodservice.service.impl.UserloginService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.print.Doc;
@@ -35,6 +35,9 @@ public class DoctorController {
     DoctorServiceImpl doctorServiceImpl;
     @Autowired
     RedisTemplate redisTemplate;
+
+    @Autowired
+    UserloginService userloginService;
 
     @ApiOperation(value = "把医务人员的操作信息的最新的10条显示出来")
     @GetMapping("/doctor/selectallmessage")
@@ -105,8 +108,28 @@ public class DoctorController {
     @GetMapping("/doctor/selectdoctor/{did}")
     public Msg selectdoctor(@PathVariable("did")Integer did){
         //查找医生
+        System.out.printf("查到");
         Doctor doctor=doctorServiceImpl.selectbydid(did);
         return Msg.success().add("doctor",doctor);
     }
 
+    @ApiOperation(value = "医务人员查询个人信息")
+    @GetMapping("/doctor/selectonedoctor")
+    public Msg selectdoctor(){
+        Userlogin userlogin = (Userlogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        //查找医生
+        Doctor doctor=doctorServiceImpl.selectbydid(userlogin.getUid());
+        return Msg.success().add("doctor",doctor);
+    }
+    @ApiOperation(value = "修改个人信息")
+    @PostMapping("/doctor/update")
+    public Msg updatedoctor( HttpServletRequest req,String dname,String dsex,String didentity,String daddress,String dnation,String dphone,String demail){
+           int i =  doctorServiceImpl.updateDoctor(dname,dsex,didentity,daddress,dnation,dphone,demail);
+
+          String pwd = didentity.substring(didentity.length()-6,didentity.length());
+           int j = userloginService.updateUserlogin(demail,pwd);
+    if(i>0)
+    return Msg.success();
+    return Msg.fail();
+    }
 }

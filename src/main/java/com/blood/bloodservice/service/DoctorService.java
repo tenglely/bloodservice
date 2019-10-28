@@ -40,4 +40,7 @@ public interface DoctorService {
      * @return
      */
     List<Doctor> findalldoctor();
+
+    //修改人员信息
+    int updateDoctor(String dname,String dsex,String didentity,String daddress,String dnation,String dphone,String demail);
 }

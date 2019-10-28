@@ -2,9 +2,11 @@ package com.blood.bloodservice.service.impl;
 
 import com.blood.bloodservice.dao.UserloginMapper;
 import com.blood.bloodservice.entity.Userlogin;
+import com.blood.bloodservice.entity.UserloginExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -51,4 +53,16 @@ public class UserloginService implements UserDetailsService {
         userloginMapper.insert(userlogin);
         return userlogin.getDid();
     }
+
+    //修改登录数据
+    public int updateUserlogin(String gmail,String upassword){
+        Userlogin userlogin= (Userlogin) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        userlogin.setUemail(gmail);
+        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder(10);
+        String encodePassword=encoder.encode(upassword);
+        userlogin.setUpassword(encodePassword);
+        int i = userloginMapper.updateByPrimaryKey(userlogin);
+        return i;
+    }
+
 }
